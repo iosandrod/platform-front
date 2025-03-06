@@ -18,6 +18,7 @@
   },
   "dependencies": {
     "@ant-design/icons-vue": "^6.1.0",
+    "@feathersjs/socketio-client": "^5.0.33",
     "@vueuse/core": "^10.1.0",
     "ant-design-vue": "^3.2.15",
     "axios": "^0.21.1",
@@ -31,6 +32,7 @@
     "nprogress": "^0.2.0",
     "pinia": "^2.0.33",
     "qs": "^6.10.1",
+    "socket.io-client": "^4.8.1",
     "stepin": "^2.1.70-beta",
     "vue": "^3.4.36",
     "vue-router": "^4.1.6"
