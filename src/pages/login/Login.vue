@@ -1,10 +1,7 @@
 <template>
-  <div class="login flex items-center justify-center">
-    <login-box class="shadow-lg" @success="onLoginSuccess" />
-  </div>
+  <div class="login flex items-center justify-center"></div>
 </template>
 <script lang="ts" setup>
-import LoginBox from './LoginBox.vue';
 import { useRouter } from 'vue-router';
 
 const router = useRouter();

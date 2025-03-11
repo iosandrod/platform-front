@@ -19,6 +19,7 @@
   "dependencies": {
     "@ant-design/icons-vue": "^6.1.0",
     "@feathersjs/socketio-client": "^5.0.33",
+    "@visactor/vtable": "^1.17.0",
     "@vueuse/core": "^10.1.0",
     "ant-design-vue": "^3.2.15",
     "axios": "^0.21.1",
@@ -26,16 +27,21 @@
     "dayjs": "^1.11.6",
     "default-passive-events": "^2.0.0",
     "echarts": "^5.3.3",
+    "element-plus": "^2.9.6",
     "enquire.js": "^2.1.6",
     "js-cookie": "^2.2.1",
     "lodash": "^4.17.21",
+    "nanoid": "^5.1.3",
     "nprogress": "^0.2.0",
     "pinia": "^2.0.33",
     "qs": "^6.10.1",
     "socket.io-client": "^4.8.1",
     "stepin": "^2.1.70-beta",
+    "uuid": "^11.1.0",
+    "vant": "^4.9.17",
     "vue": "^3.4.36",
-    "vue-router": "^4.1.6"
+    "vue-router": "^4.1.6",
+    "vxe-table": "^4.11.20"
   },
   "devDependencies": {
     "@tailwindcss/container-queries": "^0.1.0",
@@ -46,6 +52,7 @@
     "@types/nprogress": "^0.2.0",
     "@types/qs": "^6.9.6",
     "@vitejs/plugin-vue": "^4.1.0",
+    "@vitejs/plugin-vue-jsx": "^4.1.1",
     "autoprefixer": "^10.4.7",
     "babel-preset-es2015": "^6.24.1",
     "babel-register": "^6.26.0",

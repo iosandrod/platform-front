@@ -66,16 +66,5 @@ const emit = defineEmits<{
 }>();
 
 const accountStore = useAccountStore();
-function login(params: LoginFormProps) {
-  loading.value = true;
-  accountStore
-    .login(params.username, params.password)
-    .then((res) => {
-      emit('success', params);
-    })
-    .catch((e) => {
-      emit('failure', e.message, params);
-    })
-    .finally(() => (loading.value = false));
-}
+function login(params: LoginFormProps) {}
 </script>

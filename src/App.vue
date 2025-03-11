@@ -1,22 +1,7 @@
 <template>
-  <a-config-provider :getPopupContainer="getPopupContainer">
-    <ThemeProvider is-root v-bind="themeConfig" :apply-style="false">
-      <stepin-view
-        system-name="Stepin"
-        logo-src="@/assets/vite.svg"
-        :class="`${contentClass}`"
-        :user="user"
-        :navMode="navigation"
-        :useTabs="useTabs"
-        :themeList="themeList"
-        v-model:show-setting="showSetting"
-        v-model:theme="theme"
-        @themeSelect="configTheme"
-      >
-      </stepin-view>
-    </ThemeProvider>
-  </a-config-provider>
-  <login-modal :unless="['/login']" />
+  <div>
+    <formEditor :_constructor="_formEditor"></formEditor>
+  </div>
 </template>
 
 <script lang="ts" setup>
@@ -30,7 +15,8 @@ import { LoginModal } from '@/pages/login';
 import { configTheme, themeList } from '@/theme';
 import { ThemeProvider } from 'stepin';
 import { computed } from 'vue';
-
+import formEditor from './form/_formEditor';
+import { FormEditor as _formEditor } from './form/formEditor';
 const { logout, profile } = useAccountStore();
 
 // 获取个人信息
@@ -114,3 +100,23 @@ body {
   }
 }
 </style>
+<!-- 
+<a-config-provider :getPopupContainer="getPopupContainer">
+    <ThemeProvider is-root v-bind="themeConfig" :apply-style="false">
+      <stepin-view
+        system-name="Stepin"
+        logo-src="@/assets/vite.svg"
+        :class="`${contentClass}`"
+        :user="user"
+        :navMode="navigation"
+        :useTabs="useTabs"
+        :themeList="themeList"
+        v-model:show-setting="showSetting"
+        v-model:theme="theme"
+        @themeSelect="configTheme"
+      >
+      </stepin-view>
+    </ThemeProvider>
+  </a-config-provider>
+  <login-modal :unless="['/login']" />
+-->

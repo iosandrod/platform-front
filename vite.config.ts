@@ -4,7 +4,7 @@ import path from 'path';
 import Components from 'unplugin-vue-components/vite';
 import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers';
 import { AntdvLessPlugin, AntdvModifyVars } from 'stepin/lib/style/plugins';
-
+import vueJsx from '@vitejs/plugin-vue-jsx'
 const timestamp = new Date().getTime();
 const prodRollupOptions = {
   output: {
@@ -30,6 +30,7 @@ export default ({ command, mode }) => {
 
   return defineConfig({
     server: {
+      port: 3002,
       proxy: {
         '/api': {
           target: env.VITE_API_URL,
@@ -66,6 +67,7 @@ export default ({ command, mode }) => {
           },
         },
       }),
+      vueJsx(),
       Components({
         resolvers: [AntDesignVueResolver({ importStyle: mode === 'development' ? false : 'less' })],
       }),
