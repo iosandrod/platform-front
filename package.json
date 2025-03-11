@@ -18,7 +18,10 @@
   },
   "dependencies": {
     "@ant-design/icons-vue": "^6.1.0",
+    "@feathersjs/authentication-client": "^5.0.33",
+    "@feathersjs/feathers": "^5.0.33",
     "@feathersjs/socketio-client": "^5.0.33",
+    "@visactor/vtable": "^1.17.0",
     "@vueuse/core": "^10.1.0",
     "ant-design-vue": "^3.2.15",
     "axios": "^0.21.1",

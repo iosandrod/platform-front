@@ -1,16 +1,13 @@
 <template>
-  <div class="login flex items-center justify-center">
-    <login-box class="shadow-lg" @success="onLoginSuccess" />
+  <div class="w-full h-full">
   </div>
 </template>
 <script lang="ts" setup>
-import LoginBox from './LoginBox.vue';
-import { useRouter } from 'vue-router';
+import { Table } from '@/platformClass/table'
+import { options } from './data'//
+import { onMounted } from 'vue'
+//@ts-ignore
 
-const router = useRouter();
-function onLoginSuccess() {
-  router.push('/workplace');
-}
 </script>
 <style scoped lang="less">
 .login {
