@@ -8,7 +8,7 @@ function signIn() {
 }
 </script>
 <template>
-  <div class="home text-center flex flex-col justify-center"></div>
+  <div class="home text-center flex flex-col justify-center">home</div>
 </template>
 <style scoped lang="less">
 .home {

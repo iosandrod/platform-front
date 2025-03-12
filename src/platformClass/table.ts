@@ -49,7 +49,7 @@ export class Table extends Base {
     }
     //取消挂载
     unRender() {
-        let instance = this.instance
+        let instance = this.instance//
         this.watchEffectArr.forEach(item => {
             item()//
         })

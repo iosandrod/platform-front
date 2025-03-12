@@ -1,13 +1,13 @@
 <template>
-  <div class="w-full h-full">
-  </div>
+  <div class="login flex items-center justify-center"></div>
 </template>
 <script lang="ts" setup>
-import { Table } from '@/platformClass/table'
-import { options } from './data'//
-import { onMounted } from 'vue'
-//@ts-ignore
+import { useRouter } from 'vue-router';
 
+const router = useRouter();//
+function onLoginSuccess() {
+  router.push('/workplace');
+}
 </script>
 <style scoped lang="less">
 .login {
