@@ -2,7 +2,8 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"]
+      "@ER/*":["src/packages/*"],
+      "@/*": ["src/*"],
     },
     "target": "ESNext",
     "useDefineForClassFields": true,
@@ -15,7 +16,7 @@
     "isolatedModules": true,
     "esModuleInterop": true,
     "lib": ["ESNext", "DOM"],
-    "skipLibCheck": true,
+    "skipLibCheck": true,//
     "noEmit": true,
     "types": ["node", "vite/client"]
   },

@@ -4,7 +4,7 @@ import router from '@/router';
 import stepin from 'stepin/es';
 import pinia from '@/store';
 import elementPlus from 'element-plus'
-import 'element-plus/dist/index.css'
+import 'element-plus/dist/index.css' 
 import '@/mock';
 // 生产打包时可去除 ant-design-vue/dist/antd.variable.less 的引用。
 // 开发引入此包是为了加载优化，防止首次打开页面过慢
@@ -14,7 +14,13 @@ import '@/theme/index.less';
 import { AuthPlugin, IconfontPlugin } from '@/plugins';
 
 const app = createApp(App);
-
+import Vant, { Locale } from 'vant'
+import enUS from 'vant/es/locale/lang/en-US'
+// import '@vant/touch-emulator'
+import 'element-plus/dist/index.css'
+import 'vant/lib/index.css'
+Locale.use('en-US', enUS)
+app.use(Vant)
 app.use(pinia);
 app.use(router);
 app.use(elementPlus);
