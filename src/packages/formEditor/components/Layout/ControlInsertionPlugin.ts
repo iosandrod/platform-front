@@ -367,7 +367,6 @@ function ControlInsertionPlugin(ER) {
       resetStates()
     }
     dragOver(e) {
-      console.log(e,'testDragOver')//
       e.cancel()
       resetStates()
       const {

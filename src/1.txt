@@ -481,3 +481,61 @@ export default defineComponent({
     );
   },
 });
+
+
+ // const handleAction = (type) => {
+    //   const index = type !== 5 && props.parent.indexOf(props.data);
+    //   switch (type) {
+    //     case 1:
+    //       if (ER.props.delHandle(props.data) === false) return false;
+    //       props.data.context.delete();
+    //       utils.deepTraversal(props.data, (node) => {
+    //         if (utils.checkIsField(node)) {
+    //           ER.delField(node);
+    //         }
+    //       });
+    //       if (/^(radio|checkbox|select)$/.test(props.data.type)) {
+    //         delete state.data[props.data.options.dataKey];
+    //       }
+    //       if (props.parent.length > 0) {
+    //         if (index === props.parent.length) {
+    //           setSelection(props.parent[index - 1]);
+    //         } else {
+    //           setSelection(props.parent[index]);
+    //         }
+    //       } else {
+    //         setSelection('root');
+    //       }
+    //       break;
+    //     case 2:
+    //       if (ER.props.copyHandle(props.data) === false) return false;
+    //       props.data.context.copy();
+    //       const copyData = props.parent[index + 1];
+    //       setSelection(copyData);
+    //       utils.deepTraversal(copyData, (node) => {
+    //         ER.addFieldData(node, true);
+    //         if (utils.checkIsField(node)) {
+    //           ER.addField(node);
+    //         }
+    //       });
+    //       break;
+    //     case 3:
+    //       //@ts-ignore
+    //       _.last(props.data.context.columns[0]).context.insert('bottom');
+    //       break;
+    //     case 4:
+    //       //@ts-ignore
+    //       _.last(props.data.context.columns)[0].context.insert('right');
+    //       break;
+    //     case 5:
+    //       let parent = props.data.context.parent;
+    //       if (/^(inline|tr)$/.test(parent.type)) {
+    //         parent = parent.context.parent;
+    //       }
+    //       setSelection(Array.isArray(parent) ? 'root' : parent);
+    //       break;
+    //     case 6:
+    //       props.data.context.appendCol();
+    //       break;
+    //   }
+    // };
