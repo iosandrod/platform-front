@@ -118,7 +118,8 @@ export default defineComponent({
         findComponent (type, element) {
           let info = componentMap[type + element]
           if (!info) {
-            info = componentMap[type + element] = defineAsyncComponent(() => import(`../${type}/${_.startCase(element)}/${state.platform}.vue`))
+            let url=`../${type}/${_.startCase(element)}/${state.platform}.vue`
+            info = componentMap[type + element] = defineAsyncComponent(() => import(url))//
           }
           return info
         }
@@ -129,6 +130,7 @@ export default defineComponent({
       item: ({ element }) => {
         let node = ''
         switch (element.type) {
+          //这些都是布局控件
           case 'grid':
             node = (<LayoutGridLayout key={element.id} data={element} parent={props.data}></LayoutGridLayout>)
             break

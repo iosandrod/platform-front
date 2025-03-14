@@ -64,7 +64,7 @@ export default {
     }
   },
   setup(props) {
-    const ER = inject('Everright')
+    const ER: any = inject('Everright')
     const {
       t
     } = hooks.useI18n()
@@ -183,9 +183,11 @@ export default {
           })
           break
         case 3:
+          //@ts-ignore
           _.last(props.data.context.columns[0]).context.insert('bottom')
           break
         case 4:
+          //@ts-ignore
           _.last(props.data.context.columns)[0].context.insert('right')
           break
         case 5:
@@ -275,6 +277,7 @@ export default {
         <TagComponent
           class={id.value}
           {...useAttrs()}
+          // @ts-ignore
           class={[
             ns.b(),
             unref(isEditModel) && ER.props.dragMode === 'full' && props.hasDrag && 'ER-handle',
@@ -300,7 +303,7 @@ export default {
           {
             unref(isEditModel) && (
               <div class={[ns.e('bottomRight')]}>
-                {}
+                { }
                 <Icon class={['handle', ns.e('selectParent')]} onClick={withModifiers((e) => {
                   handleAction(5)
                 }, ['stop'])} icon="top"></Icon>
