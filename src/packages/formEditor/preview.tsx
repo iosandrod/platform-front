@@ -44,7 +44,7 @@ export default defineComponent({
             if (!utils.checkIsInSubform(e)) {
               result[e.key] = e.options.defaultValue;
             }
-          } catch (e) {}
+          } catch (e) { }
         }
       });
       return _.cloneDeep(_.merge(result, state.othersFiles));
@@ -126,7 +126,7 @@ export default defineComponent({
               if (!utils.checkIsInSubform(field)) {
                 setValue(field, value[field.key]);
               }
-            } catch (e) {}
+            } catch (e) { }
           }
         });
       }
@@ -141,7 +141,8 @@ export default defineComponent({
       form,
     });
     return () => {
-      return <CanvesPanel v-if='state.store.length'></CanvesPanel>;
+      if (state.store.length === 0) return null
+      return <CanvesPanel ></CanvesPanel>;
     };
   },
 });

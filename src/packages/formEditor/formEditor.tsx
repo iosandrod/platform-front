@@ -27,7 +27,7 @@ import FieldsPanel from '@ER/formEditor/components/Panels/Fields';
 import CanvesPanel from '@ER/formEditor/components/Panels/Canves';
 import ConfigPanel from '@ER/formEditor/components/Panels/Config/index.vue';
 import DeviceSwitch from '@ER/formEditor/components/DeviceSwitch.vue';
-import ErFormPreview from './preview.vue';
+import ErFormPreview from './preview';
 import Icon from '@ER/icon';
 import hooks from '@ER/hooks';
 import utils from '@ER/utils';

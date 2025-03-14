@@ -118,8 +118,8 @@ export default defineComponent({
         findComponent (type, element) {
           let info = componentMap[type + element]
           if (!info) {
-            let url=`../${type}/${_.startCase(element)}/${state.platform}.vue`
-            info = componentMap[type + element] = defineAsyncComponent(() => import(url))//
+            // let url=`../${type}/${_.startCase(element)}/${state.platform}.vue`
+            info = componentMap[type + element] = defineAsyncComponent(() => import(`../${type}/${_.startCase(element)}/${state.platform}.vue`))//
           }
           return info
         }
