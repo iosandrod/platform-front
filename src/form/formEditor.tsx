@@ -1,16 +1,17 @@
 import FormCom from './_formEditor';
-import { } from 'vxe-table';
+import {} from 'vxe-table';
 import { uniqueId } from 'xe-utils';
-import { h, nextTick, provide, unref, withDirectives } from 'vue';
+import { h, inject, nextTick, provide, resolveComponent, unref, withDirectives } from 'vue';
 import { Base } from './base';
 import { ElMain, ElScrollbar } from 'element-plus';
 import { directiveEl } from './directive';
-import * as utils from './utils'
-import _ from 'lodash'
+import * as utils from './utils';
+import _ from 'lodash';
+import { baseComponent as LayoutDragGable } from './_formEditor';
 //@ts-ignore
-import locale from './locale'
+import locale from './locale.ts';
 export class FormEditor extends Base {
-  namespace: string = 'Canves';//
+  namespace: string = 'Canves'; //
   hookCache: any = {};
   isFoldFields: Boolean = true;
   isFoldConfig: Boolean = true;
@@ -45,30 +46,79 @@ export class FormEditor extends Base {
     super(props);
   }
   //使用instance的语法
-  useInstance() { }
-  registerElement(name: string) { }
-  registerRef(name: string) { }
-  registerProvide(name: string, value) { }
-  useComputed() { }
+  useInstance() {}
+  registerElement(name: string) {}
+  registerRef(name: string) {}
+  registerProvide(name: string, value) {}
+  useComputed() {}
   setup() {
     super.setup();
     provide('editor', this); //
     provide('Everright', this);
     this.useHook('namespace', 'Canves');
-    this.useHook('target'); //
+    this.useHook('target');
+    this.useHook('props', this.state);
   }
-  render() {//指令
+  getLayoutConfig() {
     let hookCache = this.hookCache;
     let ns = hookCache.namespace;
     let { isPc, isEditModel } = hookCache.target;
+    let state = this.state; //
+    let config = {
+      dataLayoutType: 'root',
+      class: [unref(isEditModel) && ns.e('wrap')],
+      data: state.store,
+      isRoot: true,
+    };
+    return config;
+  }
+  render() {
+    //指令
+    const handleClick = (e) => {
+      this.setSelection('root');
+    };
+    let hookCache = this.hookCache;
+    let ns = hookCache.namespace;
+    let { isPc, isEditModel } = hookCache.target;
+    const TagComponent: any = resolveComponent(unref(isPc) ? 'el-form' : 'van-form');
+    let typeProps = this.hookCache['props'];
+    let state = this.state; //
+    const ER = this;
+    const Layout = (
+      <LayoutDragGable
+        data-layout-type={'root'}
+        class={[unref(isEditModel) && ns.e('wrap')]}
+        data={state.store}
+        parent={state.store}
+        isRoot
+        config={this.getLayoutConfig()}
+      ></LayoutDragGable>
+    );
+    let _component = withDirectives(
+      <TagComponent onClick={unref(isEditModel) && handleClick} {...typeProps.value}>
+        {Layout}
+      </TagComponent>,
+      [
+        [
+          directiveEl(this, 'form'),
+          (a, b, c) => {
+            let ins = c.ctx.exposed;
+            return ins;
+          },
+        ],
+      ]
+    );
+
     let scrollCom = withDirectives(
-      <el-scrollbar>
-        {123}
-      </el-scrollbar>,//
-      [[directiveEl(this, 'canvesScrollRef', (a, b, c) => {
-        let ins = c.ctx.exposed
-        return ins
-      })]]
+      <el-scrollbar>{_component}</el-scrollbar>, //
+      [
+        [
+          directiveEl(this, 'canvesScrollRef', (a, b, c) => {
+            let ins = c.ctx.exposed;
+            return ins;
+          }),
+        ],
+      ]
     );
     return withDirectives(
       <div>
@@ -86,21 +136,13 @@ export class FormEditor extends Base {
       [[directiveEl(this, 'canvesRef')]]
     );
   } //
-  onMounted() { }
-  onUnmounted() { }
+  onMounted() {}
+  onUnmounted() {}
   useHook(name: string, ...args) {
-    let hookIns = this.hookIns;
-    let useMethod = `use${name[0].toUpperCase() + name.slice(1)}`;
-    let method = hookIns[useMethod];
-    if (typeof method !== 'function') {
-      return;
-    }
-    let value = method.call(hookIns, ...args);
-    let hookCache = this.hookCache;
-    hookCache[name] = value; //
+    super.useHook(name, ...args);
   }
   delField(node) {
-    let state = this.state
+    let state = this.state;
     const fieldIndex = _.findIndex(state.fields, {
       id: node.id,
     });
@@ -119,8 +161,8 @@ export class FormEditor extends Base {
     }
   }
   addFieldData(node, isCopy = false) {
-    let state = this.state
-    let props = this.props
+    let state = this.state;
+    let props = this.props;
     if (/^(radio|cascader|checkbox|select)$/.test(node.type)) {
       if (isCopy) {
         state.data[node.id] = _.cloneDeep(state.data[node.options.dataKey]);
@@ -145,31 +187,29 @@ export class FormEditor extends Base {
   generatorData(node, isWrap = true, lang = 'zh-cn', isCreateLabel = true, eachBack) {
     const newNode = isWrap
       ? {
-        type: 'inline',
-        columns: [
-          node
-        ]
-      }
-      : node
-    const result = utils.wrapElement(newNode, eachBack && eachBack)
+          type: 'inline',
+          columns: [node],
+        }
+      : node;
+    const result = utils.wrapElement(newNode, eachBack && eachBack);
     if (isCreateLabel) {
-      node.label = utils.transferData(lang, utils.transferLabelPath(node), locale)
+      node.label = utils.transferData(lang, utils.transferLabelPath(node), locale);
       // if (/^(input|textarea|number|radio|checkbox|select|time|date|rate|switch|slider|html|cascader|uploadfile|signature|region)$/.test()) {}
       if (/^(select|cascader|region|date|time)$/.test(node.type)) {
-        node.options.placeholder = utils.transferData(lang, 'er.validateMsg.placeholder2', locale)
+        node.options.placeholder = utils.transferData(lang, 'er.validateMsg.placeholder2', locale);
       }
       if (/^(select|checkbox|radio)$/.test(node.type)) {
-        node.options.otherPlaceholder = utils.transferData(lang, 'er.validateMsg.placeholder3', locale)
+        node.options.otherPlaceholder = utils.transferData(lang, 'er.validateMsg.placeholder3', locale);
       }
       if (/^(input|textarea|html)$/.test(node.type)) {
-        node.options.placeholder = utils.transferData(lang, 'er.validateMsg.placeholder1', locale)
+        node.options.placeholder = utils.transferData(lang, 'er.validateMsg.placeholder1', locale);
       }
       // node.options.placeholder
     }
-    return result
+    return result;
   }
   addField(node) {
-    let state = this.state
+    let state = this.state;
     if (utils.checkIsField(node)) {
       const findIndex = _.findIndex(state.fields, {
         id: node.id,
@@ -182,28 +222,28 @@ export class FormEditor extends Base {
     }
   }
   wrapElement(el, isWrap = true, isSetSelection = true, sourceBlock = true, resetWidth = true) {
-    let lang = this.lang
-    let state = this.state
+    let lang = this.lang;
+    let state = this.state;
     const node = sourceBlock
       ? this.generatorData(el, isWrap, lang, sourceBlock, (node) => {
-        this.addFieldData(node);
-        this.addField(node);
-      })
+          this.addFieldData(node);
+          this.addField(node);
+        })
       : isWrap
-        ? {
-          type: "inline",
+      ? {
+          type: 'inline',
           columns: [el],
         }
-        : el;
+      : el;
     if (!sourceBlock && resetWidth) {
       if (utils.checkIsField(el)) {
-        if (state.platform === "pc") {
-          el.style.width.pc = "100%";
+        if (state.platform === 'pc') {
+          el.style.width.pc = '100%';
         } else {
-          el.style.width.mobile = "100%";
+          el.style.width.mobile = '100%';
         }
       } else {
-        el.style.width = "100%";
+        el.style.width = '100%';
       }
     }
     if (isSetSelection) {
@@ -214,7 +254,7 @@ export class FormEditor extends Base {
     return node;
   }
   setData(data: any) {
-    let state = this.state
+    let state = this.state;
     if (_.isEmpty(data)) return false;
     const newData = utils.combinationData1(_.cloneDeep(data));
     this.isShow = false;
@@ -232,12 +272,12 @@ export class FormEditor extends Base {
     });
   }
   setSelection(node) {
-    let state = this.state
-    let result = "";
-    if (node === "root") {
+    let state = this.state;
+    let result = '';
+    if (node === 'root') {
       result = state.config;
     } else {
-      if (node.type === "inline") {
+      if (node.type === 'inline') {
         result = node.columns[0];
       } else {
         result = node;
@@ -250,15 +290,15 @@ export class FormEditor extends Base {
     });
   }
   getData(config?: any) {
-    let state = this.state
-    if (!state.validateStates?.every((e) => !e.isWarning)) return {}
-    let data = utils.combinationData2(state.store, state.data, state.logic, state.fields, config)//
-    return data 
+    let state = this.state;
+    if (!state.validateStates?.every((e) => !e.isWarning)) return {};
+    let data = utils.combinationData2(state.store, state.data, state.logic, state.fields, config); //
+    return data;
   }
   validateState(target, fn) {
-    let state = this.state
+    let state = this.state;
     if (target) {
-      const count = _.countBy(state.validateStates, "data.key");
+      const count = _.countBy(state.validateStates, 'data.key');
       const newValue = target.key.trim();
       if (utils.isNull(newValue)) {
         _.find(state.validateStates, {
@@ -280,19 +320,19 @@ export class FormEditor extends Base {
     }
   }
   clearState() {
-    let state = this.state//
+    let state = this.state; //
     state.fields.splice(0);
     state.store.splice(0);
     state.data = {};
-    this.setSelection("root");
+    this.setSelection('root');
   }
   emitEvent(type, data) {
     //处理外部事件
   }
   switchPlatform(platform) {
-    let state = this.state
-    state.platform = platform//
+    let state = this.state;
+    state.platform = platform; //
   }
 }
 
-export const createForm = (props: any) => { };
+export const createForm = (props: any) => {};

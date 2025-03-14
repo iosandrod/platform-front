@@ -118,7 +118,7 @@ const combinationData1 = (data) => {
     flatNodes(data.list, excludes, fn)
     return result
 }
-const combinationData2 = (list, fields,...ages) => {
+const combinationData2 = (list, fields, ...ages) => {
     const fn = (nodes, node, currentIndex) => {
         const cur = _.find(fields, { id: node })
         if (!_.isEmpty(cur)) {
@@ -1212,6 +1212,8 @@ export const addContext = (node, parent?: any, fn?: any) => {
         addContext(e, node, fn)
     })
 }
+export const isEmpty = (v) => (v === '' || v === null || v === undefined || (Array.isArray(v) && !v.length))
+
 export {
     syncWidthByPlatform,
     wrapElement,

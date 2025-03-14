@@ -1,11 +1,12 @@
 import { defineComponent, onMounted, onUnmounted, defineExpose } from 'vue';
-export default defineComponent({
+let _component = defineComponent({
   props: {
     _constructor: {} as any,
+    config: {},
   },
   setup(props, { attrs, slots, emit }) {
     const _constructor = props._constructor;
-    const instance = new _constructor(props);
+    const instance = new _constructor(props?.config || props); //
     instance.setup(); //
     onMounted(() => {});
     onUnmounted(() => {});
@@ -18,3 +19,5 @@ export default defineComponent({
     };
   },
 });
+export default _component;
+export const baseComponent = _component;
