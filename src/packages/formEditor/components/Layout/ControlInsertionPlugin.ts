@@ -3,6 +3,7 @@ import _ from 'lodash'
 //@ts-ignore
 import utils from '@ER/utils'
 import { nextTick } from 'vue'
+import { nanoid } from 'nanoid'
 let prevEl: any = ''
 let prevSortable: any = ''
 let inserRowIndex: any = ''
@@ -461,8 +462,8 @@ function ControlInsertionPlugin(ER) {
     }
   }
   return Object.assign(ControlInsertionPlugin, {
-    pluginName: 'ControlInsertion',
+    pluginName: `ControlInsertion`,
     initializeByDefault: true
-  })
+  }) 
 }
 export default ControlInsertionPlugin

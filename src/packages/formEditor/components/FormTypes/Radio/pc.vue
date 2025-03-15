@@ -11,7 +11,6 @@ export default {
 import { reactive } from 'vue'; //
 const props = defineProps(['data', 'params']);
 let params = reactive(props.params);
-console.log(params, 'testParams'); //
 const ns = hooks.useNamespace('FormTypesRadio');
 const { isEditModel } = hooks.useTarget();
 </script>

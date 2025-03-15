@@ -12,7 +12,8 @@ import {
   reactive
 } from 'vue' 
 import { isHTMLTag } from '@vue/shared'
-import DragGable from 'vuedraggable'
+// import DragGable from 'vuedraggable'
+import DragGable from '@ER/vueDraggable/vuedraggable'
 import utils from '@ER/utils'
 import hooks from '@ER/hooks'
 import _ from 'lodash'
@@ -30,7 +31,7 @@ const dragGableWrap = defineComponent({
   customOptions: {},
   components: {
     DragGable 
-  },
+  }, 
   setup (props) {
     const {
       isEditModel
@@ -45,7 +46,7 @@ const dragGableWrap = defineComponent({
             {useSlots()}
           </dragGable>
         )
-      } else {
+      } else { 
         const tag = isHTMLTag(attrs.tag) ? attrs.tag : resolveComponent(attrs.tag)
         const {
           item

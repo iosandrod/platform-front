@@ -6,6 +6,57 @@ import Region from '@ER/region/Region'
 import { areaList } from '@vant/area-data'
 import { useI18n } from '../use-i18n'
 import utils from '@ER/utils'
+class FormField {
+  label?: string;
+  disabled?: boolean;
+  placeholder?: string;
+  clearable?: boolean;
+  required?: boolean;
+  labelWidth?: string;
+  maxlength?: number;
+  showWordLimit?: boolean;
+  showPassword?: boolean;
+  prepend?: string;
+  model?: any
+  append?: string;
+  type?: string;
+  rows?: number;
+  controls?: boolean;
+  controlsPosition?: string;
+  min?: number;
+  max?: number;
+  step?: number;
+  precision?: number;
+  options?: any[];
+  multiple?: boolean;
+  filterable?: boolean;
+  format?: string;
+  valueFormat?: string;
+  rangeSeparator?: string;
+  startPlaceholder?: string;
+  disabledDate?: (time: Date) => boolean;
+  minDate?: Date;
+  maxDate?: Date;
+  defaultDate?: Date | Date[];
+  contentPosition?: string;
+  allowHalf?: boolean;
+  count?: number;
+  action?: string;
+  maxSize?: number;
+  config?: any;
+  limit?: number;
+  size?: any
+  maxCount?: number;
+  accept?: string;
+  areaList?: any;
+  columnsNum?: number;
+  labelPosition?: string
+  labelAlign?: string//
+  constructor(init?: Partial<FormField>) {
+    Object.assign(this, init);
+  }
+}
+
 const findPosition = (node, parent) => {
   for (let y = 0; y < parent.list.length; y++) {
     const row = parent.list[y]
@@ -53,18 +104,18 @@ const addValidate = (result, node, isPc, t, state, ExtraParams) => {
     }).join('.') + '.options.defaultValue'
   }
 
-  const obj = {
+  const obj: any = {
   }
-  const validator = (...arg0) => new Promise((...arg1) => {
+  const validator = (...arg0) => new Promise((...arg1: any) => {
     const resolve = () => {
       arg1[0]()
     }
     const reject = isPc
       ? arg1[1]
       : (message) => {
-          obj.message = message
-          arg1[0](false)
-        }
+        obj.message = message
+        arg1[0](false)
+      }
     let value = isPc ? arg0[1] : arg0[0]
     if (/^(signature|radio|checkbox|select|html)$/.test(node.type)) {
       value = options.defaultValue
@@ -92,7 +143,7 @@ const addValidate = (result, node, isPc, t, state, ExtraParams) => {
             readOnly,
             required
           } = getLogicStateByField(parent, state.fieldsLogicState)
-          const parentProps = useProps(state, parent, isPc, false, false, t, ExtraParams).value
+          const parentProps: any = useProps(state, parent, isPc, false, false, t, ExtraParams).value
           if (required !== undefined) {
             isRequired = parentProps.required
           }
@@ -181,6 +232,7 @@ const getLogicStateByField = (field, fieldsLogicState) => {
     readOnly
   }
 }
+
 export const useProps = (state, data, isPc = true, isRoot = false, specialHandling, t, ExtraParams) => {
   if (!t) {
     t = useI18n().t
@@ -190,11 +242,11 @@ export const useProps = (state, data, isPc = true, isRoot = false, specialHandli
   }
   return computed(() => {
     let node = isRoot ? data.config : data
-    let result = {}
+    let result = new FormField({})
     const platform = isPc ? 'pc' : 'mobile'
     if (isRoot) {
       if (isPc) {
-        result.model = data.store
+        result.model = data.store// is Array
         result.size = node.pc.size
         result.labelPosition = node[platform].labelPosition
       } else {
@@ -208,13 +260,14 @@ export const useProps = (state, data, isPc = true, isRoot = false, specialHandli
     const {
       options
     } = node
-    result = {
+    let result1 = {
       label: options.isShowLabel ? node.label : '',
       disabled: options.disabled,
       placeholder: options.placeholder,
       clearable: options.clearable,
       required: options.required
     }
+    Object.assign(result, result1)//
     if (state.mode === 'preview') {
       const {
         readOnly,
@@ -292,7 +345,9 @@ export const useProps = (state, data, isPc = true, isRoot = false, specialHandli
           }
         } else {
           // result.inputWidth = '100px'
+          //@ts-ignore
           result.defaultValue = null
+          //@ts-ignore
           result.allowEmpty = true
         }
         if (options.isShowWordLimit) {
@@ -322,8 +377,6 @@ export const useProps = (state, data, isPc = true, isRoot = false, specialHandli
         break
       case 'date':
         result.placeholder = options.placeholder
-        // result.startPlaceholder = options.startPlaceholder
-        // result.endPlaceholder = options.endPlaceholder
         result.format = options.format
         result.type = options.type
         if (isPc) {
@@ -406,6 +459,7 @@ export const useProps = (state, data, isPc = true, isRoot = false, specialHandli
         break
       case 'cascader':
         result.options = _.get(state, `data[${options.dataKey}].list`, [])
+        //@ts-ignore
         result.props = {
           multiple: options.multiple,
           checkStrictly: options.checkStrictly
@@ -481,6 +535,7 @@ export const useProps = (state, data, isPc = true, isRoot = false, specialHandli
           result.limit = options.limit
         } else {
           result.maxCount = options.limit
+          //@ts-ignore
           result.onOversize = (file) => {
             showToast(t('er.validateMsg.fileSize', { size: options.size }))
           }
@@ -493,6 +548,7 @@ export const useProps = (state, data, isPc = true, isRoot = false, specialHandli
             selectType: options.selectType
           })
           result.options = region.getAll()
+          //@ts-ignore 
           result.props = {
             emitPath: false
           }

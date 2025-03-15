@@ -1,13 +1,13 @@
 <script setup>
-import { ref, onMounted, getCurrentInstance, inject } from 'vue';
+import { ref, onMounted, getCurrentInstance, inject, provide } from 'vue';
 import { erFormEditor } from '@ER/formEditor';
+import { globalConfig } from './_form/config';
 const { lang } = inject('globalConfig', {}); //
 const EReditorRef = ref(null);
-console.log(erFormEditor, 'erFormEditor');
+provide('globalConfig',globalConfig)
 const handleListener = async ({ type, data }) => {
-  // console.log(data)
   switch (type) {
-    case 'lang':
+    case 'lang': 
       lang.value = data;
       localStorage.setItem('er-lang', data);
       break;
@@ -18,10 +18,5 @@ const checkFieldsForNewBadge = (field) => {
 };
 </script>
 <template>
-  <erFormEditor
-    :checkFieldsForNewBadge="checkFieldsForNewBadge"
-    :lang="lang"
-    @listener="handleListener"
-    ref="EReditorRef"
-  />
+  <router-view></router-view>
 </template>

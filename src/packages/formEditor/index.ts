@@ -1,10 +1,10 @@
 import './style/index.js'
-import erFormEditor from './formEditor'//
+import erFormEditor from './formEditor.jsx'//
 // import erFormEditor from './index.vue'//
-import erFormPreview from './preview'
-import erFormConfig from './config.vue'
-import erGeneratorData from './generatorData'
-import * as erComponentsConfig from './componentsConfig'
+import erFormPreview from './preview.jsx'
+import erFormConfig from './config.jsx' 
+import erGeneratorData from './generatorData.js'
+import * as erComponentsConfig from './componentsConfig.js'
 import utils from '@ER/utils'
 /*
 * er-form-editor

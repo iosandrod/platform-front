@@ -40,6 +40,9 @@ export default {
     }
     const slots = {
       item: ({ element }) => {
+        // debugger//
+        // let _value=utils.fieldLabel(t, element)
+        // console.log(_value,'testValue')//
         return (
           <li class={[ER.props.checkFieldsForNewBadge(element) ? ns.is('new') : '']} onClick={() => addStore(element)}>
             <Icon class={[ns.e('icon')]} icon={element.icon}></Icon>

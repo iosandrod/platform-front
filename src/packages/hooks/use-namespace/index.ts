@@ -12,7 +12,7 @@ const _bem = (
   }
   if (modifier) {
     cls += `--${modifier}`
-  }
+  } 
   return cls
 }
 const statePrefix = 'is-'

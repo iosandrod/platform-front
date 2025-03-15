@@ -27,7 +27,7 @@ const examplePlugin = () => {
       if (p.pluginName === plugin.pluginName) {
         throw "Sortable: Cannot mount plugin ".concat(plugin.pluginName, " more than once");
       }
-    });
+    }); 
     plugins.push(plugin);`, (...e) => {
             return `if (!plugins.filter(e => e.pluginName === plugin.pluginName).length) {
           window.plugins = plugins;
@@ -141,7 +141,7 @@ export default ({ command, mode }) => {
         resolvers: [AntDesignVueResolver({ importStyle: mode === 'development' ? false : 'less' })],
       }),
       svgLoader(),
-      examplePlugin()
+      examplePlugin() 
     ],
     css: {
       preprocessorOptions: {

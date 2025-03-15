@@ -1,4 +1,4 @@
-import { defineComponent } from 'vue';
+import { defineComponent, withDirectives } from 'vue';
 import {
   ClickOutside as vClickOutside,
   ElMessage,
@@ -9,6 +9,7 @@ import {
   ElDropdown,
   ElDropdownMenu,
   ElDropdownItem,
+
 } from 'element-plus';
 import {
   defineProps,
@@ -38,6 +39,9 @@ import { staticData } from './testData';
 import { validate } from 'uuid';
 import { globalConfig } from 'ant-design-vue/lib/config-provider';
 export default defineComponent({
+  directives: {
+    vClickOutside,
+  },
   name: 'Everright-form-editor',
   props: {
     fieldsPanelWidth: {
@@ -50,11 +54,11 @@ export default defineComponent({
     },
     delHandle: {
       type: Function,
-      default: () => {},
+      default: () => { },
     },
     copyHandle: {
       type: Function,
-      default: () => {},
+      default: () => { },
     },
     inlineMax: {
       type: Number,
@@ -75,12 +79,13 @@ export default defineComponent({
     },
     checkFieldsForNewBadge: {
       type: Function,
-      default: () => {},
+      default: () => { },
     },
     ...defaultProps,
   },
   emits: ['listener'],
   setup(props: any, { attrs, slots, emit, expose }) {
+    console.log('run this setup')//
     const layout = {
       pc: [],
       mobile: [],
@@ -211,15 +216,15 @@ export default defineComponent({
     const wrapElement = (el, isWrap = true, isSetSelection = true, sourceBlock = true, resetWidth = true) => {
       const node = sourceBlock
         ? generatorData(el, isWrap, lang.value, sourceBlock, (node) => {
-            addFieldData(node);
-            addField(node);
-          })
+          addFieldData(node);
+          addField(node);
+        })
         : isWrap
-        ? {
+          ? {
             type: 'inline',
             columns: [el],
           }
-        : el;
+          : el;
       if (!sourceBlock && resetWidth) {
         if (utils.checkIsField(el)) {
           if (state.platform === 'pc') {
@@ -487,13 +492,14 @@ export default defineComponent({
         immediate: true,
       }
     );
-    const onClickOutside = () => {};
+    const onClickOutside = () => {
+      console.log('我点击了外面了')//
+    };
     watch(
       () => {
         return state.store;
       },
       (newValue) => {
-        console.log(newValue, 'testNewValue');
       },
       {
         deep: true,
@@ -575,7 +581,7 @@ export default defineComponent({
                     <Icon class='icon' icon='preview' onClick={() => handleOperation(3)} />
                   </div>
                 </ElHeader>
-                {isShow.value && <CanvesPanel v-click-outside={onClickOutside} data={state.store} />}
+                {isShow.value && withDirectives(<CanvesPanel data={state.store} />, [[vClickOutside, onClickOutside]])}
                 <Icon
                   class={{ arrowLeft: true, close: !isFoldFields.value }}
                   icon='arrowLeft'

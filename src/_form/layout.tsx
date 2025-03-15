@@ -1,6 +1,7 @@
 import { defineComponent, inject, resolveComponent, unref, useAttrs, useSlots } from 'vue';
 import { Base, hookIns } from './base';
-import DragGable from 'vuedraggable';
+import DragGable from '@ER/vueDraggable/vuedraggable';
+// import DragGable from 'vuedraggable'; 
 import { isHTMLTag } from '@vue/shared';
 import ControlInsertionPlugin from './controllPlugin';
 const dragGableWrap = defineComponent({

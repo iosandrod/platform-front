@@ -15,11 +15,11 @@ interface NaviGuard {
 }
 
 const loginGuard: NavigationGuard = function (to, from) {
-  const account = useAccountStore();
-  if (!http.checkAuthorization() && !/^\/(login|home)?$/.test(to.fullPath)) {
-    return '/login';
-    // account.setLogged(false);
-  }
+  // const account = useAccountStore();
+  // if (!http.checkAuthorization() && !/^\/(login|home)?$/.test(to.fullPath)) {
+  //   return '/login';
+  //   // account.setLogged(false);
+  // }
 };
 // 进度条
 const ProgressGuard: NaviGuard = {

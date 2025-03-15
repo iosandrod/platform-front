@@ -95,7 +95,6 @@ export default {
       props.data.context[fn](param);
     };
     const isShowCell = ref(false);
-    console.log(props.data, 'testData'); //
     const renderTableCellOperator = () => {
       const slots = {
         dropdown: () => {

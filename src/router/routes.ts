@@ -28,10 +28,17 @@ const routes: RouteRecordRaw[] = [
     meta: {
       view: 'blank',
     },
-    component: () => import('@/pages/home'),
+    component: () => import('@/pages/home/Home'),
   },
-
   {
+    path: "/config",
+    name: "配置", 
+    meta: {
+      view: 'blank',
+    },
+    component: () => import('@/pages/home/Config1'),
+  },
+  { 
     path: '/403',
     name: '403',
     props: true,

@@ -196,7 +196,11 @@ const syncWidthByPlatform = (node, platform, syncFullplatform = false, value) =>
   })
 }
 const transferLabelPath = (node) => `er.fields.${node.type === 'input' ? `${node.type}.${node.options.renderType - 1}` : `${node.type}`}`
-const fieldLabel = (t, node) => t(transferLabelPath(node))
+const fieldLabel = (t, node) => {
+  // console.log(node,'testNode')// 
+  let value=transferLabelPath(node)
+  return t(transferLabelPath(node))
+ }
 const transferData = (lang, path, locale, options = {}) => {
   let result = ''
   if (_.isEmpty(options)) {

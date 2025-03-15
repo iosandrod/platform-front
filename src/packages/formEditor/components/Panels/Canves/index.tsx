@@ -4,12 +4,13 @@ import LayoutInlineLayout from '@ER/formEditor/components/Layout/InlineLayout'
 import CompleteButton from '@ER/formEditor/components/CompleteButton.vue'
 import hooks from '@ER/hooks'
 import _ from 'lodash'
+import { ElMain } from 'element-plus'
 export default defineComponent({
   name: 'Canves',
   inheritAttrs: false,
   customOptions: {},
-  setup () {
-    const ER = inject('Everright')
+  setup() {
+    const ER: any = inject('Everright')
     const ns = hooks.useNamespace('Canves')
     const {
       state,
@@ -21,7 +22,7 @@ export default defineComponent({
       setSelection('root')
     }
     const renderContent = () => {
-      const TagComponent = resolveComponent(unref(isPc) ? 'el-form' : 'van-form')
+      const TagComponent: any = resolveComponent(unref(isPc) ? 'el-form' : 'van-form')
       const typeProps = hooks.useProps(state, state, unref(isPc), true)
       const Layout = (<LayoutDragGable data-layout-type={'root'} class={[unref(isEditModel) && ns.e('wrap')]} data={state.store} parent={state.store} isRoot></LayoutDragGable>)
       return (
@@ -31,7 +32,7 @@ export default defineComponent({
               unref(isEditModel) ? Layout : Layout
             }
           </TagComponent>
-          {!unref(isEditModel) && !_.isEmpty(state.config) && ER.props.isShowCompleteButton && <CompleteButton handle={ER.form}/>}
+          {!unref(isEditModel) && !_.isEmpty(state.config) && ER.props.isShowCompleteButton && <CompleteButton handle={ER.form} />}
         </div>
       )
     }
@@ -48,14 +49,14 @@ export default defineComponent({
             ]}>
           {unref(isEditModel)
             ? (
-            <div class={[ns.e('container')]}>
-              <el-scrollbar ref={ER.canvesScrollRef}>
-                <div class={[ns.e('subject')]}>
-                  {renderContent()}
-                </div>
-              </el-scrollbar>
-            </div>
-              )
+              <div class={[ns.e('container')]}>
+                <el-scrollbar ref={ER.canvesScrollRef}>
+                  <div class={[ns.e('subject')]}>
+                    {renderContent()}
+                  </div>
+                </el-scrollbar>
+              </div>
+            )
             : renderContent()}
         </ElMain>
       )

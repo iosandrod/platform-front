@@ -5,7 +5,7 @@ import { h, inject, nextTick, provide, resolveComponent, unref, withDirectives }
 import { Base } from './base';
 import { ElMain, ElScrollbar } from 'element-plus';
 import { directiveEl } from './directive';
-import * as utils from './utils';
+import utils from '@ER/utils';
 import _ from 'lodash';
 import { baseComponent as LayoutDragGable } from './_formEditor';
 //@ts-ignore

@@ -3,7 +3,6 @@ import _ from 'lodash'
 import hooks from '@ER/hooks'
 import { ref, inject, nextTick, reactive, computed, watch, onMounted, provide, onBeforeUnmount } from 'vue'
 import utils from '@ER/utils'
-import erFormPreview from '@ER/formEditor/preview.vue'
 export default {
   name: 'ConfigSubformDefaultValueComponent',
   inheritAttrs: false,

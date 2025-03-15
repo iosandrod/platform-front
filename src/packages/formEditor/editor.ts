@@ -4,7 +4,7 @@ import { nextTick, reactive, toRef } from 'vue';
 import { globalConfig, fieldsConfig } from './editorData'
 import { Node, fieldNode, listNode } from './node'
 import _hooks from '../hooks/index'
-import _locale from '../formEditor/locale'
+import _locale from './locale'
 let locale: any = _locale//
 let utils: any = _utils
 let hooks: any = _hooks
