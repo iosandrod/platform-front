@@ -1,13 +1,13 @@
 <script setup>
 import { ref, onMounted, getCurrentInstance, inject, provide } from 'vue';
 import { erFormEditor } from '@ER/formEditor';
-import { globalConfig } from './_form/config';
+import { globalConfig } from '@ER/formEditor/componentsConfig';
 const { lang } = inject('globalConfig', {}); //
 const EReditorRef = ref(null);
-provide('globalConfig',globalConfig)
+provide('globalConfig', globalConfig)
 const handleListener = async ({ type, data }) => {
   switch (type) {
-    case 'lang': 
+    case 'lang':
       lang.value = data;
       localStorage.setItem('er-lang', data);
       break;

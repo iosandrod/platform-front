@@ -6,6 +6,12 @@ _.forIn(importModules, (func, path) => {
     modules[key] = func[key]
   })
 })
-export default {
+  const importModules1 = import.meta.glob('./*.ts', { eager: true })
+_.forIn(importModules1, (func, path) => {
+  Object.keys(func).forEach((key) => {
+    modules[key] = func[key]
+  })
+})
+export default { 
   ...modules
 }

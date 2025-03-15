@@ -213,6 +213,13 @@ export default defineComponent({
         node.options.action = props.fileUploadURI;
       }
     };
+    /* 
+      el: 被包装的元素。
+isWrap: 布尔值，决定是否要对元素进行包装。默认值为 true，如果为 true，会将元素包装成一个具有 inline 类型和包含该元素的列的结构。
+isSetSelection: 布尔值，控制是否设置选择项，函数体内没有执行具体操作，可能是预留功能。
+sourceBlock: 布尔值，决定是否使用 generatorData 函数生成节点。如果为 true，会调用 generatorData 来处理 el，并进一步执行 addFieldData 和 addField。
+resetWidth: 布尔值，决定是否重置元素的宽度。如果为 true，会根据平台（PC 或移动端）来设置元素的宽度为 100%。
+    */
     const wrapElement = (el, isWrap = true, isSetSelection = true, sourceBlock = true, resetWidth = true) => {
       const node = sourceBlock
         ? generatorData(el, isWrap, lang.value, sourceBlock, (node) => {
@@ -234,12 +241,9 @@ export default defineComponent({
           }
         } else {
           el.style.width = '100%';
-        }
+        } 
       }
       if (isSetSelection) {
-        // nextTick(() => {
-        //   setSelection(node)
-        // })
       }
       return node;
     };

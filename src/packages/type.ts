@@ -13,3 +13,83 @@ export type FormEditorContext = {
     form: any; // 根据 `form` 结构替换 `any`
     setValue: (field: any, value?: any) => void
 };
+
+
+export type LayoutColumn = {
+    type: string;
+    label?: string;
+    icon?: string;
+    key?: string;
+    id: string;
+    style?: Record<string, any>;
+    options?: Record<string, any>;
+    columns?: LayoutColumn[];
+    list?: LayoutColumn[];
+    rows?: LayoutRow[];
+};
+
+export type LayoutRow = {
+    type: string;
+    columns: LayoutColumn[];
+    style?: Record<string, any>;
+    id: string;
+    key: string;
+};
+
+export type FormFieldOptions = {
+    clearable?: boolean;
+    renderType?: number;
+    disabled?: boolean;
+    showPassword?: boolean;
+    defaultValue?: string;
+    placeholder?: string;
+    labelWidth?: number;
+    isShowLabel?: boolean;
+    required?: boolean;
+    min?: number | null;
+    max?: number | null;
+    dataKey?: string;
+    filterable?: boolean;
+    multiple?: boolean;
+    checkStrictly?: boolean;
+    startTime?: string | null;
+    endTime?: string | null;
+    format?: string;
+    type?: string;
+};
+
+export type FormField = {
+    type: string;
+    label: string;
+    icon: string;
+    key: string;
+    id: string;
+    options: FormFieldOptions;
+    style: Record<string, any>;
+};
+
+export type FormLayout = {
+    list: LayoutColumn[];
+    config: {
+        isSync: boolean;
+        pc: {
+            size: string;
+            labelPosition: string;
+            completeButton: {
+                text: string;
+                color: string;
+                backgroundColor: string;
+            };
+        };
+        mobile: {
+            labelPosition: string;
+            completeButton: {
+                text: string;
+                color: string;
+                backgroundColor: string;
+            };
+        };
+    };
+    fields: FormField[];
+};
+//

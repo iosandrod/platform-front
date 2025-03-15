@@ -323,11 +323,6 @@ function ControlInsertionPlugin(ER) {
       if (!isBlock) {
         if (oldEl.context) {
           oldEl.context.delete()
-          // utils.deepTraversal(oldEl, (node) => {
-          //   if (utils.checkIsField(node) && node.type !== 'subform') {
-          //     ER.delField(node)
-          //   }
-          // })
         }
       }
       if (inserRowIndex !== '') {
@@ -464,6 +459,6 @@ function ControlInsertionPlugin(ER) {
   return Object.assign(ControlInsertionPlugin, {
     pluginName: `ControlInsertion`,
     initializeByDefault: true
-  }) 
+  })
 }
 export default ControlInsertionPlugin
