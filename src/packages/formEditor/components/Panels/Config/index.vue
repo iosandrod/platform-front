@@ -178,7 +178,7 @@ watch(target, () => {
       :model="target"
       :rules="rules"
       label-width="120px"
-      label-position="top">
+      label-position="top"> 
       <el-scrollbar>
         <div :class="[ns.e('wrap')]">
           <div v-if="isSelectAnyElement">

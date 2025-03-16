@@ -26,7 +26,8 @@ import {
 } from 'vue';
 import FieldsPanel from '@ER/formEditor/components/Panels/Fields';
 import CanvesPanel from '@ER/formEditor/components/Panels/Canves';
-import ConfigPanel from '@ER/formEditor/components/Panels/Config/index.vue';
+import ConfigPanel from '@ER/formEditor/components/Panels/Config/configPanel';
+// import ConfigPanel from '@ER/formEditor/components/Panels/Config/index.vue';
 import DeviceSwitch from '@ER/formEditor/components/DeviceSwitch.vue';
 import ErFormPreview from './preview';
 import Icon from '@ER/icon';
@@ -158,7 +159,7 @@ export default defineComponent({
       isShowConfig.value = state.selected === result;
       state.selected = result;
       nextTick(() => {
-        isShowConfig.value = true;
+        // isShowConfig.value = true;
       });
     };
     setSelection(state.config);
@@ -241,7 +242,7 @@ resetWidth: 布尔值，决定是否重置元素的宽度。如果为 true，会
           }
         } else {
           el.style.width = '100%';
-        } 
+        }
       }
       if (isSetSelection) {
       }
@@ -373,13 +374,9 @@ resetWidth: 布尔值，决定是否重置元素的宽度。如果为 true，会
     };
     const setData1 = (data) => {
       if (_.isEmpty(data)) return false;
-      // stop()
       const newData = utils.combinationData1(_.cloneDeep(data));
-      // console.log(newData.list[0].columns[0].list[0][0].columns[0])
       isShow.value = false;
-      // console.log(data.list.slice(data.list.length - 1))
       state.store = newData.list;
-      // state.store = data.list.slice(data.list.length - 1)
       state.config = newData.config;
       state.data = newData.data;
       state.fields = newData.fields;
@@ -390,13 +387,10 @@ resetWidth: 布尔值，决定是否重置元素的宽度。如果为 true，会
       });
       nextTick(() => {
         isShow.value = true;
-        // setSelection(state.store[0])
-        // restart()
       });
     };
     const setData2 = (data) => {
       if (_.isEmpty(data)) return false;
-      // stop()
       const newData = _.cloneDeep(data);
       layout.pc = newData.layout.pc;
       layout.mobile = newData.layout.mobile;
@@ -597,7 +591,7 @@ resetWidth: 布尔值，决定是否重置元素的宽度。如果为 true，会
                   onClick={() => handleOperation(6)}
                 />
               </ElContainer>
-              {isShow.value && isShowConfig.value && <ConfigPanel />}
+              {<ConfigPanel />}
             </ElContainer>
           </ElContainer>
         </div>

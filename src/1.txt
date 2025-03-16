@@ -1073,3 +1073,41 @@ export default defineComponent({
 //     addContext(e, node, fn)
 //   })
 // }
+
+
+ return <el-aside class={[ns.b()]} width={ER.props.configPanelWidth}>
+        <el-breadcrumb
+          class={[ns.e('breadcrumb')]}
+          separator-icon={() => (
+            <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+              <path
+                fill="currentColor"
+                d="M340.864 149.312a30.592 30.592 0 0 0 0 42.752L652.736 512 340.864 831.872a30.592 30.592 0 0 0 0 42.752 29.12 29.12 0 0 0 41.728 0L714.24 534.336a32 32 0 0 0 0-44.672L382.592 149.376a29.12 29.12 0 0 0-41.728 0z"
+              />
+            </svg>
+          )}
+          {...utils.addTestId('configPanel:breadcrumb')}
+        >
+          {bars.value.map((item, index) => (
+            <el-breadcrumb-item
+              key={index}
+              onClick={() => {
+                if (index !== bars.value.length - 1 && item.node.value !== 'placeholder') {
+                  handleBreadcrumbClick(item.node);
+                }
+              }}
+            >
+              {item.node.value === 'placeholder' ? '...' : item.label}
+            </el-breadcrumb-item>
+          ))}
+        </el-breadcrumb>
+
+        <el-form ref="form" model={target} rules={rules} label-width="120px" label-position="top">
+          <el-scrollbar>
+            <div class={[ns.e('wrap')]}>
+              {isSelectAnyElement && <PanelsConfigComponentsPropsPanel key={target.id} />}
+              {isSelectRoot && <GlobalConfigPanel />}
+            </div>
+          </el-scrollbar>
+        </el-form>
+      </el-aside>

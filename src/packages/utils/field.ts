@@ -1,6 +1,10 @@
 import _ from 'lodash'
 import { nanoid } from './nanoid'
 const fieldsRe = /^(input|textarea|number|radio|checkbox|select|time|date|rate|switch|slider|html|cascader|uploadfile|signature|region|subform)$/
+//
+class LayoutNode {
+
+}
 const deepTraversal = (node, fn) => {
   fn(node)
   const nodes = node.type === 'subform' ? node.list[0] : (node.list || node.rows || node.columns || node.children || [])
@@ -36,7 +40,7 @@ const wrapElement = (element, fn) => {
     }
     if (/^(tabs)$/.test(node.type)) {
       node.columns = new Array(3).fill('').map((e, index) => {
-        const data = renderFieldData('tabsCol')
+        const data: any = renderFieldData('tabsCol')
         data.label = `Tab ${index + 1}`
         data.options = {}
         return data
@@ -44,7 +48,7 @@ const wrapElement = (element, fn) => {
     }
     if (/^(collapse)$/.test(node.type)) {
       node.columns = new Array(3).fill('').map((e, index) => {
-        const data = renderFieldData('collapseCol')
+        const data: any = renderFieldData('collapseCol')
         data.label = `Tab ${index + 1}`
         data.options = {}
         return data
@@ -55,6 +59,7 @@ const wrapElement = (element, fn) => {
   return result
 }
 const renderFieldData = (type) => {
+  //字段数据
   const result = {
     id: nanoid(),
     type,
@@ -65,8 +70,9 @@ const renderFieldData = (type) => {
   return result
 }
 const excludes = ['grid', 'col', 'table', 'tr', 'td', 'tabs', 'tabsCol', 'collapse', 'collapseCol', 'divider', 'inline']
-const flatNodes = (nodes, excludes, fn, excludesFn) => {
+const flatNodes = (nodes, excludes, fn?: any, excludesFn?: any) => {
   return nodes.reduce((res, node, currentIndex) => {
+    //不是field的node
     if (excludes.indexOf(node.type) === -1) {
       res.push(node)
       fn && fn(nodes, node, currentIndex)
@@ -82,9 +88,11 @@ const getAllFields = (store) => flatNodes(store, excludes)
 const pickfields = (list) => {
   return flatNodes(list, excludes)
 }
-const processField = (list) => flatNodes(list, excludes, (nodes, node, currentIndex) => {
-  nodes[currentIndex] = node.id
-})
+const processField = (list) => {
+  return flatNodes(list, excludes, (nodes, node, currentIndex) => {
+    nodes[currentIndex] = node.id
+  })
+}
 const disassemblyData1 = (data) => {
   const result = {
     list: data.list,
@@ -198,9 +206,9 @@ const syncWidthByPlatform = (node, platform, syncFullplatform = false, value) =>
 const transferLabelPath = (node) => `er.fields.${node.type === 'input' ? `${node.type}.${node.options.renderType - 1}` : `${node.type}`}`
 const fieldLabel = (t, node) => {
   // console.log(node,'testNode')// 
-  let value=transferLabelPath(node)
+  let value = transferLabelPath(node)
   return t(transferLabelPath(node))
- }
+}
 const transferData = (lang, path, locale, options = {}) => {
   let result = ''
   if (_.isEmpty(options)) {

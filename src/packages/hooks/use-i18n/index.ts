@@ -12,14 +12,14 @@ import { get, template, isEmpty } from 'lodash'
 //   }
 //   return result
 // }
-export const useI18n = (props) => {
+export const useI18n = (props?:any) => {
   const ER = inject('Everright', { props })
   const lang = computed(() => {
     return ER.props.lang
   })
   return {
     lang,
-    t (path, options) {
+    t (path, options?:any) {
       return utils.transferData(lang.value, path, locale, options)
     }
   }

@@ -28,21 +28,19 @@ export default {
       setSelection
     } = hooks.useTarget()
     const addStore = (element) => {
+      //添加一个layout
       const newElement = reactive(ER.wrapElement(_.cloneDeep(element)))
       state.store.push(newElement)
       utils.addContext(newElement, state.store)
       nextTick(() => {
-        setSelection(newElement)
-        setTimeout(() => {
-          ER.canvesScrollRef.value.setScrollTop(ER.canvesScrollRef.value.wrapRef.scrollHeight)
-        }, 100)
+        // setSelection(newElement)
+        // setTimeout(() => {
+        //   ER.canvesScrollRef.value.setScrollTop(ER.canvesScrollRef.value.wrapRef.scrollHeight)
+        // }, 100)
       })
     }
     const slots = {
       item: ({ element }) => {
-        // debugger//
-        // let _value=utils.fieldLabel(t, element)
-        // console.log(_value,'testValue')//
         return (
           <li class={[ER.props.checkFieldsForNewBadge(element) ? ns.is('new') : '']} onClick={() => addStore(element)}>
             <Icon class={[ns.e('icon')]} icon={element.icon}></Icon>

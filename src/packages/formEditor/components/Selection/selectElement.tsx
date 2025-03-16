@@ -277,7 +277,6 @@ export default {
         });
       }
     });
-    console.log(props.tag, 'testTag'); //
     const TagComponent = isHTMLTag(props.tag) ? props.tag : resolveComponent(props.tag);
     const Selected = computed(() => {
       return target.value.id === props.data.id && ns.is('Selected');
@@ -286,9 +285,6 @@ export default {
     const isShowCopy = computed(() =>
       isInlineChildren ? props.hasCopy && props.data.context.parent.columns.length < ER.props.inlineMax : props.hasCopy
     );
-    // const isShowSelectParent = computed(() => {
-    //   return !isSelectRoot.value
-    // })
     return () => {
       return (
         <TagComponent
