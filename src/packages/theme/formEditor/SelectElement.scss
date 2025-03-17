@@ -1,6 +1,6 @@
 @use '../base.scss' as *;
 @include b(selectElement) {
-  padding: 16px;
+  padding: 0px;
   position: relative;
   outline-offset: -1px;
   box-sizing: border-box;

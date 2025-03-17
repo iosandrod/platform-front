@@ -47,7 +47,7 @@ export default defineComponent({
               !unref(isPc) && ns.e(`mobile_layoutType${ER.props.layoutType}`)
               // ER.props.layoutType === 1  && ns.e('layoutType1')
             ]}>
-          {unref(isEditModel)
+          {unref(isEditModel) 
             ? (
               <div class={[ns.e('container')]}>
                 <el-scrollbar ref={ER.canvesScrollRef}>

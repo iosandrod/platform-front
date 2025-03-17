@@ -1,6 +1,6 @@
 import { defineComponent } from 'vue';
 import { defineProps, ref, reactive, computed, provide, getCurrentInstance, watch, nextTick, onMounted } from 'vue';
-import CanvesPanel from '@ER/formEditor/components/Panels/Canves';
+import CanvesPanel from '@ER/formEditor/components/Panels/Canves/index';
 import hooks from '@ER/hooks';
 import utils from '@ER/utils';
 import _ from 'lodash';
@@ -10,7 +10,11 @@ import { showNotify } from 'vant';
 import { defineExpose } from 'vue';
 export default defineComponent({
   name: 'Everright-form-preview',
-  props: { ...defaultProps },
+  props: {
+    ...defaultProps, formIns: {
+      type: Object
+    }
+  },
   setup(props: any, { emit, expose, slots }) {
     const layout = {
       pc: [],
@@ -69,6 +73,19 @@ export default defineComponent({
       setValue,
       form,
     });
+    // onMounted(() => {
+    //   let formIns = props.formIns
+    //   if (formIns != null) {
+    //     let config = formIns.getFormConfig()
+    //     setData2(config)//
+    //   }
+    // })
+    watch(
+      () => props.formConfig,
+      (val) => {
+        setData2(val, state.othersFiles);
+      }
+    )
     const setOhters = (value) => {
       _.toPairs(value)
         .filter(([key]) => key.indexOf('_other') !== -1)
@@ -76,7 +93,7 @@ export default defineComponent({
           state.othersFiles[key] = val;
         });
     };
-    const setData2 = (data, value) => {
+    const setData2 = (data, value?: any) => {
       const newData = _.cloneDeep(data);
       layout.pc = newData.layout.pc;
       layout.mobile = newData.layout.mobile;

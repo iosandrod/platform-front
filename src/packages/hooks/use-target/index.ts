@@ -3,7 +3,6 @@ import _ from 'lodash'
 import utils from '@ER/utils'
 export const useTarget = () => {
   const { state, setSelection, props } = inject('Everright') as any
-
   const type = computed(() => state.selected?.type)
   const col = computed(() => state.selected?.context?.col ?? null)
 

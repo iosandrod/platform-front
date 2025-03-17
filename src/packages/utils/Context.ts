@@ -294,27 +294,17 @@ export class Context {
         arr.splice(index + 1, 0, newNode)
     }
     addContext(node, parent?: any, fn?: any) {
+        if(typeof node!='object'){
+            //
+            // debugger//
+            return 
+        }
         fn && fn(node)
         let context = new Context({
             node,
             parent
         })//
         return context
-        // Object.defineProperty(node, 'context', {
-        //     value: context,
-        //     writable: false,
-        //     enumerable: false,
-        //     configurable: true
-        // })
-        // let nodes = []
-        // if (node.type === 'subform') {
-        //     nodes = node.list[0]
-        // } else {
-        //     nodes = node.columns || node.list || node.rows || []
-        // }
-        // nodes.forEach(e => {
-        //     this.addContext(e, node, fn)
-        // })
     }
     delete() {
         const parent = this.parent
@@ -388,7 +378,7 @@ export class Context {
             context: {
                 root,
                 col,
-                row
+                row 
             }
         } = node
         let count = key === 'rowspan' ? row : col
@@ -577,7 +567,6 @@ export class Context {
         return (colspanNodes.length === 1 || colspanNodes.filter(e => !e.options.isMerged).length === 1) || !nodes.every(e => e.options.colspan === node.options.colspan)
     }
     merge(type) {
-        let findNode = this.findNode
         let node = this.node
         const {
             context: {
@@ -588,35 +577,35 @@ export class Context {
         } = node
         switch (type) {
             case 'left':
-                findNode(node, 'before', 'colspan', (nodes, callBack) => {
+                this.findNode(node, 'before', 'colspan', (nodes, callBack) => {
                     callBack()
                 })
                 break
             case 'right':
-                findNode(node, 'after', 'colspan', (nodes, callBack) => {
+                this.findNode(node, 'after', 'colspan', (nodes, callBack) => {
                     callBack()
                 })
                 break
             case 'top':
-                findNode(node, 'before', 'rowspan', (nodes, callBack) => {
+                this.findNode(node, 'before', 'rowspan', (nodes, callBack) => {
                     callBack()
                 })
                 break
             case 'bottom':
-                findNode(node, 'after', 'rowspan', (nodes, callBack) => {
+                this.findNode(node, 'after', 'rowspan', (nodes, callBack) => {
                     callBack()
                 })
                 break
             case 'row':
                 while (root.rows[row].columns.length > root.rows[row].columns[0].options.colspan) {
-                    findNode(root.rows[row].columns[0], 'after', 'colspan', (nodes, callBack) => {
+                    this.findNode(root.rows[row].columns[0], 'after', 'colspan', (nodes, callBack) => {
                         callBack()
                     })
                 }
                 break
             case 'column':
                 while (root.context.columns[col].length > root.context.columns[col][0].options.rowspan) {
-                    findNode(root.context.columns[col][0], 'after', 'rowspan', (nodes, callBack) => {
+                    this.findNode(root.context.columns[col][0], 'after', 'rowspan', (nodes, callBack) => {
                         callBack()
                     })
                 }
@@ -734,6 +723,7 @@ export class Context {
         return data
     }
     appendNodes(node, dir, key) {
+        let _this=this        
         const {
             context: {
                 root,
@@ -793,13 +783,13 @@ export class Context {
                 e.context.parent.columns.splice(dir === 'before' ? index : index + 1, 0, newNode)
                 this.addContext(e.context.parent, root)
                 if (!(index === 0 && dir === 'before')) {
-                    const validNode = this.getValidNode(e)
-                    const ranges = this.getNodeRange(validNode)
+                    const validNode = _this.getValidNode(e)
+                    const ranges = _this.getNodeRange(validNode)
                     const {
                         status,
                         x,
                         y
-                    } = this.checkStatus(ranges, e, 'colspan')
+                    } = _this.checkStatus(ranges, e, 'colspan')
                     if (/[1, 2]/.test(`${status}`)) {
                         newNode.options.isMerged = true
                         ranges[y].forEach(e => {
@@ -811,10 +801,10 @@ export class Context {
             })
         } else {
             const arr = nodes.map((e) => {
-                const validNode = this.getValidNode(e)
-                const ranges = this.getNodeRange(validNode)
+                const validNode = _this.getValidNode(e)
+                const ranges = _this.getNodeRange(validNode)
                 return {
-                    ...this.checkStatus(ranges, e, 'rowspan'),
+                    ..._this.checkStatus(ranges, e, 'rowspan'),
                     ranges
                 }
             })
@@ -857,41 +847,36 @@ export class Context {
             })
             root.rows.splice(dir === 'before' ? index : index + 1, 0, tr)
             root.rows.forEach((item) => {
-                this.addContext(item, root)
+                _this.addContext(item, root)
             })
         }
     }
     insert(type) {
-        let node = this.node
-        let appendNodes = this.appendNodes
+        let node = this.node 
         const {
             context: {
                 root,
                 col,
-                row
+                row 
             }
         } = node
         switch (type) {
             case 'left':
-                appendNodes(node, 'before', 'colspan')
-                // root.rows.forEach(e => {
-                //   addContext(e, root, false)
-                // })
+                this.appendNodes(node, 'before', 'colspan')
                 break
             case 'right':
-                appendNodes(node, 'after', 'colspan')
+                this.appendNodes(node, 'after', 'colspan')
                 break
             case 'top':
-                appendNodes(node, 'before', 'rowspan')
+                this.appendNodes(node, 'before', 'rowspan')
                 break
             case 'bottom':
-                appendNodes(node, 'after', 'rowspan')
+                this.appendNodes(node, 'after', 'rowspan')
                 break
         }
     }
     split(type) {
         let node = this.node
-        let getNodes = this.getNodes
         const {
             context: {
                 root,
@@ -899,7 +884,7 @@ export class Context {
                 row
             }
         } = node
-        const nodes = getNodes(node, type === 'column' ? 'colspan' : 'rowspan')
+        const nodes = this.getNodes(node, type === 'column' ? 'colspan' : 'rowspan')
         switch (type) {
             case 'column':
                 //  zheliyoudu  没有考虑底层
@@ -907,7 +892,7 @@ export class Context {
                     e.options.colspan = 1
                     e.options.isMerged = false
                     if (e.options.rowspan > 1) {
-                        const nodes = getNodes(e, 'rowspan')
+                        const nodes = this.getNodes(e, 'rowspan')
                         nodes.slice(row + 1, row + e.options.rowspan).forEach((e) => {
                             e.options.colspan = 1
                         })
@@ -919,7 +904,7 @@ export class Context {
                     e.options.rowspan = 1
                     e.options.isMerged = false
                     if (e.options.colspan > 1) {
-                        const nodes = getNodes(e, 'colspan')
+                        const nodes = this.getNodes(e, 'colspan')
                         nodes.slice(col + 1, col + e.options.colspan).forEach((e) => {
                             e.options.rowspan = 1
                         })
@@ -930,8 +915,7 @@ export class Context {
     }
     del(type) {
         let node = this.node
-        let getNodes = this.getNodes
-        let addContext = this.addContext
+      
         const {
             context: {
                 root,
@@ -939,18 +923,18 @@ export class Context {
                 row
             }
         } = node
-        const nodes = getNodes(node, type === 'column' ? 'colspan' : 'rowspan')//
+        const nodes = this.getNodes(node, type === 'column' ? 'colspan' : 'rowspan')//
         switch (type) {
             case 'column':
                 root.rows.forEach(e => {
                     e.columns.splice(col, node.options.colspan)
-                    addContext(e, root)
+                    this.addContext(e, root)
                 })
                 break
             case 'row':
                 root.rows.splice(row, node.options.rowspan)
                 root.rows.forEach(e => {
-                    addContext(e, root)
+                    this.addContext(e, root)
                 })
                 break
         }

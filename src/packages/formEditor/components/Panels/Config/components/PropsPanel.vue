@@ -61,23 +61,11 @@ const options = [
   {
     value: 'datetime',
     label: 'datetime'
-  },
-  // {
-  //   value: 'week',
-  //   label: 'week'
-  // },
-  // {
-  //   value: 'datetimerange',
-  //   label: 'datetimerange'
-  // },
+  }, 
   {
     value: 'daterange',
     label: 'daterange'
   }
-  // {
-  //   value: 'monthrange',
-  //   label: 'monthrange'
-  // }
 ]
 const options0 = computed(() => {
   let result = []
@@ -415,11 +403,6 @@ onMounted(() => {
 </script>
 <template>
   <div :class="ns.b()">
-    <!--    <el-form-item label="唯一标识" prop="id">-->
-    <!--      <el-tag type="warning">-->
-    <!--        {{target.id}}-->
-    <!--      </el-tag>-->
-    <!--    </el-form-item>-->
     <el-form-item v-bind="utils.addTestId('configPanel:id')" v-if="isSelectField" :label="t('er.config.propsPanel.id')"
       prop="key">
       <el-input v-model="target.key" />
@@ -490,8 +473,8 @@ onMounted(() => {
       <template v-else-if="checkTypeBySelected(['rate'], 'defaultValue')">
         <el-rate v-bind="_.merge(typeProps, utils.addTestId('configPanel:defaultValue'))"
           v-model="target.options.defaultValue" />
-        <el-button v-if="target.options.defaultValue > 0" link
-          @click="target.options.defaultValue = 0">{{ t('er.public.clear') }}</el-button>
+        <el-button v-if="target.options.defaultValue > 0" link @click="target.options.defaultValue = 0">{{
+          t('er.public.clear') }}</el-button>
       </template>
       <template v-else-if="checkTypeBySelected(['switch'], 'defaultValue')">
         <el-switch v-bind="_.merge(typeProps, utils.addTestId('configPanel:defaultValue'))"
@@ -685,9 +668,6 @@ onMounted(() => {
     <PanelsConfigComponentsTypeComponent v-if="isSelectTabs" @listener="handleTypeListener" property="tabPosition"
       :label="t('er.config.tabsLayout.tabPosition.label')" :height="40" :fontSize="66" :val="target.options.tabPosition"
       :nodes="options5" v-bind="utils.addTestId('configPanel:tabPosition')" />
-    <!--  <PanelsConfigComponentsTabsLayout-->
-    <!--    v-if="isSelectTabs"-->
-    <!--  />-->
     <PanelsConfigComponentsCollapseComponent
       v-if="checkTypeBySelected(['table', 'grid', 'col', 'collapse', 'collapseCol', 'tabs', 'tabsCol'], 'margin')"
       :label="t('er.public.margin')" operationKey="style" field="isShowMargin"

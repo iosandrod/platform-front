@@ -175,7 +175,6 @@ const calculateAverage = (count, total = 100) => {
   return result
 }
 const syncWidthByPlatform = (node, platform, syncFullplatform = false, value) => {
-  // debugger
   const isArray = _.isArray(node)
   if (!isArray) {
     if (_.isObject(node.style.width)) {

@@ -14,7 +14,7 @@ export default {
   },
   layoutType: {
     type: Number,
-    default: 1
+    default: 2
   },
   fileUploadURI: {
     type: String

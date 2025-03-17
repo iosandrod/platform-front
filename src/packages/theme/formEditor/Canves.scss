@@ -8,6 +8,9 @@
   .el-form-item {
     align-items: start;
   }
+  .el-form-item--default{
+    margin-bottom: 10px;
+  }
   @include e(editModel) {
     height: calc(100% - 40px);
     .#{$namespace}-GridLayout__area {

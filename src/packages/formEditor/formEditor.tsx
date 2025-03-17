@@ -141,9 +141,6 @@ export default defineComponent({
     const { t, lang } = hooks.useI18n(props);
     const EReditorPreviewRef = ref<any>('');
     const isShow = ref(true);
-    setTimeout(() => {
-      console.log(isShow.value, 'testShow');
-    }, 1000);
     const isShowConfig = ref(true);
     const setSelection = (node) => {
       let result = '';
@@ -249,7 +246,7 @@ resetWidth: 布尔值，决定是否重置元素的宽度。如果为 true，会
       return node;
     };
     setTimeout(() => {
-      setData(staticData);
+      // setData2(staticData);//
     }, 100);
     const syncLayout = (platform, fn) => {
       const isPc = platform === 'pc';
@@ -263,7 +260,6 @@ resetWidth: 布尔值，决定是否重置元素的宽度。如果为 true，会
           .map((e) => wrapElement(e, true, false, false, false));
         fn && fn(newData);
       } else {
-        // debugger
         const layoutFields = utils.pickfields(isPc ? layout.pc : layout.mobile).map((e) => {
           return {
             id: e,
@@ -491,7 +487,6 @@ resetWidth: 布尔值，决定是否重置元素的宽度。如果为 true，会
       }
     );
     const onClickOutside = () => {
-      console.log('我点击了外面了')//
     };
     watch(
       () => {

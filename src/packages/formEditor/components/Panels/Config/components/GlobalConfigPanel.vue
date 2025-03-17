@@ -132,7 +132,7 @@ const handleTypeListener = ({ property, data }) => {
           <el-radio value="pc">pc</el-radio>
           <el-radio value="mobile">mobile</el-radio>
         </el-radio-group> 
-      </div>
+      </div> 
       <div :class="[ns.e('syncActions')]">
         <el-button
           size="small"
