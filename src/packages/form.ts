@@ -4,7 +4,7 @@ import { FormLayout } from "./type";
 import { staticData, formConfig } from "./formEditor/testData";
 import { nanoid } from 'nanoid'
 import { FormItem } from "./formitem";
-import { Field, Layout, Table } from "./layoutType";
+import { Field, Layout, Table, TableRow } from "./layoutType";
 import { Base } from "./base";
 //转换数据
 
@@ -63,7 +63,7 @@ export class Form extends Base {
             this.addFormItem(item)
         }
     }
-   
+
     async validate() {
         return new Promise((resolve, reject) => {
 
@@ -87,12 +87,55 @@ export class Form extends Base {
         let obj: any = {}
         obj.config = this.submitConfig
         obj.fields = this.getFields()
+        let pcLayout = this.getPcLayout()
+        let mobileLayout = this.getMobileLayout()
         obj.layout = {
-            pc: [this.pcLayout],
-            mobile: this.mobileLayout
-        }
-        obj.data = this.data
+            pc: [pcLayout],
+            mobile: mobileLayout
+        }//
+        obj.data = this.data//
         return obj
+    }
+    createTrRow(): TableRow {
+        let id = this.uuid()
+        let key = `tr_${id}`
+        let tr = {
+            type: 'tr',
+            columns: [],
+            style: {},
+            id,
+            key
+        }
+        return tr
+    }
+    getPcLayout() {
+        let items = this.items
+        let rows = []
+        for (const item of items) {
+            let index = item.getRowIndex()
+            // debugger//
+            let _row = rows[index]
+            if (_row == null) {
+                let nRow = this.createTrRow()
+                rows[index] = nRow
+                _row = nRow
+            }
+            _row.columns.push(...item.columns)
+        }
+        let pcLayout = this.pcLayout
+        pcLayout.columns[0].rows = rows
+        return pcLayout
+    }
+    getMobileLayout() {
+        let mobileLayout = this.mobileLayout
+        //清零
+        mobileLayout.splice(0)
+        let items = this.items
+        for (const item of items) {
+            let _mobileLayout = item.mobileColumns
+            mobileLayout.push(..._mobileLayout)
+        }
+        return mobileLayout
     }
     initPcLayout() {
         let pcLayout = this.pcLayout
@@ -110,13 +153,13 @@ export class Form extends Base {
         let _item = new FormItem(config, this)
         this.items.push(_item)//
     }
-    addTrRow(data) {
-        if (!data) {
-            return
-        }
-        let rows = this.getLayoutRows()
-        rows.push(data)//
-    }
+    // addTrRow(data) {
+    //     if (!data) {
+    //         return
+    //     }
+    //     let rows = this.getLayoutRows()
+    //     rows.push(data)//
+    // }
     getLayoutRows() {
         let layout = this.pcLayout
         let tableIns = layout.columns[0] as Table
@@ -124,14 +167,19 @@ export class Form extends Base {
         return rows
     }
     onMounted() {
-        let fIns = this.getRef('form')
-        console.log(fIns, 'testIds')//
+        let fConfig = this.getFormConfig()//
+        this.setData((fConfig))
     }
     onUnmounted() {
-        // let allKeys = Object.keys(this._refPool)
-        // for (const key of allKeys) {
-        //     this.unregisterRef(key)
-        // }  
+        super.onUnmounted()//
+    }
+    setData(data) {
+        let form = this.getRef('form')
+        if (!form) {
+            return //
+        }
+        let formData = data || this.getFormConfig()//
+        form.setData(formData)//
     }
 }
 //使用默认布局

@@ -80,12 +80,6 @@ export default defineComponent({
     //     setData2(config)//
     //   }
     // })
-    watch(
-      () => props.formConfig,
-      (val) => {
-        setData2(val, state.othersFiles);
-      }
-    )
     const setOhters = (value) => {
       _.toPairs(value)
         .filter(([key]) => key.indexOf('_other') !== -1)
@@ -94,7 +88,7 @@ export default defineComponent({
         });
     };
     const setData2 = (data, value?: any) => {
-      const newData = _.cloneDeep(data);
+      const newData = _.cloneDeep(data);//
       layout.pc = newData.layout.pc;
       layout.mobile = newData.layout.mobile;
       state.store = newData.list;
@@ -106,7 +100,7 @@ export default defineComponent({
       state.data = newData.data;
       state.logic = newData.logic;
       state.store.forEach((e) => {
-        utils.addContext(e, state.store, false);
+        utils.addContext(e, state.store, false);//
       });
       if (!_.isEmpty(value)) {
         setOhters(value);
@@ -148,7 +142,10 @@ export default defineComponent({
         });
       }
     };
-    const setData = props.layoutType === 1 ? setData1 : setData2;
+    const setData = (data) => {
+      let setFn = props.layoutType === 1 ? setData1 : setData2
+      setFn(data)//
+    };
     expose({
       switchPlatform(platform) {
         state.platform = platform;

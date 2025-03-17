@@ -1,4 +1,4 @@
-import { computed, inject } from 'vue'
+import { computed, inject, reactive } from 'vue'
 import _ from 'lodash'
 import utils from '@ER/utils'
 export const useTarget = () => {
@@ -10,7 +10,7 @@ export const useTarget = () => {
   const isSelectAnyElement = computed(() => !isSelectRoot.value)
   const isPc = computed(() => state.platform === 'pc')
   const isEditModel = computed(() => /^(edit|config)$/.test(state.mode))
-  
+
   const checkTypeBySelected = (nodes: string[], propType?: any) => {
     if (!state.selected) return false
     const fn = props.checkPropsBySelected?.(state.selected, propType)
@@ -19,8 +19,8 @@ export const useTarget = () => {
 
   const createTypeChecker = (nodes: string[]) => computed(() => checkTypeBySelected(nodes))
 
-  return {
-    state, 
+  return ({ 
+    state,
     setSelection,
     type,
     col,
@@ -37,5 +37,5 @@ export const useTarget = () => {
     isSelectTable: createTypeChecker(['table']),
     isSelectSubform: createTypeChecker(['subform']),
     checkTypeBySelected
-  }
+  })
 }

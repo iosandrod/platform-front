@@ -6,7 +6,7 @@ import Region from '@ER/region/Region'
 import { areaList } from '@vant/area-data'
 import { useI18n } from '../use-i18n'
 import utils from '@ER/utils'
-class FormField {
+class FormProps {
   label?: string;
   disabled?: boolean;
   placeholder?: string;
@@ -14,7 +14,7 @@ class FormField {
   required?: boolean;
   labelWidth?: string;
   maxlength?: number;
-  showWordLimit?: boolean;
+  showWordLimit?: boolean; 
   showPassword?: boolean;
   prepend?: string;
   model?: any
@@ -175,7 +175,7 @@ const addValidate = (result, node, isPc, t, state, ExtraParams) => {
             break
           case 2:
             if (!!newValue && !/\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/.test(newValue)) {
-              reject(t('er.validateMsg.email'))
+              reject(t('er.validateMsg.email'))//
             } else {
               resolve()
             }
@@ -233,7 +233,7 @@ const getLogicStateByField = (field, fieldsLogicState) => {
   }
 }
 
-export const useProps = (state, data, isPc = true, isRoot = false, specialHandling, t, ExtraParams) => {
+export const useProps = (state, data, isPc = true, isRoot = false, specialHandling?: any, t?: any, ExtraParams?: any) => {
   if (!t) {
     t = useI18n().t
   }
@@ -242,7 +242,7 @@ export const useProps = (state, data, isPc = true, isRoot = false, specialHandli
   }
   return computed(() => {
     let node = isRoot ? data.config : data
-    let result = new FormField({})
+    let result = new FormProps({})
     const platform = isPc ? 'pc' : 'mobile'
     if (isRoot) {
       if (isPc) {

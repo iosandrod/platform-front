@@ -2,7 +2,7 @@ import { defineComponent, inject, ref, resolveComponent, unref } from 'vue'
 import LayoutDragGable from '@ER/formEditor/components/Layout/DragGable'
 import LayoutInlineLayout from '@ER/formEditor/components/Layout/InlineLayout'
 import CompleteButton from '@ER/formEditor/components/CompleteButton.vue'
-import hooks from '@ER/hooks'
+import hooks from '@ER/hooks/index'
 import _ from 'lodash'
 import { ElMain } from 'element-plus'
 export default defineComponent({
@@ -12,12 +12,14 @@ export default defineComponent({
   setup() {
     const ER: any = inject('Everright')
     const ns = hooks.useNamespace('Canves')
+    const target = hooks.useTarget()
     const {
       state,
       setSelection,
       isEditModel,
       isPc
-    } = hooks.useTarget()
+    } = target
+    // console.log(target,'testTarget')//
     const handleClick = (e) => {
       setSelection('root')
     }
@@ -29,7 +31,7 @@ export default defineComponent({
         <div>
           <TagComponent ref={ER.form} onClick={unref(isEditModel) && handleClick} {...typeProps.value}>
             {
-              unref(isEditModel) ? Layout : Layout
+              Layout
             }
           </TagComponent>
           {!unref(isEditModel) && !_.isEmpty(state.config) && ER.props.isShowCompleteButton && <CompleteButton handle={ER.form} />}
@@ -47,7 +49,7 @@ export default defineComponent({
               !unref(isPc) && ns.e(`mobile_layoutType${ER.props.layoutType}`)
               // ER.props.layoutType === 1  && ns.e('layoutType1')
             ]}>
-          {unref(isEditModel) 
+          {unref(isEditModel)
             ? (
               <div class={[ns.e('container')]}>
                 <el-scrollbar ref={ER.canvesScrollRef}>

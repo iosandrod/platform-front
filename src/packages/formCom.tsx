@@ -1,37 +1,38 @@
-import { defineComponent, onMounted, onUnmounted, ref, withDirectives } from "vue";
+import { nextTick, defineComponent, onMounted, onUnmounted, ref, withDirectives } from "vue";
 import preview from '@ER/formEditor/preview'
+import editor from '@ER/formEditor/formEditor'
 import { Form } from "./form";
+import { } from "process";
 export default defineComponent({
     components: {
         preview,
+        editor
     },
     props: {
         formConfig: {
             type: Object
         }
     },
-    setup(props, { slots }) {
+    setup(props, { slots }) {//子表单
         let fIns = new Form(props.formConfig)
-        const editor = ref(null)
         const registerForm = (el) => {
             if (el == null) {
                 fIns.unregisterRef('form')
             } else {
-                fIns.registerRef('form', el) 
+                fIns.registerRef('form', el)
             }
         }//
         onMounted(() => {
-            fIns.onMounted()//
+            nextTick(() => {
+                fIns.onMounted()//
+            })
         })
         onUnmounted(() => {
             fIns.onUnmounted()//
         })
         return () => {
-            let com = withDirectives(<preview isShowCompleteButton={false} ref={registerForm} formIns={fIns}></preview>, [[{
-                mounted(el) {
-
-                }
-            }]])
+            // let com =<preview isShowCompleteButton={false} ref={registerForm} formIns={fIns}></preview>
+            let com = <editor></editor>
             return com
         }
     }

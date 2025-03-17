@@ -30,30 +30,17 @@ export class FormItem extends Base {
     }
     init() {
         //处理列
-        let tdRow = this.createTdRow()
-        let tr = this.getTr()
-        tr.columns.push(...tdRow)
-        this.columns = tdRow
+        let tdRow = this.getTdColumn()
+        //不影响form的属性
+        this.columns = tdRow//做一个缓存
+        this.getRowIndex()
         //处理字段
         let field = this.createField()
         this.field = field
         let mobileRow = this.createMobileRow()
-        this.mobileColumns = mobileRow
-        this.form.mobileLayout.push(...mobileRow)//
+        this.mobileColumns = mobileRow//
     }//
-    createTrRow(): TableRow {
-        let id = this.uuid()
-        let key = `tr_${id}`
-        let tr = {
-            type: 'tr',
-            columns: [],
-            style: {},
-            id,
-            key
-        }
-        return tr
-    }
-    createTdRow(): TableCell[] {
+    getTdColumn(): TableCell[] {
         let span = this.getSpan()
         let tDList = Array(span).fill(null).map((row, i) => {
             let isMerge = i > 0 ? true : false
@@ -104,7 +91,7 @@ export class FormItem extends Base {
         }] as any
         return obj
     }
-    getTr() {
+    getRowIndex() {
         let form = this.form
         let items = form.items
         let curIndex = items.findIndex((item) => item === this)
@@ -114,18 +101,38 @@ export class FormItem extends Base {
         let preItems = items.slice(0, curIndex)
         let preSpans = preItems.map((item) => item.getSpan())
         let preSpan = preSpans.reduce((a, b) => a + b, 0)//
-        let rowIndex = Math.ceil((preSpan + this.getSpan()) / 24)
-        this.rowIndex = rowIndex
-        let rows = form.getLayoutRows()//
-        let length = rows.length
-        let tr: TableRow = null
-        if (length < rowIndex) {
-            tr = this.createTrRow()
-            form.addTrRow(tr)
+        let num = preSpan + this.getSpan()
+        let rowIndex = 0
+        if (num % 24 == 0) {
+            rowIndex = num / 24 - 1
         } else {
-            tr = rows.slice(-1).pop()
+            rowIndex = Math.floor((preSpan + this.getSpan()) / 24)
         }
-        return tr
+        //做一个缓存
+        this.rowIndex = rowIndex
+        return rowIndex
+    }
+    getTr() {
+        // let form = this.form
+        // let items = form.items
+        // let curIndex = items.findIndex((item) => item === this)
+        // if (curIndex === -1) {
+        //     curIndex = items.length//
+        // }
+        // let preItems = items.slice(0, curIndex)
+        // let preSpans = preItems.map((item) => item.getSpan())
+        // let preSpan = preSpans.reduce((a, b) => a + b, 0)//
+        // let rowIndex = Math.ceil((preSpan + this.getSpan()) / 24)
+        // let rows = form.getLayoutRows()//
+        // let length = rows.length
+        // let tr: TableRow = null
+        // if (length < rowIndex) {
+        //     tr = this.createTrRow()
+        //     form.addTrRow(tr)
+        // } else {
+        //     tr = rows.slice(-1).pop()
+        // }
+        // return tr
     }
     getType() {
         let config = this.config
