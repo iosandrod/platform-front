@@ -10,12 +10,12 @@ import {
   ref,
   inject,
   reactive
-} from 'vue' 
+} from 'vue'
 import { isHTMLTag } from '@vue/shared'
 // import DragGable from 'vuedraggable'
 import DragGable from '@ER/vueDraggable/vuedraggable'
 import utils from '@ER/utils'
-import hooks from '@ER/hooks'
+import hooks from '@ER/hooks/index'
 import _ from 'lodash'
 import LayoutGridLayout from './GridLayout'
 import LayoutTabsLayout from './TabsLayout'
@@ -30,14 +30,14 @@ const dragGableWrap = defineComponent({
   name: 'customDragGable',
   customOptions: {},
   components: {
-    DragGable 
-  }, 
-  setup (props) {
+    DragGable
+  },
+  setup(props) {
     const {
       isEditModel
     } = hooks.useTarget()
     return () => {
-      const attrs:any = useAttrs()
+      const attrs: any = useAttrs()
       let node = ''
       if (unref(isEditModel)) {
         node = (
@@ -46,7 +46,7 @@ const dragGableWrap = defineComponent({
             {useSlots()}
           </dragGable>
         )
-      } else { 
+      } else {
         const tag = isHTMLTag(attrs.tag) ? attrs.tag : resolveComponent(attrs.tag)
         const {
           item
@@ -72,6 +72,7 @@ export default defineComponent({
   name: 'DragGableLayout',
   components: {
     // DragGable
+    dragGableWrap,
   },
   props: {
     isRoot: {
@@ -88,7 +89,7 @@ export default defineComponent({
       type: String
     }
   },
-  setup (props) {
+  setup(props) {
     const ER = inject('Everright')
     const isInline = props.type === 'inline'
     const ns = hooks.useNamespace('DragGableLayout')
@@ -116,7 +117,7 @@ export default defineComponent({
         componentMap = {}
       })
       return {
-        findComponent (type, element) {
+        findComponent(type, element) {
           let info = componentMap[type + element]
           if (!info) {
             info = componentMap[type + element] = defineAsyncComponent(() => import(`../${type}/${_.startCase(element)}/${state.platform}`))//
@@ -130,7 +131,6 @@ export default defineComponent({
       item: ({ element }) => {
         let node = ''
         switch (element.type) {
-          //这些都是布局控件
           case 'grid':
             node = (<LayoutGridLayout key={element.id} data={element} parent={props.data}></LayoutGridLayout>)
             break
@@ -146,11 +146,7 @@ export default defineComponent({
           case 'inline':
             node = (<LayoutInlineLayout key={element.id} data={element} parent={props.data}></LayoutInlineLayout>)
             break
-          case 'subform':
-            if (unref(isEditModel) || _.get(state.fieldsLogicState.get(element), 'visible', undefined) !== 0) {
-              node = (<LayoutSubformLayout key={element.id} data={element} parent={props.data}></LayoutSubformLayout>)
-            }
-            break
+
           default:
             let TypeComponent = ''
             if (unref(isEditModel) || _.get(state.fieldsLogicState.get(element), 'visible', undefined) !== 0) {
@@ -166,7 +162,8 @@ export default defineComponent({
               }
               if (unref(isPc)) {
                 node = (
-                  <Selection hasWidthScale hasCopy hasDel hasDrag hasMask { ...params }>
+                  //@ts-ignore
+                  <Selection hasWidthScale hasCopy hasDel hasDrag hasMask {...params}>
                     {
                       element.type !== 'divider'
                         ? (<el-form-item
@@ -180,7 +177,8 @@ export default defineComponent({
                 )
               } else {
                 node = (
-                  <Selection hasWidthScale hasCopy hasDel hasDrag hasMask { ...params }>
+                  //@ts-ignore
+                  <Selection hasWidthScale hasCopy hasDel hasDrag hasMask {...params}>
                     <TypeComponent data={element} params={typeProps.value}></TypeComponent>
                   </Selection>
                 )
@@ -190,7 +188,7 @@ export default defineComponent({
         }
         return node
       },
-      footer () {
+      footer() {
         let node = ''
         if (_.isEmpty(props.data)) {
           if (!props.isRoot) {

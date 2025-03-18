@@ -564,21 +564,21 @@ export const fieldsConfig = [
           required: false
         }
       },
-      {
-        type: 'subform',
-        label: '子表单',
-        icon: 'subform',
-        id: '',
-        list: [
-          []
-        ],
-        options: {
-          defaultValue: [],
-          isShowLabel: true,
-          required: false,
-          disabled: false
-        }
-      }
+      // {
+      //   type: 'subform',
+      //   label: '子表单',
+      //   icon: 'subform',
+      //   id: '',
+      //   list: [
+      //     []
+      //   ],
+      //   options: {
+      //     defaultValue: [],
+      //     isShowLabel: true,
+      //     required: false,
+      //     disabled: false
+      //   }
+      // }
     ]
   }
 ]

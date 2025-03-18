@@ -38,7 +38,6 @@ import defaultProps from './defaultProps';
 import generatorData from './generatorData';
 import { staticData } from './testData';
 import { validate } from 'uuid';
-import { globalConfig } from 'ant-design-vue/lib/config-provider';
 export default defineComponent({
   directives: {
     vClickOutside,

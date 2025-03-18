@@ -113,26 +113,7 @@ export class FormItem extends Base {
         return rowIndex
     }
     getTr() {
-        // let form = this.form
-        // let items = form.items
-        // let curIndex = items.findIndex((item) => item === this)
-        // if (curIndex === -1) {
-        //     curIndex = items.length//
-        // }
-        // let preItems = items.slice(0, curIndex)
-        // let preSpans = preItems.map((item) => item.getSpan())
-        // let preSpan = preSpans.reduce((a, b) => a + b, 0)//
-        // let rowIndex = Math.ceil((preSpan + this.getSpan()) / 24)
-        // let rows = form.getLayoutRows()//
-        // let length = rows.length
-        // let tr: TableRow = null
-        // if (length < rowIndex) {
-        //     tr = this.createTrRow()
-        //     form.addTrRow(tr)
-        // } else {
-        //     tr = rows.slice(-1).pop()
-        // }
-        // return tr
+        
     }
     getType() {
         let config = this.config

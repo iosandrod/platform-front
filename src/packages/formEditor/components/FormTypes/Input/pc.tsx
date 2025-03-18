@@ -1,3 +1,4 @@
+import { ElInput } from "element-plus"
 import { defineComponent } from "vue"
 
 export default defineComponent({
@@ -8,12 +9,16 @@ export default defineComponent({
     data: Object,
     params: Object
   },
+  components: {
+    ElInput
+  },
   setup(props) {
     const data = props.data
     const params = props.params
-    console.log(data, params)//
+    let formitem = params.formitem//
+    // console.log(formitem, 'testFormItem')//
     return () => {
-      return <div>pc</div>
+      return <ElInput {...params} v-model={data.options.defaultValue} ></ElInput>
     }
   }
 })

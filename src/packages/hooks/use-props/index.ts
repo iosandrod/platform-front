@@ -6,6 +6,7 @@ import Region from '@ER/region/Region'
 import { areaList } from '@vant/area-data'
 import { useI18n } from '../use-i18n'
 import utils from '@ER/utils'
+import { StateType } from '@ER/formEditor/formType'
 class FormProps {
   label?: string;
   disabled?: boolean;
@@ -14,7 +15,7 @@ class FormProps {
   required?: boolean;
   labelWidth?: string;
   maxlength?: number;
-  showWordLimit?: boolean; 
+  showWordLimit?: boolean;
   showPassword?: boolean;
   prepend?: string;
   model?: any
@@ -52,6 +53,8 @@ class FormProps {
   columnsNum?: number;
   labelPosition?: string
   labelAlign?: string//
+  formitem?: any
+  //@ts-ignore
   constructor(init?: Partial<FormField>) {
     Object.assign(this, init);
   }
@@ -224,25 +227,29 @@ const addValidate = (result, node, isPc, t, state, ExtraParams) => {
   result.rules = [obj]
 }
 const getLogicStateByField = (field, fieldsLogicState) => {
-  const fieldState = fieldsLogicState.get(field)
-  const required = _.get(fieldState, 'required', undefined)
-  const readOnly = _.get(fieldState, 'readOnly', undefined)
+  // console.log(field, 'testField is Object')//
+  let fieldState = fieldsLogicState.get(field)
+  let required = _.get(fieldState, 'required', undefined)
+  let readOnly = _.get(fieldState, 'readOnly', undefined)
   return {
     required,
     readOnly
   }
 }
 
-export const useProps = (state, data, isPc = true, isRoot = false, specialHandling?: any, t?: any, ExtraParams?: any) => {
+export const useProps = (state: StateType, data, isPc = true, isRoot = false, specialHandling?: any, t?: any, ExtraParams?: any) => {
   if (!t) {
     t = useI18n().t
   }
   if (!ExtraParams) {
     ExtraParams = inject('EverrightExtraParams', {})
   }
+  const formIns: any = inject('formIns')
+  const itemIns = formIns.items.find(item => item.id === data.id)
   return computed(() => {
     let node = isRoot ? data.config : data
     let result = new FormProps({})
+    result.formitem = itemIns
     const platform = isPc ? 'pc' : 'mobile'
     if (isRoot) {
       if (isPc) {
@@ -283,28 +290,6 @@ export const useProps = (state, data, isPc = true, isRoot = false, specialHandli
       } else {
         result.required = result.disabled ? false : required === 1
       }
-      if (utils.checkIsInSubform(node)) {
-        const parent = node?.context?.parent?.context?.parent
-        if (parent) {
-          const {
-            readOnly,
-            required
-          } = getLogicStateByField(node, state.fieldsLogicState)
-          const parentProps = useProps(state, parent, isPc, false, false, t, ExtraParams).value
-          if (readOnly !== undefined) {
-            result.disabled = parentProps.disabled
-          }
-          if (required !== undefined) {
-            result.required = parentProps.required
-          }
-        }
-      }
-    }
-    try {
-      if (ExtraParams.inSubformDefaultValueComponent) {
-        result.disabled = result.required = false
-      }
-    } catch (e) {
     }
     addValidate(result, node, isPc, t, state, ExtraParams)
     if (isPc) {

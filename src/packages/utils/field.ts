@@ -12,7 +12,7 @@ const deepTraversal = (node, fn) => {
     deepTraversal(e, fn)
   })
 }
-const wrapElement = (element, fn) => {
+const wrapElement = (element, fn?: any) => {//
   const result = element
   deepTraversal(result, (node) => {
     if (Array.isArray(node)) return false

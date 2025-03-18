@@ -1,4 +1,4 @@
-import { nextTick, defineComponent, onMounted, onUnmounted, ref, withDirectives } from "vue";
+import { nextTick, defineComponent, onMounted, onUnmounted, ref, withDirectives, provide } from "vue";
 import preview from '@ER/formEditor/preview'
 import editor from '@ER/formEditor/formEditor'
 import { Form } from "./form";
@@ -22,6 +22,7 @@ export default defineComponent({
                 fIns.registerRef('form', el)
             }
         }//
+        provide('formIns', fIns)//
         onMounted(() => {
             nextTick(() => {
                 fIns.onMounted()//
@@ -31,8 +32,8 @@ export default defineComponent({
             fIns.onUnmounted()//
         })
         return () => {
-            // let com =<preview isShowCompleteButton={false} ref={registerForm} formIns={fIns}></preview>
-            let com = <editor></editor>
+            let com =<preview isShowCompleteButton={false} ref={registerForm} formIns={fIns}></preview>
+            // let com = <editor></editor>
             return com
         }
     }
