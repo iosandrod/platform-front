@@ -6,6 +6,8 @@ import Region from '@ER/region/Region'
 import { areaList } from '@vant/area-data'
 import { useI18n } from '../use-i18n'
 import utils from '@ER/utils'
+import { Form } from '@ER/form'
+import { FormItem } from '@ER/formitem'
 class FormProps {
   label?: string;
   disabled?: boolean;
@@ -14,7 +16,7 @@ class FormProps {
   required?: boolean;
   labelWidth?: string;
   maxlength?: number;
-  showWordLimit?: boolean; 
+  showWordLimit?: boolean;
   showPassword?: boolean;
   prepend?: string;
   model?: any
@@ -52,6 +54,8 @@ class FormProps {
   columnsNum?: number;
   labelPosition?: string
   labelAlign?: string//
+  formitem: FormItem
+  //@ts-ignore
   constructor(init?: Partial<FormField>) {
     Object.assign(this, init);
   }
@@ -240,9 +244,13 @@ export const useProps = (state, data, isPc = true, isRoot = false, specialHandli
   if (!ExtraParams) {
     ExtraParams = inject('EverrightExtraParams', {})
   }
+  //这个form不是这个form//
+  const formIns: Form = inject('formIns', {}) as any
+  const item = formIns.items.find(item => item.id === data.id)//
   return computed(() => {
     let node = isRoot ? data.config : data
     let result = new FormProps({})
+    result.formitem = item
     const platform = isPc ? 'pc' : 'mobile'
     if (isRoot) {
       if (isPc) {

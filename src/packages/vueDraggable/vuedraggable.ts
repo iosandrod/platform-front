@@ -137,9 +137,9 @@ const draggableComponent = defineComponent({
     const plugins = this.$attrs.plugins
     if (plugins) {
       if (Array.isArray(plugins)) {
-        let hasMounted = plugins.map(plugin => {
-          return plugin.pluginName
-        })
+        // let hasMounted = plugins.map(plugin => {
+        //   return plugin.pluginName
+        // })
         let _plugin = plugins.filter(plugin => !dName.includes(plugin.pluginName))
         Sortable.mount(_plugin)//
         let _names = _plugin.map(plugin => plugin.pluginName)
@@ -148,6 +148,7 @@ const draggableComponent = defineComponent({
     }
     this._sortable = new Sortable(targetDomElement, sortableOptions);
     this.targetDomElement = targetDomElement;
+    //把这个插件绑定到dom上//
     targetDomElement.__draggable_component__ = this;
   },
 

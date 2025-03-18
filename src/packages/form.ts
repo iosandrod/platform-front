@@ -57,7 +57,7 @@ export class Form extends Base {
     constructor(config) {
         super()
         this.init()
-        let items = config.items
+        let items = config.items || []
         this.data = config.data || {}//
         for (const item of items) {
             this.addFormItem(item)

@@ -1,6 +1,8 @@
+import { Arrayable } from "element-plus/es/utils/typescript"
 import { Base } from "./base"
 import { Form, } from "./form"
 import { Field, TableCell, TableRow } from "./layoutType"
+import { FormItemRule } from "element-plus"
 export type FormOptions = {
     items: Field[]
 }
@@ -16,9 +18,16 @@ export class FormItem extends Base {
     mobileColumns: TableCell[] = []
     constructor(config: Field, form) {
         super()
+        let id = config.id
+        if (id != null) {
+            this.id = id//
+        }
         this.form = form
         this.config = config
         this.init()//初始化行列
+    }
+    getForm() {
+        return this.form//
     }
     getSpan() {
         let options = this.config
@@ -113,26 +122,18 @@ export class FormItem extends Base {
         return rowIndex
     }
     getTr() {
-        // let form = this.form
-        // let items = form.items
-        // let curIndex = items.findIndex((item) => item === this)
-        // if (curIndex === -1) {
-        //     curIndex = items.length//
-        // }
-        // let preItems = items.slice(0, curIndex)
-        // let preSpans = preItems.map((item) => item.getSpan())
-        // let preSpan = preSpans.reduce((a, b) => a + b, 0)//
-        // let rowIndex = Math.ceil((preSpan + this.getSpan()) / 24)
-        // let rows = form.getLayoutRows()//
-        // let length = rows.length
-        // let tr: TableRow = null
-        // if (length < rowIndex) {
-        //     tr = this.createTrRow()
-        //     form.addTrRow(tr)
-        // } else {
-        //     tr = rows.slice(-1).pop()
-        // }
-        // return tr
+
+    }
+    getValidateRoles(): Arrayable<FormItemRule> {
+        let r: FormItemRule = {
+            trigger: 'change',
+            required: true,
+            asyncValidator: async (rule, value, callback) => {
+                console.log(rule, value, callback)
+            }
+        }
+        let rules = [r]
+        return rules
     }
     getType() {
         let config = this.config

@@ -3,7 +3,7 @@ import App from './App.vue';
 import router from '@/router';
 import pinia from '@/store';
 import elementPlus from 'element-plus'
-import 'element-plus/dist/index.css' 
+import 'element-plus/dist/index.css'
 const app = createApp(App);
 import Vant, { Locale } from 'vant'
 import enUS from 'vant/es/locale/lang/en-US'
@@ -14,5 +14,5 @@ Locale.use('en-US', enUS)
 app.use(Vant)
 app.use(pinia);
 app.use(router);
-app.use(elementPlus); 
+app.use(elementPlus);
 app.mount('#stepin-app');

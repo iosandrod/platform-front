@@ -9,7 +9,6 @@ import {
   ElDropdown,
   ElDropdownMenu,
   ElDropdownItem,
-
 } from 'element-plus';
 import {
   defineProps,
@@ -36,9 +35,10 @@ import utils from '@ER/utils';
 import _ from 'lodash';
 import defaultProps from './defaultProps';
 import generatorData from './generatorData';
-import { staticData } from './testData';
+import { staticData, testData1 } from './testData';
 import { validate } from 'uuid';
 import { globalConfig } from 'ant-design-vue/lib/config-provider';
+import { Form } from '@ER/form';
 export default defineComponent({
   directives: {
     vClickOutside,
@@ -55,11 +55,11 @@ export default defineComponent({
     },
     delHandle: {
       type: Function,
-      default: () => { },
+      default: () => {},
     },
     copyHandle: {
       type: Function,
-      default: () => { },
+      default: () => {},
     },
     inlineMax: {
       type: Number,
@@ -80,13 +80,12 @@ export default defineComponent({
     },
     checkFieldsForNewBadge: {
       type: Function,
-      default: () => { },
+      default: () => {},
     },
     ...defaultProps,
   },
   emits: ['listener'],
   setup(props: any, { attrs, slots, emit, expose }) {
-    console.log('run this setup')//
     const layout = {
       pc: [],
       mobile: [],
@@ -112,6 +111,8 @@ export default defineComponent({
       logic: {},
       othersFiles: {},
     });
+    const formIns = new Form({});
+    provide('formIns', formIns);
     const isFoldFields = ref(true);
     const isFoldConfig = ref(true);
     //@ts-ignore
@@ -219,17 +220,23 @@ sourceBlock: 布尔值，决定是否使用 generatorData 函数生成节点。�
 resetWidth: 布尔值，决定是否重置元素的宽度。如果为 true，会根据平台（PC 或移动端）来设置元素的宽度为 100%。
     */
     const wrapElement = (el, isWrap = true, isSetSelection = true, sourceBlock = true, resetWidth = true) => {
-      const node = sourceBlock
-        ? generatorData(el, isWrap, lang.value, sourceBlock, (node) => {
+      let node: any = null; //
+      if (sourceBlock) {
+        // 如果 sourceBlock 为 true，则调用 generatorData 生成数据，并为节点添加字段数据和字段
+        node = generatorData(el, isWrap, lang.value, sourceBlock, (node) => {
           addFieldData(node);
           addField(node);
-        })
-        : isWrap
-          ? {
-            type: 'inline',
-            columns: [el],
-          }
-          : el;
+        });
+      } else if (isWrap) {
+        // 如果 isWrap 为 true（但 sourceBlock 为 false），则将元素封装为一个 'inline' 类型的对象
+        node = {
+          type: 'inline',
+          columns: [el], // 将元素作为 columns 数组的元素
+        };
+      } else {
+        // 如果 sourceBlock 和 isWrap 都为 false，直接返回原始元素
+        node = el;
+      }
       if (!sourceBlock && resetWidth) {
         if (utils.checkIsField(el)) {
           if (state.platform === 'pc') {
@@ -247,6 +254,7 @@ resetWidth: 布尔值，决定是否重置元素的宽度。如果为 true，会
     };
     setTimeout(() => {
       // setData2(staticData);//
+      setData2(testData1); //
     }, 100);
     const syncLayout = (platform, fn) => {
       const isPc = platform === 'pc';
@@ -486,19 +494,18 @@ resetWidth: 布尔值，决定是否重置元素的宽度。如果为 true，会
         immediate: true,
       }
     );
-    const onClickOutside = () => {
-    };
+    const onClickOutside = () => {};
     watch(
       () => {
         return state.store;
       },
-      (newValue) => {
-      },
+      (newValue) => {},
       {
         deep: true,
       }
     );
     provide('Everright', {
+      formIns: formIns,
       state,
       setSelection,
       props,

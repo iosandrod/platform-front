@@ -189,12 +189,15 @@ const setStates = (newTarget, ev, ER) => {
       el,
       el: {
         __draggable_component__: {
-          list: targetList
+          //list是横向的东西
+          //columns是纵向的
+          list: targetList//获取到sort的dom的list变量
         }
       }
     },
     sortable
   } = ev
+  let _targetList = ev.sortable.el.__draggable_component__
   const targetContainer = el.parentNode
   const direction = disableBothSides(ER) ? getDirection1(newTarget, originalEvent) : getDirection0(newTarget, originalEvent)
   const cols = newTarget.parentNode.children
@@ -310,56 +313,93 @@ function ControlInsertionPlugin(ER) {
     dragStart(e) {
     }
     drop(e) {
+      // 如果没有之前的元素 (prevEl) 或者当前事件没有一个活动的sortable实例，则直接返回
       if (!prevEl || !e.activeSortable) {
         return false
       }
+      // 判断当前拖拽的元素是否是 'block' 类型
       const isBlock = _.get(e, 'activeSortable.options.dataSource', false) === 'block'
-      const {
-        dragEl,
-        target
-      } = e
+      // 从事件对象中获取拖拽的元素 (dragEl) 和目标元素 (target)
+      const { dragEl, target } = e
+      // 获取拖拽元素的真实DOM结构
       const oldEl = getDragElement(dragEl)
+      // 克隆并包装拖拽的元素，以便插入到新位置
+      // console.log(oldEl, 'testOld')//
       const newElement = ER.wrapElement(_.cloneDeep(oldEl), inserRowIndex !== '', true, isBlock)
+
+      // 如果不是 'block' 类型的元素，并且原始元素有 context，则删除该 context
       if (!isBlock) {
         if (oldEl.context) {
+          let _context = oldEl.context
+          let flatNode = _context.getFlattenNodes()
+          let ids = flatNode.map(node => node.id)
+          let next = Array.isArray(prevSortable.options.parent)
+            ? prevSortable.options.parent
+            : [prevSortable.options.parent]//is Array
+          let _ids = next.map(node => node.id)
+          if (_ids.some(id => ids.includes(id))) {
+            resetStates()
+            return
+          }
+          // let nodes=_context.getNodes(oldEl,'rowspan')
           oldEl.context.delete()
         }
       }
+
+      // 处理行插入逻辑
       if (inserRowIndex !== '') {
         let store = []
+
+        // 判断是否是 'subform' 类型的父级元素，并获取正确的存储数组
         if (prevSortable.options.parent.type === 'subform') {
           store = prevSortable.options.parent.list[0]
         } else {
-          store = Array.isArray(prevSortable.options.parent) ? prevSortable.options.parent : prevSortable.options.parent.list
+          store = Array.isArray(prevSortable.options.parent)
+            ? prevSortable.options.parent
+            : prevSortable.options.parent.list
         }
+        // 在指定的索引位置插入新元素
         store.splice(inserRowIndex, 0, newElement)
+
+        // 关联新元素的上下文信息
         utils.addContext(store[inserRowIndex], prevSortable.options.parent)
       }
+
+      // 处理列插入逻辑
       if (inserColIndex !== '') {
         const {
           el: {
-            __draggable_component__: {
-              list
-            }
+            __draggable_component__: { list }
           },
           el,
-          constructor: {
-            utils: sortableUtils
-          }
+          constructor: { utils: sortableUtils }
         } = prevSortable
+
+        // 在指定的索引位置插入新元素
         list.splice(inserColIndex, 0, newElement)
-        utils.addContext(newElement, prevSortable.options.parent[sortableUtils.index(prevSortable.el.parentNode)])
+
+        // 关联新元素的上下文信息
+        utils.addContext(
+          newElement,
+          prevSortable.options.parent[sortableUtils.index(prevSortable.el.parentNode)]
+        )
       }
+
+      // 如果有行插入或列插入操作，则遍历新元素，并检查是否需要额外的字段处理
       if (inserColIndex !== '' || inserRowIndex !== '') {
         utils.deepTraversal(newElement, (node) => {
           if (utils.checkIsField(node)) {
-            ER.addField(node)
+            ER.addField(node) // 添加字段到表单
           }
         })
+
+        // 在下一次DOM更新后，选中新的元素
         nextTick(() => {
           ER.setSelection(newElement)
         })
       }
+
+      // 重置拖拽状态
       resetStates()
     }
     dragOver(e) {
@@ -393,6 +433,7 @@ function ControlInsertionPlugin(ER) {
         },
         sortable
       } = e
+      // console.log(dataSource, 'testDataSource')//
       if (sortable.options.dataSource === 'block') {
         return false
       }
@@ -405,15 +446,15 @@ function ControlInsertionPlugin(ER) {
         return false
       }
       if (target.dataset.layoutType === 'subform') {
-        // console.log(utils)
         if (!utils.checkIsField(dragNode) || dragNode.type === 'subform') {
           return false
         }
-      }
+      }//
       originalEvent.stopPropagation && originalEvent.stopPropagation()
       const direction = ''
       const targetContainer = el.parentNode
       const targetOnlyOne = targetList.length === 1
+      //@ts-ignore
       let newTarget = SortableUtils.closest(target, this.options.draggable, sortable.el)
       if (dragEl.contains(newTarget)) {
         return false
