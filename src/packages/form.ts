@@ -86,6 +86,17 @@ export class Form extends Base {
         const form: FormInstance = this.getRef('form')
         form.clearValidate()
     }
+    getSubForm(id: string) {
+        if (typeof id == 'object') {
+            //@ts-ignore
+            id = id.id
+        }
+        let item = this.items.find((item) => {
+            return item.id == id
+        })
+        let subForm = item.subForm
+        return subForm
+    }
     async validate() {
         return new Promise(async (resolve, reject) => {
             let form = this.getRef('form')
@@ -250,9 +261,6 @@ export class Form extends Base {
     }
     onUnmounted() {
         super.onUnmounted()//
-    }
-    setSubForm(item: FormItem) {
-
     }
     setData(data) {
         let form = this.getRef('form')

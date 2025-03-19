@@ -73,8 +73,14 @@ export class FormItem extends Base {
             let formConfig = options?.formConfig || {}
             let _form = new Form(formConfig)
             this.subForm = _form
+            let form = this.form
+            // let subForm = form.nextFormMap
+            // let id = this.id//
+            // subForm[id] = _form//
         }
     }//
+    getSubForm(id: string) {
+    }
     getTdColumn(): TableCell[] {
         let span = this.getSpan()
         let tDList = Array(span).fill(null).map((row, i) => {

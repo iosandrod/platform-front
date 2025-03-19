@@ -15,6 +15,7 @@ import hooks from '@ER/hooks';
 import utils from '@ER/utils';
 import _ from 'lodash';
 import Icon from '@ER/icon';
+import { Form } from '@ER/form';
 export default {
   name: 'SelectElement',
   inheritAttrs: false,
@@ -79,7 +80,6 @@ export default {
     const isWarning = ref(false);
     const isField = utils.checkIsField(props.data);
     let type = props.data.type;
-    console.log(type, 'testType'); //
     const handleClick = (e) => {
       setSelection(props.data);
     };
@@ -163,6 +163,7 @@ export default {
         </el-dropdown>
       );
     };
+    const formIns: Form = inject('formIns'); //
     const actionStrategies = {
       delete: () => {
         if (ER.props.delHandle(props.data) === false) return false;
@@ -182,7 +183,6 @@ export default {
           setSelection('root');
         }
       },
-
       copy: () => {
         if (ER.props.copyHandle(props.data) === false) return false;
         props.data.context.copy();
@@ -196,12 +196,10 @@ export default {
           }
         });
       },
-
       tableInsertRow: () => {
         //@ts-ignore
         _.last(props.data.context.columns[0]).context.insert('bottom');
       },
-
       tableInsertCol: () => {
         //@ts-ignore
         _.last(props.data.context.columns)[0].context.insert('right');
@@ -218,6 +216,14 @@ export default {
       plus: () => {
         props.data.context.appendCol();
       },
+      enterForm: () => {
+        let id = props.data.id;
+        let subForm = formIns.getSubForm(id);
+        if (subForm != null) {
+          formIns.nextForm = subForm; //
+        }
+        // const _form=formIns.
+      },
     };
     const handleAction = (type) => {
       const iconActionMap = {
@@ -227,6 +233,7 @@ export default {
         4: 'tableInsertCol', // 插入列
         5: 'top', // 置顶/选择父级
         6: 'plus', // 添加列
+        7: 'enterForm',
         widthScale: 'dragWidth', // 调整宽度（特殊情况，无 action 数字）
       };
       let actionString = iconActionMap[type];
@@ -349,6 +356,18 @@ export default {
                     ['stop']
                   )}
                   icon='delete'
+                ></Icon>
+              )}
+              {props.data.type == 'Sform' && (
+                <Icon
+                  class={[ns.e('copy')]}
+                  onClick={withModifiers(
+                    (e) => {
+                      handleAction(7);
+                    },
+                    ['stop']
+                  )}
+                  icon='config'
                 ></Icon>
               )}
               {props.hasInserColumn && (
