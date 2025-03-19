@@ -1113,6 +1113,7 @@ export default defineComponent({
       </el-aside>
 
 
+<<<<<<< HEAD
        // case 'subform':
           //   if (unref(isEditModel) || _.get(state.fieldsLogicState.get(element), 'visible', undefined) !== 0) {
           //     node = (<LayoutSubformLayout key={element.id} data={element} parent={props.data}></LayoutSubformLayout>)
@@ -1142,3 +1143,58 @@ export default defineComponent({
         //     tr = rows.slice(-1).pop()
         // }
         // return tr
+=======
+      // drop(e) {
+    //   if (!prevEl || !e.activeSortable) {
+    //     return false
+    //   }
+    //   const isBlock = _.get(e, 'activeSortable.options.dataSource', false) === 'block'
+    //   const {
+    //     dragEl,
+    //     target
+    //   } = e
+    //   const oldEl = getDragElement(dragEl)
+    //   const newElement = ER.wrapElement(_.cloneDeep(oldEl), inserRowIndex !== '', true, isBlock)
+    //   if (!isBlock) {
+    //     if (oldEl.context) {
+    //       oldEl.context.delete()
+    //     }
+    //   }
+    //   if (inserRowIndex !== '') {
+    //     let store = []
+    //     if (prevSortable.options.parent.type === 'subform') {
+    //       store = prevSortable.options.parent.list[0]
+    //     } else {
+    //       store = Array.isArray(prevSortable.options.parent) ? prevSortable.options.parent : prevSortable.options.parent.list
+    //     }
+    //     store.splice(inserRowIndex, 0, newElement)
+    //     utils.addContext(store[inserRowIndex], prevSortable.options.parent)
+    //   }
+    //   if (inserColIndex !== '') {
+    //     const {
+    //       el: {
+    //         __draggable_component__: {
+    //           list
+    //         }
+    //       },
+    //       el,
+    //       constructor: {
+    //         utils: sortableUtils
+    //       }
+    //     } = prevSortable
+    //     list.splice(inserColIndex, 0, newElement)
+    //     utils.addContext(newElement, prevSortable.options.parent[sortableUtils.index(prevSortable.el.parentNode)])
+    //   }
+    //   if (inserColIndex !== '' || inserRowIndex !== '') {
+    //     utils.deepTraversal(newElement, (node) => {
+    //       if (utils.checkIsField(node)) {
+    //         ER.addField(node)
+    //       }
+    //     })
+    //     nextTick(() => {
+    //       ER.setSelection(newElement)
+    //     })
+    //   }
+    //   resetStates()
+    // }
+>>>>>>> refs/remotes/origin/main

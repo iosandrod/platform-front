@@ -4,7 +4,6 @@ import http from '@/store/http';
 import { useAccountStore, useLoadingStore } from '@/store';
 import { useAuthStore } from '@/plugins';
 import NProgress from 'nprogress';
-import { clearPage } from 'stepin/es/tabs-view';
 import 'nprogress/nprogress.css';
 
 NProgress.configure({ showSpinner: false });

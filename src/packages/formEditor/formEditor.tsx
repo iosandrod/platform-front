@@ -9,7 +9,7 @@ import {
   ElDropdown,
   ElDropdownMenu,
   ElDropdownItem,
-
+  ElButton,
 } from 'element-plus';
 import {
   defineProps,
@@ -36,8 +36,10 @@ import utils from '@ER/utils';
 import _ from 'lodash';
 import defaultProps from './defaultProps';
 import generatorData from './generatorData';
-import { staticData } from './testData';
+import { staticData, testData1 } from './testData';
 import { validate } from 'uuid';
+import { globalConfig } from 'ant-design-vue/lib/config-provider';
+import { Form } from '@ER/form';
 export default defineComponent({
   directives: {
     vClickOutside,
@@ -85,7 +87,6 @@ export default defineComponent({
   },
   emits: ['listener'],
   setup(props: any, { attrs, slots, emit, expose }) {
-    console.log('run this setup')//
     const layout = {
       pc: [],
       mobile: [],
@@ -111,6 +112,8 @@ export default defineComponent({
       logic: {},
       othersFiles: {},
     });
+    const formIns = new Form({});
+    provide('formIns', formIns);
     const isFoldFields = ref(true);
     const isFoldConfig = ref(true);
     //@ts-ignore
@@ -142,6 +145,9 @@ export default defineComponent({
     const isShow = ref(true);
     const isShowConfig = ref(true);
     const setSelection = (node) => {
+      if (node == null) {
+        node = 'root'//
+      }
       let result = '';
       if (node === 'root') {
         result = state.config;
@@ -211,24 +217,26 @@ export default defineComponent({
       }
     };
     /* 
-      el: 被包装的元素。
-isWrap: 布尔值，决定是否要对元素进行包装。默认值为 true，如果为 true，会将元素包装成一个具有 inline 类型和包含该元素的列的结构。
-isSetSelection: 布尔值，控制是否设置选择项，函数体内没有执行具体操作，可能是预留功能。
-sourceBlock: 布尔值，决定是否使用 generatorData 函数生成节点。如果为 true，会调用 generatorData 来处理 el，并进一步执行 addFieldData 和 addField。
-resetWidth: 布尔值，决定是否重置元素的宽度。如果为 true，会根据平台（PC 或移动端）来设置元素的宽度为 100%。
+     
     */
     const wrapElement = (el, isWrap = true, isSetSelection = true, sourceBlock = true, resetWidth = true) => {
-      const node = sourceBlock
-        ? generatorData(el, isWrap, lang.value, sourceBlock, (node) => {
+      let node: any = null; //
+      if (sourceBlock) {
+        // 如果 sourceBlock 为 true，则调用 generatorData 生成数据，并为节点添加字段数据和字段
+        node = generatorData(el, isWrap, lang.value, sourceBlock, (node) => {
           addFieldData(node);
           addField(node);
-        })
-        : isWrap
-          ? {
-            type: 'inline',
-            columns: [el],
-          }
-          : el;
+        });
+      } else if (isWrap) {
+        // 如果 isWrap 为 true（但 sourceBlock 为 false），则将元素封装为一个 'inline' 类型的对象
+        node = {
+          type: 'inline',
+          columns: [el], // 将元素作为 columns 数组的元素
+        };
+      } else {
+        // 如果 sourceBlock 和 isWrap 都为 false，直接返回原始元素
+        node = el;
+      }
       if (!sourceBlock && resetWidth) {
         if (utils.checkIsField(el)) {
           if (state.platform === 'pc') {
@@ -245,7 +253,7 @@ resetWidth: 布尔值，决定是否重置元素的宽度。如果为 true，会
       return node;
     };
     setTimeout(() => {
-      // setData2(staticData);//
+      setData2(testData1); //
     }, 100);
     const syncLayout = (platform, fn) => {
       const isPc = platform === 'pc';
@@ -262,7 +270,7 @@ resetWidth: 布尔值，决定是否重置元素的宽度。如果为 true，会
         const layoutFields = utils.pickfields(isPc ? layout.pc : layout.mobile).map((e) => {
           return {
             id: e,
-          };
+          };//
         });
         const copyData = _.cloneDeep(isPc ? layout.pc : layout.mobile);
         const addFields = _.differenceBy(
@@ -272,11 +280,8 @@ resetWidth: 布尔值，决定是否重置元素的宽度。如果为 true，会
         );
         const delFields = _.differenceBy(layoutFields, state.fields, 'id');
         utils.repairLayout(copyData, delFields);
-        // console.log(JSON.stringify(copyData, '', 2))
         utils.combinationData2(copyData, state.fields);
-        // console.log(JSON.stringify(copyData, '', 2))
         copyData.push(...addFields.map((e) => wrapElement(e, true, false, false, false)));
-        // copyData.push(...addFields)
         fn && fn(copyData);
       }
     };
@@ -331,7 +336,7 @@ resetWidth: 布尔值，决定是否重置元素的宽度。如果为 true，会
           state.store = newData;
           // console.log(JSON.stringify(newData, '', 2))
           state.store.forEach((e) => {
-            utils.addContext(e, state.store);
+            utils.addContext({ node: e, parent: state.store });
           });
         });
       }
@@ -378,7 +383,7 @@ resetWidth: 布尔值，决定是否重置元素的宽度。如果为 true，会
       state.logic = newData.logic;
       setSelection(state.config);
       state.store.forEach((e) => {
-        utils.addContext(e, state.store);
+        utils.addContext({ node: e, parent: state.store });//
       });
       nextTick(() => {
         isShow.value = true;
@@ -387,6 +392,8 @@ resetWidth: 布尔值，决定是否重置元素的宽度。如果为 true，会
     const setData2 = (data) => {
       if (_.isEmpty(data)) return false;
       const newData = _.cloneDeep(data);
+      let fields = newData.fields
+      formIns.setFields(fields)//
       layout.pc = newData.layout.pc;
       layout.mobile = newData.layout.mobile;
       isShow.value = false;
@@ -397,10 +404,10 @@ resetWidth: 布尔值，决定是否重置元素的宽度。如果为 true，会
       state.store = curLayout;
       state.config = newData.config;
       state.data = newData.data;
-      state.logic = newData.logic;
+      state.logic = newData.logic;//
       setSelection(state.config);
       state.store.forEach((e) => {
-        utils.addContext(e, state.store);
+        utils.addContext({ node: e, parent: state.store });
       });
       nextTick(() => {
         isShow.value = true;
@@ -476,6 +483,20 @@ resetWidth: 布尔值，决定是否重置元素的宽度。如果为 true，会
       }
     };
     watch(
+      () => state.fields.map((e) => e.id),
+      (newV, old) => {
+        const deleteFields = old.filter((item) => !newV.includes(item));
+        const addFields = newV.filter((item) => !old.includes(item));
+        for (const delField of deleteFields) {
+          formIns.delFormItem(delField);
+        }
+        for (const addField of addFields) {
+          let field = state.fields.find((e) => e.id === addField);
+          formIns.addFormItem(field);//
+        }
+      }
+    )
+    watch(
       () => state.selected,
       (newVal) => {
         fireEvent('changeParams', _.cloneDeep(newVal));
@@ -485,25 +506,24 @@ resetWidth: 布尔值，决定是否重置元素的宽度。如果为 true，会
         immediate: true,
       }
     );
-    const onClickOutside = () => {
-    };
+    const onClickOutside = () => { };
     watch(
       () => {
         return state.store;
       },
-      (newValue) => {
-      },
+      (newValue) => { },
       {
         deep: true,
       }
     );
     provide('Everright', {
+      formIns: formIns,
       state,
       setSelection,
       props,
       wrapElement,
       delField,
-      addField,
+      addField,//
       switchPlatform,
       addFieldData,
       canvesScrollRef,
@@ -550,6 +570,7 @@ resetWidth: 布尔值，决定是否重置元素的宽度。如果为 true，会
                   </div>
                   <div>
                     <DeviceSwitch modelValue={state.platform} onUpdate:modelValue={switchPlatform} />
+                    <ElButton onClick={() => { formIns.validate(); }}>测试</ElButton>
                   </div>
                   <div>
                     {slots['operation-right'] && slots['operation-right']()}

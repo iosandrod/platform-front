@@ -8,7 +8,7 @@ export type ContextNode = any
 export type ContextOptions = {
     node: any,
     parent
-    fn?:any
+    fn?: any
 }
 export class Context {
     node: ContextNode
@@ -16,7 +16,7 @@ export class Context {
     arr: ContextNode[]
     state: ContextNode
     constructor(config: ContextOptions) {
-        let fn=config.fn
+        let fn = config.fn
         let node = config.node
         this.node = config.node
         this.parent = config.parent
@@ -24,6 +24,7 @@ export class Context {
         if (Array.isArray(this.parent)) {
             this.arr = this.parent
         } else {
+            //这是为什么呢
             this.arr = parent.columns || parent.list || parent.rows
         }
         this.state = config.node
@@ -42,6 +43,24 @@ export class Context {
         nodes.forEach(e => {
             this.addContext(e, node, fn)
         })
+    }
+    getFlattenNodes() {
+        const columns = this.node.columns || []
+        let list = this.node.list || []
+        let rows = this.node.rows || []
+        let arr = [...columns, ...list, ...rows]
+        let _arr = []
+        arr.forEach(e => {
+            let context = e.context
+            let _arr1 = []
+            if (context) {
+                let nodes = context.getFlattenNodes()
+                _arr1.push(...nodes)
+            }
+            _arr1.push(e)
+            _arr.push(..._arr1)
+        })
+        return _arr//
     }
     get props() {
         let node = this.node
@@ -294,10 +313,10 @@ export class Context {
         arr.splice(index + 1, 0, newNode)
     }
     addContext(node, parent?: any, fn?: any) {
-        if(typeof node!='object'){
+        if (typeof node != 'object') {
             //
             // debugger//
-            return 
+            return
         }
         fn && fn(node)
         let context = new Context({
@@ -307,15 +326,17 @@ export class Context {
         return context
     }
     delete() {
-        const parent = this.parent
+        //删除节点
         const arr = this.arr
         const node = this.node
-        if (utils.checkIsInSubform(node) && node.type === 'inline') {
-            arr[0].splice(arr[0].indexOf(node), 1)
-        } else {
+        if (node.type === 'inline') {//
+            arr.splice(arr.indexOf(node), 1)
+        } else {//
             arr.splice(arr.indexOf(node), 1)
         }
-    }
+        let nextNode = this.getFlattenNodes()
+        let _arr = [this.node, ...nextNode]
+    } 
     appendCol() {
         const parent = this.parent
         const arr = this.arr
@@ -378,7 +399,7 @@ export class Context {
             context: {
                 root,
                 col,
-                row 
+                row
             }
         } = node
         let count = key === 'rowspan' ? row : col
@@ -723,7 +744,7 @@ export class Context {
         return data
     }
     appendNodes(node, dir, key) {
-        let _this=this        
+        let _this = this
         const {
             context: {
                 root,
@@ -852,12 +873,12 @@ export class Context {
         }
     }
     insert(type) {
-        let node = this.node 
+        let node = this.node
         const {
             context: {
                 root,
                 col,
-                row 
+                row
             }
         } = node
         switch (type) {
@@ -915,7 +936,7 @@ export class Context {
     }
     del(type) {
         let node = this.node
-      
+
         const {
             context: {
                 root,

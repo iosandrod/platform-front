@@ -57,17 +57,31 @@ export class Form extends Base {
     constructor(config) {
         super()
         this.init()
-        let items = config.items
+        let items = config.items || []
         this.data = config.data || {}//
+        this.setFields(items)//
+    }
+    setFields(items) {
+        this.items.splice(0)
         for (const item of items) {
-            this.addFormItem(item)
+            this.addFormItem(item)//
         }
     }
-
     async validate() {
-        return new Promise((resolve, reject) => {
-
+        return new Promise(async (resolve, reject) => {
+            let form = this.getRef('form')
+            let res = await form.validate()
+            console.log(res, 'testRes')// 
+                ;
         })
+    }
+    getValidateRules() {
+        let items = this.items
+        let itemsRules = items.map(item => {
+            let rule = item.getValidateRoles()
+            return rule
+        })
+        return itemsRules
     }
     init() {
         this.initPcLayout()
@@ -153,13 +167,12 @@ export class Form extends Base {
         let _item = new FormItem(config, this)
         this.items.push(_item)//
     }
-    // addTrRow(data) {
-    //     if (!data) {
-    //         return
-    //     }
-    //     let rows = this.getLayoutRows()
-    //     rows.push(data)//
-    // }
+    delFormItem(id) {
+        let index = this.items.findIndex(item => item.id === id)
+        if ((index !== -1)) {
+            this.items.splice(index, 1)
+        }
+    }
     getLayoutRows() {
         let layout = this.pcLayout
         let tableIns = layout.columns[0] as Table

@@ -73,7 +73,7 @@ export default defineComponent({
     watch(() => props.field, (newVal) => {
       if (newVal !== 'root') {
         state.store[0] = newVal
-        utils.addContext(newVal, state.store)
+        utils.addContext({node:newVal,parent: state.store})
       }
       setSelection(newVal)
     }, {

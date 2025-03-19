@@ -159,7 +159,7 @@ export default {
       );
     };
     const actionStrategies = {
-      1: () => {
+      'delete': () => {
         if (ER.props.delHandle(props.data) === false) return false;
         props.data.context.delete();
         utils.deepTraversal(props.data, (node) => {
@@ -178,7 +178,7 @@ export default {
         }
       },
 
-      2: () => {
+      'copy': () => {
         if (ER.props.copyHandle(props.data) === false) return false;
         props.data.context.copy();
         const index = props.parent.indexOf(props.data);
@@ -192,17 +192,17 @@ export default {
         });
       },
 
-      3: () => {
+      'tableInsertRow': () => {
         //@ts-ignore
         _.last(props.data.context.columns[0]).context.insert('bottom');
       },
 
-      4: () => {
+      'tableInsertCol': () => {
         //@ts-ignore
         _.last(props.data.context.columns)[0].context.insert('right');
       },
 
-      5: () => {
+      'top': () => {
         let parent = props.data.context.parent;
         if (/^(inline|tr)$/.test(parent.type)) {
           parent = parent.context.parent;
@@ -210,12 +210,22 @@ export default {
         setSelection(Array.isArray(parent) ? 'root' : parent);
       },
 
-      6: () => {
+      'plus': () => {
         props.data.context.appendCol();
       },
     };
     const handleAction = (type) => {
-      actionStrategies[type]?.();
+      const iconActionMap = {
+        1: 'delete',          // 删除
+        2: 'copy',            // 复制
+        3: 'tableInsertRow',  // 插入行
+        4: 'tableInsertCol',  // 插入列
+        5: 'top',             // 置顶/选择父级
+        6: 'plus',            // 添加列
+        widthScale: 'dragWidth' // 调整宽度（特殊情况，无 action 数字）
+      };
+      let actionString = iconActionMap[type];
+      actionStrategies[actionString]?.();
     };
 
     const elementRef = ref();
@@ -313,7 +323,7 @@ export default {
           )}
           {unref(isEditModel) && (
             <div class={[ns.e('bottomRight')]}>
-              {}
+              { }
               <Icon
                 class={['handle', ns.e('selectParent')]}
                 onClick={withModifiers(

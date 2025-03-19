@@ -1570,7 +1570,7 @@ export const staticData = {
 
 let fieldArr = [
   {
-    span:24,
+    span: 24,
     field: "email",
     type: "input",
     label: "单行文本",
@@ -1697,3 +1697,295 @@ export const formConfig = {
 }
 
 
+
+
+
+
+export const testData1 = {
+  "layout": {
+    "pc": [
+      {
+        "type": "inline",
+        "columns": [
+          "NvExu6Re6uRIVMgxnnWgB"
+        ],
+        "style": {},
+        "id": "ScXkQTnYEl2Yf0988YPBg",
+        "key": "inline_ScXkQTnYEl2Yf0988YPBg"
+      },
+      {
+        "type": "inline",
+        "columns": [
+          {
+            "type": "grid",
+            "label": "栅格布局",
+            "icon": "grid",
+            "id": "kfgkpJhCt_4MuTSwU6uSy",
+            "columns": [
+              {
+                "id": "THhJJHB9FXu4Pc37jeq6S",
+                "options": {
+                  "span": 6,
+                  "offset": 0,
+                  "pull": 0,
+                  "push": 0
+                },
+                "type": "col",
+                "list": [
+                  {
+                    "type": "inline",
+                    "columns": [
+                      "r6hNllBugy4l9IijZ6akr"
+                    ],
+                    "style": {},
+                    "id": "np3_ZFEhTK0kpb6YlpdD1",
+                    "key": "inline_np3_ZFEhTK0kpb6YlpdD1"
+                  }
+                ],
+                "style": {},
+                "key": "col_THhJJHB9FXu4Pc37jeq6S"
+              },
+              {
+                "id": "0rVaPXcAc8LQuvACRc9CO",
+                "options": {
+                  "span": 6,
+                  "offset": 0,
+                  "pull": 0,
+                  "push": 0
+                },
+                "type": "col",
+                "list": [
+                  {
+                    "type": "inline",
+                    "columns": [
+                      {
+                        "type": "grid",
+                        "label": "栅格布局",
+                        "icon": "grid",
+                        "id": "FYBr8vZUnyzUu0jwEh60O",
+                        "columns": [
+                          {
+                            "id": "lucUF_w1ojfobuPHXZfp4",
+                            "options": {
+                              "span": 6,
+                              "offset": 0,
+                              "pull": 0,
+                              "push": 0
+                            },
+                            "type": "col",
+                            "list": [
+                              {
+                                "type": "inline",
+                                "columns": [
+                                  "SfWRLacWt4CekAOvVaOAy"
+                                ],
+                                "style": {},
+                                "id": "zRaAIjYFkDmLcNdpFRO2A",
+                                "key": "inline_zRaAIjYFkDmLcNdpFRO2A"
+                              }
+                            ],
+                            "style": {},
+                            "key": "col_lucUF_w1ojfobuPHXZfp4"
+                          },
+                          {
+                            "id": "gKO_iidheyRmh8HB2KmVJ",
+                            "options": {
+                              "span": 6,
+                              "offset": 0,
+                              "pull": 0,
+                              "push": 0
+                            },
+                            "type": "col",
+                            "list": [],
+                            "style": {},
+                            "key": "col_gKO_iidheyRmh8HB2KmVJ"
+                          },
+                          {
+                            "id": "_HBtzNATjkrz-Ki7ibfyl",
+                            "options": {
+                              "span": 6,
+                              "offset": 0,
+                              "pull": 0,
+                              "push": 0
+                            },
+                            "type": "col",
+                            "list": [],
+                            "style": {},
+                            "key": "col__HBtzNATjkrz-Ki7ibfyl"
+                          }
+                        ],
+                        "options": {
+                          "gutter": 0,
+                          "justify": "space-around",
+                          "align": "top"
+                        },
+                        "style": {
+                          "width": "142%"
+                        },
+                        "key": "grid_FYBr8vZUnyzUu0jwEh60O"
+                      }
+                    ],
+                    "style": {},
+                    "id": "6eQ1PwVlfGTRqM_lfVmHi",
+                    "key": "inline_6eQ1PwVlfGTRqM_lfVmHi"
+                  }
+                ],
+                "style": {},
+                "key": "col_0rVaPXcAc8LQuvACRc9CO"
+              },
+              {
+                "id": "gycRCrNJilkjr4WIsOQ8J",
+                "options": {
+                  "span": 6,
+                  "offset": 0,
+                  "pull": 0,
+                  "push": 0
+                },
+                "type": "col",
+                "list": [],
+                "style": {},
+                "key": "col_gycRCrNJilkjr4WIsOQ8J"
+              }
+            ],
+            "options": {
+              "gutter": 0,
+              "justify": "space-around",
+              "align": "top"
+            },
+            "style": {
+              "width": "100%"
+            },
+            "key": "grid_kfgkpJhCt_4MuTSwU6uSy"
+          }
+        ],
+        "style": {},
+        "id": "mXRnE_gweMtYpEPev1f2x",
+        "key": "inline_mXRnE_gweMtYpEPev1f2x"
+      }
+    ],
+    "mobile": [
+      {
+        "type": "inline",
+        "columns": [
+          "NvExu6Re6uRIVMgxnnWgB"
+        ]
+      },
+      {
+        "type": "inline",
+        "columns": [
+          "r6hNllBugy4l9IijZ6akr"
+        ]
+      },
+      {
+        "type": "inline",
+        "columns": [
+          "SfWRLacWt4CekAOvVaOAy"
+        ]
+      }
+    ]
+  },
+  "data": {},
+  "config": {
+    "isSync": true,
+    "pc": {
+      "size": "default",
+      "labelPosition": "left",
+      "completeButton": {
+        "text": "提交",
+        "color": "",
+        "backgroundColor": ""
+      }
+    },
+    "mobile": {
+      "labelPosition": "left",
+      "completeButton": {
+        "text": "提交",
+        "color": "",
+        "backgroundColor": ""
+      }
+    }
+  },
+  "fields": [
+    {
+      "type": "input",
+      "label": "单行文本",
+      "icon": "input",
+      "key": "input_NvExu6Re6uRIVMgxnnWgB",
+      "id": "NvExu6Re6uRIVMgxnnWgB",
+      "options": {
+        "clearable": true,
+        "isShowWordLimit": false,
+        "renderType": 1,
+        "disabled": false,
+        "showPassword": false,
+        "defaultValue": "",
+        "placeholder": "请输入",
+        "labelWidth": 100,
+        "isShowLabel": true,
+        "required": false,
+        "min": null,
+        "max": null
+      },
+      "style": {
+        "width": {
+          "pc": "100%",
+          "mobile": "100%"
+        }
+      }
+    },
+    {
+      "type": "input",
+      "label": "单行文本",
+      "icon": "input",
+      "key": "input_r6hNllBugy4l9IijZ6akr",
+      "id": "r6hNllBugy4l9IijZ6akr",
+      "options": {
+        "clearable": true,
+        "isShowWordLimit": false,
+        "renderType": 1,
+        "disabled": false,
+        "showPassword": false,
+        "defaultValue": "",
+        "placeholder": "请输入",
+        "labelWidth": 100,
+        "isShowLabel": true,
+        "required": false,
+        "min": null,
+        "max": null
+      },
+      "style": {
+        "width": {
+          "pc": "100%",
+          "mobile": "100%"
+        }
+      }
+    },
+    {
+      "type": "input",
+      "label": "单行文本",
+      "icon": "input",
+      "key": "input_SfWRLacWt4CekAOvVaOAy",
+      "id": "SfWRLacWt4CekAOvVaOAy",
+      "options": {
+        "clearable": true,
+        "isShowWordLimit": false,
+        "renderType": 1,
+        "disabled": false,
+        "showPassword": false,
+        "defaultValue": "",
+        "placeholder": "请输入",
+        "labelWidth": 100,
+        "isShowLabel": true,
+        "required": false,
+        "min": null,
+        "max": null
+      },
+      "style": {
+        "width": {
+          "pc": "100%",
+          "mobile": "100%"
+        }
+      }
+    }
+  ]
+}

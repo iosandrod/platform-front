@@ -36,7 +36,7 @@ const addTab = (type) => {
   const data = utils.renderFieldData(`${target.value.type}Col`)
   data.label = `Tab ${unref(target).columns.length + 1}`
   unref(target).columns.push(data)
-  utils.addContext(data, target.value)
+  utils.addContext({ node: data, parent: target.value })
 }
 const handleChange = (value, item) => {
   if (checkTypeBySelected(['collapse'])) {
@@ -67,26 +67,17 @@ const handleChange = (value, item) => {
   <el-form-item>
     <template v-slot:label>
       <div :class="[ns.e('title')]">
-        <span class="el-form-item__label">{{t('er.config.dataComponent3.panel')}}</span>
-        <el-button text @click="addTab">{{t('er.config.dataComponent3.add')}}</el-button>
+        <span class="el-form-item__label">{{ t('er.config.dataComponent3.panel') }}</span>
+        <el-button text @click="addTab">{{ t('er.config.dataComponent3.add') }}</el-button>
       </div>
     </template>
     <div style="width: 100%;">
       <el-checkbox-group v-model="checkList">
-        <dragGableWrap
-          :list="target.columns"
-          item-key="id"
-          tag="ul"
-          handle=".handle"
-          :class="[ns.e('content')]"
-        >
+        <dragGableWrap :list="target.columns" item-key="id" tag="ul" handle=".handle" :class="[ns.e('content')]">
           <template v-slot:item="{ element, index }">
             <li>
-              <el-checkbox @change="(e) => handleChange(e, element)" :label="element.id"><br/></el-checkbox>
-              <el-input
-                size="default"
-                clearable
-                v-model="element.label"/>
+              <el-checkbox @change="(e) => handleChange(e, element)" :label="element.id"><br /></el-checkbox>
+              <el-input size="default" clearable v-model="element.label" />
               <div :class="ns.e('operate')">
                 <Icon :class="[ns.e('icon')]" @click="target.columns.splice(index, 1)" icon="delete"></Icon>
                 <Icon :class="[ns.e('icon'), 'handle']" icon="Rank"></Icon>

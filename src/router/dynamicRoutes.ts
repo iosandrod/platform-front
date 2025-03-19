@@ -7,7 +7,6 @@ import localRoutes from './routes';
 import { initUndefined } from '@/utils/helpers';
 
 // 注册 IframeBox、BlankView 组件
-Pages['iframe'] = () => import('stepin/es/iframe-box');
 Pages['blankView'] = () => import('@/components/layout/BlankView.vue');
 Pages['link'] = () => import('@/components/layout/LinkView.vue');
 

@@ -100,7 +100,7 @@ export default defineComponent({
       state.data = newData.data;
       state.logic = newData.logic;
       state.store.forEach((e) => {
-        utils.addContext(e, state.store, false);//
+        utils.addContext({ node: e, parent: state.store, fn: false });//
       });
       if (!_.isEmpty(value)) {
         setOhters(value);
@@ -123,7 +123,7 @@ export default defineComponent({
       state.fields = newData.fields;
       state.logic = newData.logic;
       state.store.forEach((e) => {
-        utils.addContext(e, state.store);
+        utils.addContext({ node: e, parent: state.store });
       });
       const subforms = _.cloneDeep(state.fields.filter((e) => e.type === 'subform'));
       if (!_.isEmpty(value)) {

@@ -17,7 +17,7 @@ export default {
     },
     visible: {}
   },
-  setup (props) {
+  setup(props) {
     const ER = inject('Everright')
     const ns = hooks.useNamespace('Fields')
     const {
@@ -31,7 +31,7 @@ export default {
       //添加一个layout
       const newElement = reactive(ER.wrapElement(_.cloneDeep(element)))
       state.store.push(newElement)
-      utils.addContext(newElement, state.store)
+      utils.addContext({ node: newElement, parent: state.store })
       nextTick(() => {
         // setSelection(newElement)
         // setTimeout(() => {
@@ -74,10 +74,10 @@ export default {
                   <el-sub-menu
                     index={element.id}
                     v-slots={{
-                      title () {
+                      title() {
                         return t(`er.fields.${element.id}`)
                       },
-                      default () {
+                      default() {
                         return (
                           <dragGableWrap
                             class={[ns.e('dragContent')]}

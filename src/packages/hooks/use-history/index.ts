@@ -21,9 +21,11 @@ export const useHistory = (source) => {
     nextTick(() => {
       source.store = JSON.parse(state.snapshot)
       source.store.forEach((e) => {
-        utils.addContext(e, source.store, false, (node) => {
-          if (source.sector && source.sector.id === node.id) {
-            source.sector = node
+        utils.addContext({
+          node: e, parent: source.store, status: false, fn: (node) => {
+            if (source.sector && source.sector.id === node.id) {
+              source.sector = node
+            }
           }
         })
       })

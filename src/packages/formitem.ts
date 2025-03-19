@@ -1,6 +1,8 @@
+import { Arrayable } from "element-plus/es/utils/typescript"
 import { Base } from "./base"
 import { Form, } from "./form"
 import { Field, TableCell, TableRow } from "./layoutType"
+import { FormItemRule } from "element-plus"
 export type FormOptions = {
     items: Field[]
 }
@@ -16,9 +18,16 @@ export class FormItem extends Base {
     mobileColumns: TableCell[] = []
     constructor(config: Field, form) {
         super()
+        let id = config.id
+        if (id != null) {
+            this.id = id//
+        }
         this.form = form
         this.config = config
         this.init()//初始化行列
+    }
+    getForm() {
+        return this.form//
     }
     getSpan() {
         let options = this.config
@@ -113,7 +122,18 @@ export class FormItem extends Base {
         return rowIndex
     }
     getTr() {
-        
+
+    }
+    getValidateRoles(): Arrayable<FormItemRule> {
+        let r: FormItemRule = {
+            trigger: 'change',
+            required: true,
+            asyncValidator: async (rule, value, callback) => {
+                console.log(rule, value, callback)
+            }
+        }
+        let rules = [r]
+        return rules
     }
     getType() {
         let config = this.config

@@ -5,6 +5,7 @@ import CompleteButton from '@ER/formEditor/components/CompleteButton.vue'
 import hooks from '@ER/hooks/index'
 import _ from 'lodash'
 import { ElMain } from 'element-plus'
+import { Form } from '@ER/form'
 export default defineComponent({
   name: 'Canves',
   inheritAttrs: false,
@@ -23,13 +24,23 @@ export default defineComponent({
     const handleClick = (e) => {
       setSelection('root')
     }
+    let formIns: Form = inject(('formIns'))
+    const setFormRef = (ref: any) => {
+      ER.form = ref
+      if (ref == null) {
+        formIns.unregisterRef('form');
+      } else {//
+        formIns.registerRef('form', ref)
+      }
+    }
     const renderContent = () => {
       const TagComponent: any = resolveComponent(unref(isPc) ? 'el-form' : 'van-form')
       const typeProps = hooks.useProps(state, state, unref(isPc), true)
       const Layout = (<LayoutDragGable data-layout-type={'root'} class={[unref(isEditModel) && ns.e('wrap')]} data={state.store} parent={state.store} isRoot></LayoutDragGable>)
+      // console.log(typeProps.value, 'testValue')//
       return (
         <div>
-          <TagComponent ref={ER.form} onClick={unref(isEditModel) && handleClick} {...typeProps.value}>
+          <TagComponent ref={setFormRef} onClick={unref(isEditModel) && handleClick} {...typeProps.value} model={formIns.data} rules={formIns.getValidateRules()}>
             {
               Layout
             }

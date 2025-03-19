@@ -3,7 +3,6 @@ import Selection from '@ER/formEditor/components/Selection/selectElement'
 import LayoutDragGable, { dragGableWrap } from './DragGable'
 import hooks from '@ER/hooks'
 import utils from '@ER/utils'
-import ControlInsertionPlugin from './ControlInsertionPlugin'
 import { FormEditorContext } from '@ER/type'
 export default defineComponent({
   name: 'InlineLayout',
@@ -12,16 +11,9 @@ export default defineComponent({
     parent: Array
   },
 
-  setup (props) {
-    const ER:FormEditorContext = inject('Everright')
+  setup(props) {
+    const ER: FormEditorContext = inject('Everright')
     const ns = hooks.useNamespace('InlineLayout')
-    // watch(() => props.data.columns, (newVal) => {
-    //   if (!newVal.length) {
-    //     props.data.context.delete()
-    //   }
-    // }, {
-    //   deep: true
-    // })
     watch(() => props.data.columns.length, (newVal, oldVal) => {
       if (!newVal) {
         props.data.context.delete()
@@ -43,8 +35,7 @@ export default defineComponent({
             type={'inline'}
             {...dragOptions}
             data={props.data.columns}
-            parent={props.parent}/>
-            {/* parent={props.data}/> */}
+            parent={props.parent} />
         </div>
       )
     }
