@@ -56,11 +56,11 @@ export default defineComponent({
     },
     delHandle: {
       type: Function,
-      default: () => { },
+      default: () => {},
     },
     copyHandle: {
       type: Function,
-      default: () => { },
+      default: () => {},
     },
     inlineMax: {
       type: Number,
@@ -81,7 +81,10 @@ export default defineComponent({
     },
     checkFieldsForNewBadge: {
       type: Function,
-      default: () => { },
+      default: () => {},
+    },
+    formIns: {
+      type: Object,
     },
     ...defaultProps,
   },
@@ -112,7 +115,10 @@ export default defineComponent({
       logic: {},
       othersFiles: {},
     });
-    const formIns = new Form({});
+    let formIns = props.formIns;
+    if (formIns == null) {
+      formIns = new Form({});
+    } //
     provide('formIns', formIns);
     const isFoldFields = ref(true);
     const isFoldConfig = ref(true);
@@ -146,7 +152,7 @@ export default defineComponent({
     const isShowConfig = ref(true);
     const setSelection = (node) => {
       if (node == null) {
-        node = 'root'//
+        node = 'root'; //
       }
       let result = '';
       if (node === 'root') {
@@ -270,7 +276,7 @@ export default defineComponent({
         const layoutFields = utils.pickfields(isPc ? layout.pc : layout.mobile).map((e) => {
           return {
             id: e,
-          };//
+          }; //
         });
         const copyData = _.cloneDeep(isPc ? layout.pc : layout.mobile);
         const addFields = _.differenceBy(
@@ -383,7 +389,7 @@ export default defineComponent({
       state.logic = newData.logic;
       setSelection(state.config);
       state.store.forEach((e) => {
-        utils.addContext({ node: e, parent: state.store });//
+        utils.addContext({ node: e, parent: state.store }); //
       });
       nextTick(() => {
         isShow.value = true;
@@ -392,8 +398,8 @@ export default defineComponent({
     const setData2 = (data) => {
       if (_.isEmpty(data)) return false;
       const newData = _.cloneDeep(data);
-      let fields = newData.fields
-      formIns.setFields(fields)//
+      let fields = newData.fields;
+      formIns.setFields(fields); //
       layout.pc = newData.layout.pc;
       layout.mobile = newData.layout.mobile;
       isShow.value = false;
@@ -404,7 +410,7 @@ export default defineComponent({
       state.store = curLayout;
       state.config = newData.config;
       state.data = newData.data;
-      state.logic = newData.logic;//
+      state.logic = newData.logic; //
       setSelection(state.config);
       state.store.forEach((e) => {
         utils.addContext({ node: e, parent: state.store });
@@ -492,10 +498,10 @@ export default defineComponent({
         }
         for (const addField of addFields) {
           let field = state.fields.find((e) => e.id === addField);
-          formIns.addFormItem(field);//
+          formIns.addFormItem(field); //
         }
       }
-    )
+    );
     watch(
       () => state.selected,
       (newVal) => {
@@ -506,12 +512,14 @@ export default defineComponent({
         immediate: true,
       }
     );
-    const onClickOutside = () => { };
+    const onClickOutside = () => {};
     watch(
       () => {
         return state.store;
       },
-      (newValue) => { },
+      (newValue) => {
+        console.log(newValue, 'testNewValue'); //
+      },
       {
         deep: true,
       }
@@ -523,7 +531,7 @@ export default defineComponent({
       props,
       wrapElement,
       delField,
-      addField,//
+      addField, //
       switchPlatform,
       addFieldData,
       canvesScrollRef,
@@ -532,7 +540,8 @@ export default defineComponent({
       form,
     });
     return () => {
-      return (
+      let nextForm = formIns.nextForm; //
+      let com = (
         <div class='h-full w-full'>
           <ElDialog
             destroyOnClose
@@ -570,7 +579,13 @@ export default defineComponent({
                   </div>
                   <div>
                     <DeviceSwitch modelValue={state.platform} onUpdate:modelValue={switchPlatform} />
-                    <ElButton onClick={() => { formIns.validate(); }}>测试</ElButton>
+                    <ElButton
+                      onClick={() => {
+                        formIns.validate();
+                      }}
+                    >
+                      测试
+                    </ElButton>
                   </div>
                   <div>
                     {slots['operation-right'] && slots['operation-right']()}
@@ -594,6 +609,7 @@ export default defineComponent({
                     <Icon class='icon' icon='preview' onClick={() => handleOperation(3)} />
                   </div>
                 </ElHeader>
+
                 {isShow.value && withDirectives(<CanvesPanel data={state.store} />, [[vClickOutside, onClickOutside]])}
                 <Icon
                   class={{ arrowLeft: true, close: !isFoldFields.value }}
@@ -609,8 +625,13 @@ export default defineComponent({
               {<ConfigPanel />}
             </ElContainer>
           </ElContainer>
+          {/* <Everright-form-editor></Everright-form-editor> */}
         </div>
       );
+      if (nextForm != null) {
+        com = <Everright-form-editor formIns={nextForm}></Everright-form-editor>;
+      } //
+      return com;
     };
   },
 });

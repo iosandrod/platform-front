@@ -62,6 +62,9 @@ export default {
       type: Boolean,
       default: false,
     },
+    formitem: {
+      type: Object,
+    },
   },
   setup(props) {
     const ER: any = inject('Everright');
@@ -75,6 +78,8 @@ export default {
     const slots = useSlots();
     const isWarning = ref(false);
     const isField = utils.checkIsField(props.data);
+    let type = props.data.type;
+    console.log(type, 'testType'); //
     const handleClick = (e) => {
       setSelection(props.data);
     };
@@ -159,7 +164,7 @@ export default {
       );
     };
     const actionStrategies = {
-      'delete': () => {
+      delete: () => {
         if (ER.props.delHandle(props.data) === false) return false;
         props.data.context.delete();
         utils.deepTraversal(props.data, (node) => {
@@ -178,7 +183,7 @@ export default {
         }
       },
 
-      'copy': () => {
+      copy: () => {
         if (ER.props.copyHandle(props.data) === false) return false;
         props.data.context.copy();
         const index = props.parent.indexOf(props.data);
@@ -192,17 +197,17 @@ export default {
         });
       },
 
-      'tableInsertRow': () => {
+      tableInsertRow: () => {
         //@ts-ignore
         _.last(props.data.context.columns[0]).context.insert('bottom');
       },
 
-      'tableInsertCol': () => {
+      tableInsertCol: () => {
         //@ts-ignore
         _.last(props.data.context.columns)[0].context.insert('right');
       },
 
-      'top': () => {
+      top: () => {
         let parent = props.data.context.parent;
         if (/^(inline|tr)$/.test(parent.type)) {
           parent = parent.context.parent;
@@ -210,19 +215,19 @@ export default {
         setSelection(Array.isArray(parent) ? 'root' : parent);
       },
 
-      'plus': () => {
+      plus: () => {
         props.data.context.appendCol();
       },
     };
     const handleAction = (type) => {
       const iconActionMap = {
-        1: 'delete',          // 删除
-        2: 'copy',            // 复制
-        3: 'tableInsertRow',  // 插入行
-        4: 'tableInsertCol',  // 插入列
-        5: 'top',             // 置顶/选择父级
-        6: 'plus',            // 添加列
-        widthScale: 'dragWidth' // 调整宽度（特殊情况，无 action 数字）
+        1: 'delete', // 删除
+        2: 'copy', // 复制
+        3: 'tableInsertRow', // 插入行
+        4: 'tableInsertCol', // 插入列
+        5: 'top', // 置顶/选择父级
+        6: 'plus', // 添加列
+        widthScale: 'dragWidth', // 调整宽度（特殊情况，无 action 数字）
       };
       let actionString = iconActionMap[type];
       actionStrategies[actionString]?.();
@@ -323,7 +328,7 @@ export default {
           )}
           {unref(isEditModel) && (
             <div class={[ns.e('bottomRight')]}>
-              { }
+              {}
               <Icon
                 class={['handle', ns.e('selectParent')]}
                 onClick={withModifiers(

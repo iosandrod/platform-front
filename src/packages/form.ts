@@ -6,13 +6,19 @@ import { nanoid } from 'nanoid'
 import { FormItem } from "./formitem";
 import { Field, Layout, Table, TableRow } from "./layoutType";
 import { Base } from "./base";
+import { FormInstance, FormRules } from "element-plus";
 //转换数据
 
 
 export class Form extends Base {
+    config: any = {}
+    //子表单
+    curFormItem: FormItem
     parent?: Form
     data: any
     formData: any
+    nextForm?: Form
+    nextFormMap: any = {}
     items: FormItem[] = []
     pcLayout: Layout = {
         type: 'inline',
@@ -53,11 +59,14 @@ export class Form extends Base {
             }
         }
     }
+    _pcLayout: any = null
+    _mobileLayout: any = null
     mobileLayout: any[] = []
     constructor(config) {
         super()
+        this.config = config
         this.init()
-        let items = config.items || []
+        let items = config.items || config.fields || []
         this.data = config.data || {}//
         this.setFields(items)//
     }
@@ -67,12 +76,24 @@ export class Form extends Base {
             this.addFormItem(item)//
         }
     }
+    setPcLayout(layout) {
+
+    }
+    setMobileLayout() {
+
+    }
+    async clearValidate() {
+        const form: FormInstance = this.getRef('form')
+        form.clearValidate()
+    }
     async validate() {
         return new Promise(async (resolve, reject) => {
             let form = this.getRef('form')
-            let res = await form.validate()
-            console.log(res, 'testRes')// 
-                ;
+            form.validate().catch(err => {
+                reject(err)
+            })
+        }).catch(err => {
+            console.log(err, '报错了')//
         })
     }
     getValidateRules() {
@@ -80,8 +101,13 @@ export class Form extends Base {
         let itemsRules = items.map(item => {
             let rule = item.getValidateRoles()
             return rule
-        })
-        return itemsRules
+        }).reduce((res: any, rule) => {
+            let field = rule.field
+            let rules = rule.rules
+            res[field] = rules
+            return res
+        }, {})//
+        return itemsRules//
     }
     init() {
         this.initPcLayout()
@@ -96,6 +122,34 @@ export class Form extends Base {
             return res
         }, {})
         return obj
+    }
+    getBarsValue() {
+        let parent = this.parent
+        let title = this.getTitle()
+        let arr = [title]
+        if (parent != null) {
+            let _arr = parent.getBarsValue()
+            arr.push(..._arr)
+        }
+        return arr
+    }//
+    getCurrentTabName() {
+        let curFormItem = this.curFormItem
+        if (curFormItem == null) {
+            return this.getTitle()
+        }
+        return curFormItem.getTitle()
+    }
+    getTitle() {
+        return '数据表单'//
+    }
+    getRootForm() {
+        let parent = this.parent
+        if (parent != null) {
+            return parent.getRootForm()
+        } else {
+            return this
+        }
     }
     getFormConfig() {
         let obj: any = {}
@@ -125,6 +179,10 @@ export class Form extends Base {
     getPcLayout() {
         let items = this.items
         let rows = []
+        let _pcLayout = this._pcLayout
+        if (_pcLayout != null) {
+            return _pcLayout//
+        }
         for (const item of items) {
             let index = item.getRowIndex()
             // debugger//
@@ -141,14 +199,18 @@ export class Form extends Base {
         return pcLayout
     }
     getMobileLayout() {
-        let mobileLayout = this.mobileLayout
+        let mobileLayout = []
         //清零
-        mobileLayout.splice(0)
+        let _mobileLayout = this._mobileLayout
+        if (_mobileLayout != null) {
+            return _mobileLayout//
+        }//
         let items = this.items
         for (const item of items) {
             let _mobileLayout = item.mobileColumns
             mobileLayout.push(..._mobileLayout)
         }
+        this.mobileLayout = mobileLayout
         return mobileLayout
     }
     initPcLayout() {
@@ -166,12 +228,15 @@ export class Form extends Base {
     addFormItem(config: Field) {
         let _item = new FormItem(config, this)
         this.items.push(_item)//
+        return _item
     }
     delFormItem(id) {
         let index = this.items.findIndex(item => item.id === id)
         if ((index !== -1)) {
             this.items.splice(index, 1)
         }
+        let nextFormMap = this.nextFormMap
+        delete nextFormMap[id]//
     }
     getLayoutRows() {
         let layout = this.pcLayout
@@ -185,6 +250,9 @@ export class Form extends Base {
     }
     onUnmounted() {
         super.onUnmounted()//
+    }
+    setSubForm(item: FormItem) {
+
     }
     setData(data) {
         let form = this.getRef('form')

@@ -1907,7 +1907,7 @@ export const testData1 = {
   },
   "fields": [
     {
-      "type": "input",
+      "type": "Sform",//
       "label": "单行文本",
       "icon": "input",
       "key": "input_NvExu6Re6uRIVMgxnnWgB",

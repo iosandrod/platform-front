@@ -1,10 +1,11 @@
 import { nanoid } from "nanoid"
 import { reactive, shallowRef, toRaw } from "vue"
 import { uniqueId } from 'xe-utils'
+import { FormInstance } from 'element-plus'
 export class Base {
     id: string
-    refPool: any = shallowRef({})
-    _refPool: any = shallowRef({})
+    refPool: any = shallowRef({}) as any
+    _refPool: any = shallowRef({}) as any
     uuid() {
         return nanoid()
     }
@@ -32,7 +33,7 @@ export class Base {
             this.unregisterRef(key)//
         }//
     }
-    getRef(key: string) {
+    getRef(key: keyof this["_refPool"]) {
         return this.refPool[this._refPool[key]]//
     }
 }

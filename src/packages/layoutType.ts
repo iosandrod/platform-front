@@ -64,6 +64,7 @@ export type LayoutConfig = {
 };
 
 export type FieldOptions = {
+    formConfig?: any
     clearable: boolean;
     isShowWordLimit: boolean;
     renderType: number;

@@ -11,7 +11,7 @@ export default defineComponent({
     params: Object,
   },
   setup(props) {
-    const data = props.data;
+    //
     const params = props.params;
     const formitem: FormItem = params.formitem;
     const bindConfig = formitem.getBindConfig();

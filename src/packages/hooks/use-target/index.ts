@@ -9,7 +9,7 @@ export const useTarget = () => {
   const isSelectRoot = computed(() => state.selected === state.config)
   const isSelectAnyElement = computed(() => !isSelectRoot.value)
   const isPc = computed(() => state.platform === 'pc')
-  const isEditModel = computed(() => /^(edit|config)$/.test(state.mode))
+  const isEditModel = computed(() => /^(edit|config)$/.test(state.mode))//
 
   const checkTypeBySelected = (nodes: string[], propType?: any) => {
     if (!state.selected) return false
@@ -19,7 +19,7 @@ export const useTarget = () => {
 
   const createTypeChecker = (nodes: string[]) => computed(() => checkTypeBySelected(nodes))
 
-  return ({ 
+  return ({
     state,
     setSelection,
     type,

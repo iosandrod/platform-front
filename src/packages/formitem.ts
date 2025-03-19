@@ -2,7 +2,8 @@ import { Arrayable } from "element-plus/es/utils/typescript"
 import { Base } from "./base"
 import { Form, } from "./form"
 import { Field, TableCell, TableRow } from "./layoutType"
-import { FormItemRule } from "element-plus"
+import { FormItemRule, InputProps } from "element-plus"
+import { computed } from "vue"
 export type FormOptions = {
     items: Field[]
 }
@@ -26,6 +27,20 @@ export class FormItem extends Base {
         this.config = config
         this.init()//初始化行列
     }
+    getField() {
+        let config = this.config
+        let field = config.field
+        if (field == null) {
+            field = this.id
+        }
+        return field
+    }
+    updateBindData(updateConfig) {
+
+    }
+    async onValueChange() {
+
+    }
     getForm() {
         return this.form//
     }
@@ -48,6 +63,17 @@ export class FormItem extends Base {
         this.field = field
         let mobileRow = this.createMobileRow()
         this.mobileColumns = mobileRow//
+        this.setSubForm()
+    }//
+    setSubForm() {
+        let type = this.getType()
+        let config = this.config
+        let options = config.options
+        if (type == 'Sform') {
+            let formConfig = options?.formConfig || {}
+            let _form = new Form(formConfig)
+            this.subForm = _form
+        }
     }//
     getTdColumn(): TableCell[] {
         let span = this.getSpan()
@@ -124,15 +150,47 @@ export class FormItem extends Base {
     getTr() {
 
     }
-    getValidateRoles(): Arrayable<FormItemRule> {
+    getBindConfig() {
+        let type = this.getType()//
+        let form = this.form
+        return computed(() => {
+            let config = this.config
+            let options = config.options
+            let placeholder = options.placeholder
+            let value = this.getBindValue()
+            let obj: Partial<InputProps> = {
+                placeholder: placeholder,//
+                modelValue: value,//
+            }
+            return obj
+        })
+    }
+    getBindValue(getConfig?: any) {
+        let form = this.form
+        let data = form.data
+        let field = this.getField()
+        let value = data[field]
+        if (getConfig) {
+            return value
+        }
+        return value
+    }
+    getTitle() {
+        let config = this.config
+        let label = config.label
+        return label || '标题'//
+    }
+    getValidateRoles() {
+        let field = this.getField()
         let r: FormItemRule = {
+            //@ts-ignore
             trigger: 'change',
             required: true,
             asyncValidator: async (rule, value, callback) => {
-                console.log(rule, value, callback)
-            }
+                return Promise.reject('校验报错了')//
+            }//
         }
-        let rules = [r]
+        let rules = { field: field, rules: [r] }//
         return rules
     }
     getType() {

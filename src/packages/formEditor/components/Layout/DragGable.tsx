@@ -107,9 +107,17 @@ export default defineComponent({
         findComponent(type, element) {
           let info = componentMap[type + element];
           if (!info) {
-            info = componentMap[type + element] = defineAsyncComponent(
-              () => import(`../${type}/${_.startCase(element)}/${state.platform}.vue`)
-            ); //
+            info = componentMap[type + element] = defineAsyncComponent(() => {
+              let el = null;
+              let el1;
+              try {
+                el = import(`../${type}/${_.startCase(element)}/${state.platform}.vue`);
+                el1 = import(`../${type}/${_.startCase(element)}/${state.platform}.tsx`);
+              } catch (error) {
+                console.log('加载部分组件出错'); //
+              }
+              return el1 || el; //
+            }); //
           }
           return info;
         },
@@ -144,7 +152,7 @@ export default defineComponent({
           default:
             const typeProps = hooks.useProps(state, element, unref(isPc));
             const formitem = typeProps.value?.formitem;
-            const rules = formitem?.getValidateRoles() || [];//
+            const rules = formitem?.getValidateRoles() || []; //
             let TypeComponent = '';
             if (unref(isEditModel) || _.get(state.fieldsLogicState.get(element), 'visible', undefined) !== 0) {
               TypeComponent = load.findComponent('FormTypes', element.type);
@@ -157,13 +165,14 @@ export default defineComponent({
                 params['data-field-id'] = `${element.id}`;
               }
               if (unref(isPc)) {
-                console.log(typeProps.value, 'testValue')//
+                const formitem = typeProps.value?.formitem;
+                const prop = formitem.getField();
                 node = (
                   //@ts-ignore
                   <Selection hasWidthScale hasCopy hasDel hasDrag hasMask {...params}>
                     {element.type !== 'divider' ? (
                       //@ts-ignore
-                      <el-form-item {...(typeProps.value )}>
+                      <el-form-item {...typeProps.value} prop={prop}>
                         <TypeComponent data={element} params={typeProps.value}></TypeComponent>
                       </el-form-item>
                     ) : (
