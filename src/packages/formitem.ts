@@ -74,11 +74,12 @@ export class FormItem extends Base {
             let _form = new Form(formConfig)
             _form.parent = this.form//
             this.subForm = _form//
-            // let subForm = form.nextFormMap
-            // let id = this.id//
-            // subForm[id] = _form//
         }
     }//
+    async getSelectOptions() {
+        const config = this.config
+
+    }
     getSubForm(id: string) {
     }
     getData() {

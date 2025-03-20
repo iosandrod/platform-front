@@ -4,7 +4,7 @@ import { uniqueId } from 'xe-utils'
 import { FormInstance } from 'element-plus'
 import hooks from '@ER/hooks'
 export class Base {
-    hooks:typeof hooks = shallowRef(hooks) as any
+    hooks: typeof hooks = shallowRef(hooks) as any
     id: string
     refPool: any = shallowRef({}) as any
     _refPool: any = shallowRef({}) as any
@@ -15,30 +15,32 @@ export class Base {
         this.id = this.uuid()
         return reactive(this)//
     }
-    registerRef(key: string, ref: any) {
-        this.unregisterRef(key)//
-        let id = this.uuid()
-        this._refPool[key] = id
-        this.refPool[id] = ref//
+    registerRef(key: string, ref: any,) {
+        let refPool = this.refPool
+        refPool[key] = ref
     }
-    unregisterRef(key: string) {
-        let id = this._refPool[key]
-        if (id == null) {
+    unregisterRef(key: string, all = false, fn?: any) {
+        let refPool = this.refPool
+        let ref = refPool[key]
+        if (ref == null) {
+            delete refPool[key]
             return
         }
-        delete this._refPool[key]//
-        delete this.refPool[id]//
     }
-    onMounted(){
-        
+    onMounted() {
+
     }
     onUnmounted() {
-        let allKeys = Object.keys(this._refPool)
-        for (const key of allKeys) {
+        let keys = Object.keys(this.refPool)
+        for (const key of keys) {
             this.unregisterRef(key)//
         }//
     }
-    getRef(key: keyof this["_refPool"]) {
-        return this.refPool[this._refPool[key]]//
+    getRef(key: any) {
+        // return this.refPool[this._refPool[key]]//
+        let refPool = this.refPool
+        let arr = refPool[key]
+        let item = arr.slice(-1).pop()
+        return item//
     }
 }

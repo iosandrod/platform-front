@@ -1,0 +1,477 @@
+Date : 2025-03-20 17:30:29
+Directory : c:\project\stepin-template-main\src\packages
+Total : 367 files,  18955 codes, 2030 comments, 679 blanks, all 21664 lines
+
+Languages
++----------------+------------+------------+------------+------------+------------+
+| language       | files      | code       | comment    | blank      | total      |
++----------------+------------+------------+------------+------------+------------+
+| TypeScript     |         32 |      6,333 |      1,203 |        133 |      7,669 |
+| Vue            |         72 |      5,102 |        243 |        178 |      5,523 |
+| TypeScript JSX |         69 |      3,393 |        268 |        148 |      3,809 |
+| SCSS           |         48 |      1,769 |        167 |         91 |      2,027 |
+| JavaScript     |         26 |      1,409 |         61 |         86 |      1,556 |
+| JavaScript JSX |          5 |        834 |         88 |         42 |        964 |
+| XML            |        115 |        115 |          0 |          1 |        116 |
++----------------+------------+------------+------------+------------+------------+
+
+Directories
++---------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                                                | files      | code       | comment    | blank      | total      |
++---------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                                                   |        367 |     18,955 |      2,030 |        679 |     21,664 |
+| . (Files)                                                                                                           |          6 |        791 |         20 |         34 |        845 |
+| ckeditor                                                                                                            |          3 |        333 |         63 |         40 |        436 |
+| ckeditor (Files)                                                                                                    |          2 |        331 |         63 |         39 |        433 |
+| ckeditor\style                                                                                                      |          1 |          2 |          0 |          1 |          3 |
+| formEditor                                                                                                          |        154 |     11,696 |      1,494 |        353 |     13,543 |
+| formEditor (Files)                                                                                                  |         11 |      2,680 |        936 |         26 |      3,642 |
+| formEditor\components                                                                                               |        139 |      8,427 |        556 |        323 |      9,306 |
+| formEditor\components (Files)                                                                                       |          3 |        117 |         14 |          6 |        137 |
+| formEditor\components\FormTypes                                                                                     |        107 |      3,187 |        270 |        263 |      3,720 |
+| formEditor\components\FormTypes (Files)                                                                             |          1 |         10 |          0 |          1 |         11 |
+| formEditor\components\FormTypes\Baseinfo                                                                            |          4 |         57 |          0 |          8 |         65 |
+| formEditor\components\FormTypes\Cascader                                                                            |          4 |         99 |          7 |         11 |        117 |
+| formEditor\components\FormTypes\Checkbox                                                                            |          8 |        232 |         24 |         20 |        276 |
+| formEditor\components\FormTypes\Checkbox (Files)                                                                    |          4 |        107 |          7 |         11 |        125 |
+| formEditor\components\FormTypes\Checkbox\Other                                                                      |          4 |        125 |         17 |          9 |        151 |
+| formEditor\components\FormTypes\Date                                                                                |          8 |        310 |         24 |         19 |        353 |
+| formEditor\components\FormTypes\Date (Files)                                                                        |          4 |        185 |          7 |         10 |        202 |
+| formEditor\components\FormTypes\Date\Other                                                                          |          4 |        125 |         17 |          9 |        151 |
+| formEditor\components\FormTypes\Divider                                                                             |          8 |        216 |         24 |         20 |        260 |
+| formEditor\components\FormTypes\Divider (Files)                                                                     |          4 |         91 |          7 |         11 |        109 |
+| formEditor\components\FormTypes\Divider\Other                                                                       |          4 |        125 |         17 |          9 |        151 |
+| formEditor\components\FormTypes\Html                                                                                |          8 |        258 |         29 |         20 |        307 |
+| formEditor\components\FormTypes\Html (Files)                                                                        |          4 |        133 |         12 |         11 |        156 |
+| formEditor\components\FormTypes\Html\Other                                                                          |          4 |        125 |         17 |          9 |        151 |
+| formEditor\components\FormTypes\Input                                                                               |          4 |         82 |          7 |         11 |        100 |
+| formEditor\components\FormTypes\Number                                                                              |          8 |        223 |         24 |         22 |        269 |
+| formEditor\components\FormTypes\Number (Files)                                                                      |          4 |         98 |          7 |         13 |        118 |
+| formEditor\components\FormTypes\Number\Other                                                                        |          4 |        125 |         17 |          9 |        151 |
+| formEditor\components\FormTypes\Other                                                                               |          4 |        125 |         17 |          9 |        151 |
+| formEditor\components\FormTypes\Other copy                                                                          |          2 |         83 |         10 |          4 |         97 |
+| formEditor\components\FormTypes\Radio                                                                               |          4 |        111 |          7 |         10 |        128 |
+| formEditor\components\FormTypes\Rate                                                                                |          4 |         80 |          7 |         10 |         97 |
+| formEditor\components\FormTypes\Region                                                                              |          4 |        143 |          7 |         11 |        161 |
+| formEditor\components\FormTypes\Select                                                                              |          4 |        120 |         11 |         11 |        142 |
+| formEditor\components\FormTypes\Sform                                                                               |          4 |         47 |          1 |          4 |         52 |
+| formEditor\components\FormTypes\Signature                                                                           |          4 |        353 |         10 |         11 |        374 |
+| formEditor\components\FormTypes\Slider                                                                              |          4 |         92 |          7 |         11 |        110 |
+| formEditor\components\FormTypes\Stable                                                                              |          4 |         45 |          0 |          8 |         53 |
+| formEditor\components\FormTypes\Switch                                                                              |          4 |         87 |          7 |         11 |        105 |
+| formEditor\components\FormTypes\Textarea                                                                            |          4 |         78 |         27 |         11 |        116 |
+| formEditor\components\FormTypes\Time                                                                                |          4 |        138 |          7 |         11 |        156 |
+| formEditor\components\FormTypes\Uploadfile                                                                          |          4 |        198 |         13 |          9 |        220 |
+| formEditor\components\Layout                                                                                        |          8 |      1,143 |         50 |         25 |      1,218 |
+| formEditor\components\Panels                                                                                        |         20 |      3,555 |        176 |         24 |      3,755 |
+| formEditor\components\Panels\Canves                                                                                 |          1 |         81 |          7 |          1 |         89 |
+| formEditor\components\Panels\Config                                                                                 |         18 |      3,367 |        161 |         22 |      3,550 |
+| formEditor\components\Panels\Config (Files)                                                                         |          2 |        341 |         22 |          4 |        367 |
+| formEditor\components\Panels\Config\components                                                                      |         16 |      3,026 |        139 |         18 |      3,183 |
+| formEditor\components\Panels\Fields                                                                                 |          1 |        107 |          8 |          1 |        116 |
+| formEditor\components\Selection                                                                                     |          1 |        425 |         46 |          5 |        476 |
+| formEditor\locale                                                                                                   |          3 |        586 |          1 |          3 |        590 |
+| formEditor\style                                                                                                    |          1 |          3 |          1 |          1 |          5 |
+| hooks                                                                                                               |          9 |      1,108 |        207 |         17 |      1,332 |
+| hooks (Files)                                                                                                       |          1 |         20 |          1 |          0 |         21 |
+| hooks\use-css                                                                                                       |          1 |        172 |          0 |          1 |        173 |
+| hooks\use-fetch                                                                                                     |          1 |         30 |          2 |          1 |         33 |
+| hooks\use-history                                                                                                   |          1 |         79 |          8 |          1 |         88 |
+| hooks\use-i18n                                                                                                      |          1 |         16 |          9 |          2 |         27 |
+| hooks\use-logic                                                                                                     |          1 |        333 |         17 |          1 |        351 |
+| hooks\use-namespace                                                                                                 |          1 |         36 |          0 |          1 |         37 |
+| hooks\use-props                                                                                                     |          1 |        385 |        170 |          5 |        560 |
+| hooks\use-target                                                                                                    |          1 |         37 |          0 |          5 |         42 |
+| icon                                                                                                                |        119 |        197 |         10 |          9 |        216 |
+| icon (Files)                                                                                                        |          3 |         74 |         10 |          7 |         91 |
+| icon\svg                                                                                                            |        116 |        123 |          0 |          2 |        125 |
+| region                                                                                                              |          6 |        685 |         14 |         43 |        742 |
+| region (Files)                                                                                                      |          5 |        683 |         13 |         42 |        738 |
+| region\style                                                                                                        |          1 |          2 |          1 |          1 |          4 |
+| theme                                                                                                               |         48 |      1,769 |        167 |         91 |      2,027 |
+| theme (Files)                                                                                                       |          2 |         63 |          0 |          2 |         65 |
+| theme\ckeditor                                                                                                      |          1 |         48 |          1 |          1 |         50 |
+| theme\formEditor                                                                                                    |         43 |      1,552 |        163 |         86 |      1,801 |
+| theme\formEditor (Files)                                                                                            |         30 |      1,364 |        160 |         72 |      1,596 |
+| theme\formEditor\FormTypes                                                                                          |         13 |        188 |          3 |         14 |        205 |
+| theme\region                                                                                                        |          2 |        106 |          3 |          2 |        111 |
+| utils                                                                                                               |         12 |      1,682 |         44 |         14 |      1,740 |
+| vueDraggable                                                                                                        |         10 |        694 |         11 |         78 |        783 |
+| vueDraggable (Files)                                                                                                |          2 |        361 |         11 |         39 |        411 |
+| vueDraggable\core                                                                                                   |          4 |        168 |          0 |         26 |        194 |
+| vueDraggable\util                                                                                                   |          4 |        165 |          0 |         13 |        178 |
++---------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++---------------------------------------------------------------------------------------------------------------------+----------------+------------+------------+------------+------------+
+| filename                                                                                                            | language       | code       | comment    | blank      | total      |
++---------------------------------------------------------------------------------------------------------------------+----------------+------------+------------+------------+------------+
+| c:\project\stepin-template-main\src\packages\base.ts                                                                | TypeScript     |         44 |          1 |          1 |         46 |
+| c:\project\stepin-template-main\src\packages\ckeditor\__index.jsx                                                   | JavaScript JSX |        112 |         54 |         29 |        195 |
+| c:\project\stepin-template-main\src\packages\ckeditor\index.jsx                                                     | JavaScript JSX |        219 |          9 |         10 |        238 |
+| c:\project\stepin-template-main\src\packages\ckeditor\style\index.js                                                | JavaScript     |          2 |          0 |          1 |          3 |
+| c:\project\stepin-template-main\src\packages\form.ts                                                                | TypeScript     |        270 |         11 |          4 |        285 |
+| c:\project\stepin-template-main\src\packages\formCom.tsx                                                            | TypeScript JSX |         39 |          2 |          1 |         42 |
+| c:\project\stepin-template-main\src\packages\formEditor\componentsConfig.ts                                         | TypeScript     |        549 |         35 |          1 |        585 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\CompleteButton.tsx                               | TypeScript JSX |         61 |          1 |          0 |         62 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\DeviceSwitch.vue                                 | Vue            |         26 |         10 |          3 |         39 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\FormTypes\Baseinfo\mobile.tsx                    | TypeScript JSX |          0 |          0 |          1 |          1 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\FormTypes\Baseinfo\mobile.vue                    | Vue            |         36 |          0 |          3 |         39 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\FormTypes\Baseinfo\pc.tsx                        | TypeScript JSX |          0 |          0 |          1 |          1 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\FormTypes\Baseinfo\pc.vue                        | Vue            |         21 |          0 |          3 |         24 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\FormTypes\Cascader\mobile.tsx                    | TypeScript JSX |         21 |          7 |          3 |         31 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\FormTypes\Cascader\mobile.vue                    | Vue            |         36 |          0 |          3 |         39 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\FormTypes\Cascader\pc.tsx                        | TypeScript JSX |         21 |          0 |          2 |         23 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\FormTypes\Cascader\pc.vue                        | Vue            |         21 |          0 |          3 |         24 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\FormTypes\Checkbox\Other\mobile.tsx              | TypeScript JSX |         21 |          7 |          3 |         31 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\FormTypes\Checkbox\Other\mobile.vue              | Vue            |         42 |         10 |          2 |         54 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\FormTypes\Checkbox\Other\pc.tsx                  | TypeScript JSX |         21 |          0 |          2 |         23 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\FormTypes\Checkbox\Other\pc.vue                  | Vue            |         41 |          0 |          2 |         43 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\FormTypes\Checkbox\mobile.tsx                    | TypeScript JSX |         21 |          7 |          3 |         31 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\FormTypes\Checkbox\mobile.vue                    | Vue            |         39 |          0 |          3 |         42 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\FormTypes\Checkbox\pc.tsx                        | TypeScript JSX |         21 |          0 |          2 |         23 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\FormTypes\Checkbox\pc.vue                        | Vue            |         26 |          0 |          3 |         29 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\FormTypes\Date\Other\mobile.tsx                  | TypeScript JSX |         21 |          7 |          3 |         31 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\FormTypes\Date\Other\mobile.vue                  | Vue            |         42 |         10 |          2 |         54 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\FormTypes\Date\Other\pc.tsx                      | TypeScript JSX |         21 |          0 |          2 |         23 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\FormTypes\Date\Other\pc.vue                      | Vue            |         41 |          0 |          2 |         43 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\FormTypes\Date\mobile.tsx                        | TypeScript JSX |         21 |          7 |          3 |         31 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\FormTypes\Date\mobile.vue                        | Vue            |        122 |          0 |          2 |        124 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\FormTypes\Date\pc.tsx                            | TypeScript JSX |         21 |          0 |          2 |         23 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\FormTypes\Date\pc.vue                            | Vue            |         21 |          0 |          3 |         24 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\FormTypes\Divider\Other\mobile.tsx               | TypeScript JSX |         21 |          7 |          3 |         31 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\FormTypes\Divider\Other\mobile.vue               | Vue            |         42 |         10 |          2 |         54 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\FormTypes\Divider\Other\pc.tsx                   | TypeScript JSX |         21 |          0 |          2 |         23 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\FormTypes\Divider\Other\pc.vue                   | Vue            |         41 |          0 |          2 |         43 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\FormTypes\Divider\mobile.tsx                     | TypeScript JSX |         21 |          7 |          3 |         31 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\FormTypes\Divider\mobile.vue                     | Vue            |         29 |          0 |          3 |         32 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\FormTypes\Divider\pc.tsx                         | TypeScript JSX |         21 |          0 |          2 |         23 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\FormTypes\Divider\pc.vue                         | Vue            |         20 |          0 |          3 |         23 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\FormTypes\Html\Other\mobile.tsx                  | TypeScript JSX |         21 |          7 |          3 |         31 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\FormTypes\Html\Other\mobile.vue                  | Vue            |         42 |         10 |          2 |         54 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\FormTypes\Html\Other\pc.tsx                      | TypeScript JSX |         21 |          0 |          2 |         23 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\FormTypes\Html\Other\pc.vue                      | Vue            |         41 |          0 |          2 |         43 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\FormTypes\Html\mobile.tsx                        | TypeScript JSX |         21 |          7 |          3 |         31 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\FormTypes\Html\mobile.vue                        | Vue            |         67 |          1 |          3 |         71 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\FormTypes\Html\pc.tsx                            | TypeScript JSX |         21 |          0 |          2 |         23 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\FormTypes\Html\pc.vue                            | Vue            |         24 |          4 |          3 |         31 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\FormTypes\Input\mobile.tsx                       | TypeScript JSX |         21 |          7 |          3 |         31 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\FormTypes\Input\mobile.vue                       | Vue            |         18 |          0 |          3 |         21 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\FormTypes\Input\pc.tsx                           | TypeScript JSX |         21 |          0 |          2 |         23 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\FormTypes\Input\pc.vue                           | Vue            |         22 |          0 |          3 |         25 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\FormTypes\Number\Other\mobile.tsx                | TypeScript JSX |         21 |          7 |          3 |         31 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\FormTypes\Number\Other\mobile.vue                | Vue            |         42 |         10 |          2 |         54 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\FormTypes\Number\Other\pc.tsx                    | TypeScript JSX |         21 |          0 |          2 |         23 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\FormTypes\Number\Other\pc.vue                    | Vue            |         41 |          0 |          2 |         43 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\FormTypes\Number\mobile.tsx                      | TypeScript JSX |         21 |          7 |          3 |         31 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\FormTypes\Number\mobile.vue                      | Vue            |         35 |          0 |          5 |         40 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\FormTypes\Number\pc.tsx                          | TypeScript JSX |         21 |          0 |          2 |         23 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\FormTypes\Number\pc.vue                          | Vue            |         21 |          0 |          3 |         24 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\FormTypes\Other copy\mobile.vue                  | Vue            |         42 |         10 |          2 |         54 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\FormTypes\Other copy\pc.vue                      | Vue            |         41 |          0 |          2 |         43 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\FormTypes\Other\mobile.tsx                       | TypeScript JSX |         21 |          7 |          3 |         31 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\FormTypes\Other\mobile.vue                       | Vue            |         42 |         10 |          2 |         54 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\FormTypes\Other\pc.tsx                           | TypeScript JSX |         21 |          0 |          2 |         23 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\FormTypes\Other\pc.vue                           | Vue            |         41 |          0 |          2 |         43 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\FormTypes\Radio\mobile.tsx                       | TypeScript JSX |         21 |          7 |          3 |         31 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\FormTypes\Radio\mobile.vue                       | Vue            |         39 |          0 |          3 |         42 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\FormTypes\Radio\pc.tsx                           | TypeScript JSX |         21 |          0 |          2 |         23 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\FormTypes\Radio\pc.vue                           | Vue            |         30 |          0 |          2 |         32 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\FormTypes\Rate\mobile.tsx                        | TypeScript JSX |         21 |          7 |          3 |         31 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\FormTypes\Rate\mobile.vue                        | Vue            |         19 |          0 |          2 |         21 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\FormTypes\Rate\pc.tsx                            | TypeScript JSX |         21 |          0 |          2 |         23 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\FormTypes\Rate\pc.vue                            | Vue            |         19 |          0 |          3 |         22 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\FormTypes\Region\mobile.tsx                      | TypeScript JSX |         21 |          7 |          3 |         31 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\FormTypes\Region\mobile.vue                      | Vue            |         79 |          0 |          3 |         82 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\FormTypes\Region\pc.tsx                          | TypeScript JSX |         21 |          0 |          2 |         23 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\FormTypes\Region\pc.vue                          | Vue            |         22 |          0 |          3 |         25 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\FormTypes\Select\mobile.tsx                      | TypeScript JSX |         21 |          7 |          3 |         31 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\FormTypes\Select\mobile.vue                      | Vue            |         49 |          0 |          3 |         52 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\FormTypes\Select\pc.tsx                          | TypeScript JSX |         21 |          0 |          2 |         23 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\FormTypes\Select\pc.vue                          | Vue            |         29 |          4 |          3 |         36 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\FormTypes\Sform\mobile.tsx                       | TypeScript JSX |         20 |          1 |          2 |         23 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\FormTypes\Sform\mobile.vue                       | Vue            |          3 |          0 |          0 |          3 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\FormTypes\Sform\pc.tsx                           | TypeScript JSX |         21 |          0 |          2 |         23 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\FormTypes\Sform\pc.vue                           | Vue            |          3 |          0 |          0 |          3 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\FormTypes\Signature\mobile.tsx                   | TypeScript JSX |         21 |          7 |          3 |         31 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\FormTypes\Signature\mobile.vue                   | Vue            |        158 |          3 |          3 |        164 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\FormTypes\Signature\pc.tsx                       | TypeScript JSX |         21 |          0 |          2 |         23 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\FormTypes\Signature\pc.vue                       | Vue            |        153 |          0 |          3 |        156 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\FormTypes\Slider\mobile.tsx                      | TypeScript JSX |         21 |          7 |          3 |         31 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\FormTypes\Slider\mobile.vue                      | Vue            |         31 |          0 |          3 |         34 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\FormTypes\Slider\pc.tsx                          | TypeScript JSX |         21 |          0 |          2 |         23 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\FormTypes\Slider\pc.vue                          | Vue            |         19 |          0 |          3 |         22 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\FormTypes\Stable\mobile.tsx                      | TypeScript JSX |          0 |          0 |          1 |          1 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\FormTypes\Stable\mobile.vue                      | Vue            |         26 |          0 |          3 |         29 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\FormTypes\Stable\pc.tsx                          | TypeScript JSX |          0 |          0 |          1 |          1 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\FormTypes\Stable\pc.vue                          | Vue            |         19 |          0 |          3 |         22 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\FormTypes\Switch\mobile.tsx                      | TypeScript JSX |         21 |          7 |          3 |         31 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\FormTypes\Switch\mobile.vue                      | Vue            |         26 |          0 |          3 |         29 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\FormTypes\Switch\pc.tsx                          | TypeScript JSX |         21 |          0 |          2 |         23 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\FormTypes\Switch\pc.vue                          | Vue            |         19 |          0 |          3 |         22 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\FormTypes\Textarea\mobile.tsx                    | TypeScript JSX |         21 |          7 |          3 |         31 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\FormTypes\Textarea\mobile.vue                    | Vue            |         18 |         10 |          3 |         31 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\FormTypes\Textarea\pc.tsx                        | TypeScript JSX |         21 |          0 |          2 |         23 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\FormTypes\Textarea\pc.vue                        | Vue            |         18 |         10 |          3 |         31 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\FormTypes\Time\mobile.tsx                        | TypeScript JSX |         21 |          7 |          3 |         31 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\FormTypes\Time\mobile.vue                        | Vue            |         74 |          0 |          3 |         77 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\FormTypes\Time\pc.tsx                            | TypeScript JSX |         21 |          0 |          2 |         23 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\FormTypes\Time\pc.vue                            | Vue            |         22 |          0 |          3 |         25 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\FormTypes\Uploadfile\mobile.tsx                  | TypeScript JSX |         21 |          7 |          3 |         31 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\FormTypes\Uploadfile\mobile.vue                  | Vue            |         67 |          2 |          1 |         70 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\FormTypes\Uploadfile\pc.tsx                      | TypeScript JSX |         21 |          0 |          2 |         23 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\FormTypes\Uploadfile\pc.vue                      | Vue            |         89 |          4 |          3 |         96 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\FormTypes\index.js                               | JavaScript     |         10 |          0 |          1 |         11 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\Icon.vue                                         | Vue            |         30 |          3 |          3 |         36 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\Layout\CollapseLayout.tsx                        | TypeScript JSX |         46 |          0 |          1 |         47 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\Layout\ControlInsertionPlugin.ts                 | TypeScript     |        453 |         32 |         16 |        501 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\Layout\DragGable.tsx                             | TypeScript JSX |        220 |          7 |          2 |        229 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\Layout\GridLayout.tsx                            | TypeScript JSX |         77 |          7 |          1 |         85 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\Layout\InlineLayout.tsx                          | TypeScript JSX |         42 |          0 |          2 |         44 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\Layout\SubformLayout.tsx                         | TypeScript JSX |        168 |          3 |          1 |        172 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\Layout\TableLayout.tsx                           | TypeScript JSX |         89 |          0 |          1 |         90 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\Layout\TabsLayout.tsx                            | TypeScript JSX |         48 |          1 |          1 |         50 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\Panels\Canves\index.tsx                          | TypeScript JSX |         81 |          7 |          1 |         89 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\Panels\Config\components\AllsidesComponent.vue   | Vue            |         80 |          1 |          1 |         82 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\Panels\Config\components\BackgroundComponent.vue | Vue            |        286 |         10 |          2 |        298 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\Panels\Config\components\BorderComponent.vue     | Vue            |        131 |         32 |          1 |        164 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\Panels\Config\components\CheckboxComponent.vue   | Vue            |         35 |          4 |          1 |         40 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\Panels\Config\components\CollapseComponent.vue   | Vue            |         45 |          0 |          1 |         46 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\Panels\Config\components\DataComponent1.jsx      | JavaScript JSX |        212 |          2 |          1 |        215 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\Panels\Config\components\DataComponent2.jsx      | JavaScript JSX |        184 |         15 |          1 |        200 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\Panels\Config\components\DataComponent3.vue      | Vue            |         91 |          0 |          1 |         92 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\Panels\Config\components\GlobalConfigPanel.vue   | Vue            |        218 |          0 |          1 |        219 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\Panels\Config\components\LimitComponent.vue      | Vue            |         46 |          9 |          1 |         56 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\Panels\Config\components\LogicComponent.vue      | Vue            |        284 |         15 |          2 |        301 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\Panels\Config\components\PropsPanel copy.tsx     | TypeScript JSX |         23 |          0 |          0 |         23 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\Panels\Config\components\PropsPanel.vue          | Vue            |        793 |         16 |          2 |        811 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\Panels\Config\components\SubformDefaultValue.vue | Vue            |        118 |          3 |          1 |        122 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\Panels\Config\components\TypeComponent.vue       | Vue            |         86 |          0 |          1 |         87 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\Panels\Config\components\generateFilterdata.js   | JavaScript     |        394 |         32 |          1 |        427 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\Panels\Config\configPanel.tsx                    | TypeScript JSX |        174 |          4 |          2 |        180 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\Panels\Config\index.vue                          | Vue            |        167 |         18 |          2 |        187 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\Panels\Fields\index.jsx                          | JavaScript JSX |        107 |          8 |          1 |        116 |
+| c:\project\stepin-template-main\src\packages\formEditor\components\Selection\selectElement.tsx                      | TypeScript JSX |        425 |         46 |          5 |        476 |
+| c:\project\stepin-template-main\src\packages\formEditor\config.tsx                                                  | TypeScript JSX |         99 |          0 |          0 |         99 |
+| c:\project\stepin-template-main\src\packages\formEditor\defaultProps.ts                                             | TypeScript     |         56 |          0 |          1 |         57 |
+| c:\project\stepin-template-main\src\packages\formEditor\formEditor.tsx                                              | TypeScript JSX |        614 |         21 |          5 |        640 |
+| c:\project\stepin-template-main\src\packages\formEditor\formTab.tsx                                                 | TypeScript JSX |         25 |          0 |          1 |         26 |
+| c:\project\stepin-template-main\src\packages\formEditor\formType.ts                                                 | TypeScript     |         18 |          0 |          2 |         20 |
+| c:\project\stepin-template-main\src\packages\formEditor\generatorData.ts                                            | TypeScript     |         26 |          2 |          1 |         29 |
+| c:\project\stepin-template-main\src\packages\formEditor\index.ts                                                    | TypeScript     |         15 |          6 |          1 |         22 |
+| c:\project\stepin-template-main\src\packages\formEditor\locale\en.ts                                                | TypeScript     |        289 |          0 |          1 |        290 |
+| c:\project\stepin-template-main\src\packages\formEditor\locale\index.ts                                             | TypeScript     |          8 |          1 |          1 |         10 |
+| c:\project\stepin-template-main\src\packages\formEditor\locale\zh-cn.ts                                             | TypeScript     |        289 |          0 |          1 |        290 |
+| c:\project\stepin-template-main\src\packages\formEditor\node.ts                                                     | TypeScript     |          6 |          1 |          3 |         10 |
+| c:\project\stepin-template-main\src\packages\formEditor\preview.tsx                                                 | TypeScript JSX |        155 |          7 |          1 |        163 |
+| c:\project\stepin-template-main\src\packages\formEditor\style\index.js                                              | JavaScript     |          3 |          1 |          1 |          5 |
+| c:\project\stepin-template-main\src\packages\formEditor\testData.ts                                                 | TypeScript     |      1,117 |        864 |         10 |      1,991 |
+| c:\project\stepin-template-main\src\packages\formitem.ts                                                            | TypeScript     |        220 |          5 |          6 |        231 |
+| c:\project\stepin-template-main\src\packages\hooks\index.ts                                                         | TypeScript     |         20 |          1 |          0 |         21 |
+| c:\project\stepin-template-main\src\packages\hooks\use-css\index.ts                                                 | TypeScript     |        172 |          0 |          1 |        173 |
+| c:\project\stepin-template-main\src\packages\hooks\use-fetch\index.ts                                               | TypeScript     |         30 |          2 |          1 |         33 |
+| c:\project\stepin-template-main\src\packages\hooks\use-history\index.ts                                             | TypeScript     |         79 |          8 |          1 |         88 |
+| c:\project\stepin-template-main\src\packages\hooks\use-i18n\index.ts                                                | TypeScript     |         16 |          9 |          2 |         27 |
+| c:\project\stepin-template-main\src\packages\hooks\use-logic\index.ts                                               | TypeScript     |        333 |         17 |          1 |        351 |
+| c:\project\stepin-template-main\src\packages\hooks\use-namespace\index.ts                                           | TypeScript     |         36 |          0 |          1 |         37 |
+| c:\project\stepin-template-main\src\packages\hooks\use-props\index.ts                                               | TypeScript     |        385 |        170 |          5 |        560 |
+| c:\project\stepin-template-main\src\packages\hooks\use-target\index.ts                                              | TypeScript     |         37 |          0 |          5 |         42 |
+| c:\project\stepin-template-main\src\packages\icon\__index.vue                                                       | Vue            |         28 |          4 |          3 |         35 |
+| c:\project\stepin-template-main\src\packages\icon\index.js                                                          | JavaScript     |          2 |          1 |          1 |          4 |
+| c:\project\stepin-template-main\src\packages\icon\index.vue                                                         | Vue            |         44 |          5 |          3 |         52 |
+| c:\project\stepin-template-main\src\packages\icon\svg\ID.svg                                                        | XML            |          1 |          0 |          0 |          1 |
+| c:\project\stepin-template-main\src\packages\icon\svg\PC.svg                                                        | XML            |          1 |          0 |          0 |          1 |
+| c:\project\stepin-template-main\src\packages\icon\svg\Rank.svg                                                      | XML            |          1 |          0 |          0 |          1 |
+| c:\project\stepin-template-main\src\packages\icon\svg\arrowDown.svg                                                 | XML            |          1 |          0 |          0 |          1 |
+| c:\project\stepin-template-main\src\packages\icon\svg\arrowDownBold.svg                                             | XML            |          1 |          0 |          0 |          1 |
+| c:\project\stepin-template-main\src\packages\icon\svg\arrowLeft.svg                                                 | XML            |          1 |          0 |          0 |          1 |
+| c:\project\stepin-template-main\src\packages\icon\svg\arrowLeftBold.svg                                             | XML            |          1 |          0 |          0 |          1 |
+| c:\project\stepin-template-main\src\packages\icon\svg\arrowRight.svg                                                | XML            |          1 |          0 |          0 |          1 |
+| c:\project\stepin-template-main\src\packages\icon\svg\arrowRightBold.svg                                            | XML            |          1 |          0 |          0 |          1 |
+| c:\project\stepin-template-main\src\packages\icon\svg\arrowUp.svg                                                   | XML            |          1 |          0 |          0 |          1 |
+| c:\project\stepin-template-main\src\packages\icon\svg\arrowUpBold .svg                                              | XML            |          1 |          0 |          0 |          1 |
+| c:\project\stepin-template-main\src\packages\icon\svg\arrowUpBold.svg                                               | XML            |          1 |          0 |          0 |          1 |
+| c:\project\stepin-template-main\src\packages\icon\svg\back.svg                                                      | XML            |          1 |          0 |          0 |          1 |
+| c:\project\stepin-template-main\src\packages\icon\svg\bottom.svg                                                    | XML            |          1 |          0 |          0 |          1 |
+| c:\project\stepin-template-main\src\packages\icon\svg\bottomLeft .svg                                               | XML            |          1 |          0 |          0 |          1 |
+| c:\project\stepin-template-main\src\packages\icon\svg\bottomRight.svg                                               | XML            |          1 |          0 |          0 |          1 |
+| c:\project\stepin-template-main\src\packages\icon\svg\calendar.svg                                                  | XML            |          1 |          0 |          0 |          1 |
+| c:\project\stepin-template-main\src\packages\icon\svg\cascader.svg                                                  | XML            |          1 |          0 |          0 |          1 |
+| c:\project\stepin-template-main\src\packages\icon\svg\cellphone.svg                                                 | XML            |          1 |          0 |          0 |          1 |
+| c:\project\stepin-template-main\src\packages\icon\svg\checkbox.svg                                                  | XML            |          1 |          0 |          0 |          1 |
+| c:\project\stepin-template-main\src\packages\icon\svg\circleClose.svg                                               | XML            |          1 |          0 |          0 |          1 |
+| c:\project\stepin-template-main\src\packages\icon\svg\circleMinus.svg                                               | XML            |          1 |          0 |          0 |          1 |
+| c:\project\stepin-template-main\src\packages\icon\svg\circlePlus.svg                                                | XML            |          1 |          0 |          0 |          1 |
+| c:\project\stepin-template-main\src\packages\icon\svg\clear0.svg                                                    | XML            |          1 |          0 |          0 |          1 |
+| c:\project\stepin-template-main\src\packages\icon\svg\clear1.svg                                                    | XML            |          1 |          0 |          0 |          1 |
+| c:\project\stepin-template-main\src\packages\icon\svg\collapse.svg                                                  | XML            |          1 |          0 |          0 |          1 |
+| c:\project\stepin-template-main\src\packages\icon\svg\copy.svg                                                      | XML            |          1 |          0 |          0 |          1 |
+| c:\project\stepin-template-main\src\packages\icon\svg\delete.svg                                                    | XML            |          1 |          0 |          0 |          1 |
+| c:\project\stepin-template-main\src\packages\icon\svg\divider.svg                                                   | XML            |          1 |          0 |          0 |          1 |
+| c:\project\stepin-template-main\src\packages\icon\svg\dividerLocationP1.svg                                         | XML            |          1 |          0 |          0 |          1 |
+| c:\project\stepin-template-main\src\packages\icon\svg\dividerLocationP2.svg                                         | XML            |          1 |          0 |          0 |          1 |
+| c:\project\stepin-template-main\src\packages\icon\svg\dividerLocationP3.svg                                         | XML            |          1 |          0 |          0 |          1 |
+| c:\project\stepin-template-main\src\packages\icon\svg\doubleArrowLeft.svg                                           | XML            |          1 |          0 |          0 |          1 |
+| c:\project\stepin-template-main\src\packages\icon\svg\doubleArrowRight.svg                                          | XML            |          1 |          0 |          0 |          1 |
+| c:\project\stepin-template-main\src\packages\icon\svg\drag.svg                                                      | XML            |          1 |          0 |          0 |          1 |
+| c:\project\stepin-template-main\src\packages\icon\svg\dragWidth.svg                                                 | XML            |          1 |          0 |          0 |          1 |
+| c:\project\stepin-template-main\src\packages\icon\svg\dropUp0.svg                                                   | XML            |          1 |          0 |          0 |          1 |
+| c:\project\stepin-template-main\src\packages\icon\svg\dropdown0.svg                                                 | XML            |          1 |          0 |          0 |          1 |
+| c:\project\stepin-template-main\src\packages\icon\svg\email.svg                                                     | XML            |          1 |          0 |          0 |          1 |
+| c:\project\stepin-template-main\src\packages\icon\svg\grid.svg                                                      | XML            |          1 |          0 |          0 |          1 |
+| c:\project\stepin-template-main\src\packages\icon\svg\horizontalLayoutP1.svg                                        | XML            |          1 |          0 |          0 |          1 |
+| c:\project\stepin-template-main\src\packages\icon\svg\horizontalLayoutP2.svg                                        | XML            |          1 |          0 |          0 |          1 |
+| c:\project\stepin-template-main\src\packages\icon\svg\horizontalLayoutP3.svg                                        | XML            |          1 |          0 |          0 |          1 |
+| c:\project\stepin-template-main\src\packages\icon\svg\horizontalLayoutP4.svg                                        | XML            |          1 |          0 |          0 |          1 |
+| c:\project\stepin-template-main\src\packages\icon\svg\horizontalLayoutP5.svg                                        | XML            |          1 |          0 |          0 |          1 |
+| c:\project\stepin-template-main\src\packages\icon\svg\html.svg                                                      | XML            |          1 |          0 |          0 |          1 |
+| c:\project\stepin-template-main\src\packages\icon\svg\index.js                                                      | JavaScript     |          8 |          0 |          1 |          9 |
+| c:\project\stepin-template-main\src\packages\icon\svg\input.svg                                                     | XML            |          1 |          0 |          0 |          1 |
+| c:\project\stepin-template-main\src\packages\icon\svg\label.svg                                                     | XML            |          1 |          0 |          0 |          1 |
+| c:\project\stepin-template-main\src\packages\icon\svg\labelStructureP1.svg                                          | XML            |          1 |          0 |          0 |          1 |
+| c:\project\stepin-template-main\src\packages\icon\svg\labelStructureP2.svg                                          | XML            |          1 |          0 |          0 |          1 |
+| c:\project\stepin-template-main\src\packages\icon\svg\labelStructureP3.svg                                          | XML            |          1 |          0 |          0 |          1 |
+| c:\project\stepin-template-main\src\packages\icon\svg\language.svg                                                  | XML            |          1 |          0 |          0 |          1 |
+| c:\project\stepin-template-main\src\packages\icon\svg\lineThickness.svg                                             | XML            |          1 |          0 |          0 |          1 |
+| c:\project\stepin-template-main\src\packages\icon\svg\location.svg                                                  | XML            |          1 |          0 |          0 |          1 |
+| c:\project\stepin-template-main\src\packages\icon\svg\minus.svg                                                     | XML            |          1 |          0 |          0 |          1 |
+| c:\project\stepin-template-main\src\packages\icon\svg\minusBold.svg                                                 | XML            |          1 |          0 |          0 |          1 |
+| c:\project\stepin-template-main\src\packages\icon\svg\move1.svg                                                     | XML            |          1 |          0 |          0 |          1 |
+| c:\project\stepin-template-main\src\packages\icon\svg\numberButtonP1.svg                                            | XML            |          1 |          0 |          0 |          1 |
+| c:\project\stepin-template-main\src\packages\icon\svg\numberButtonP2.svg                                            | XML            |          1 |          0 |          0 |          1 |
+| c:\project\stepin-template-main\src\packages\icon\svg\numbers.svg                                                   | XML            |          1 |          0 |          0 |          1 |
+| c:\project\stepin-template-main\src\packages\icon\svg\plus.svg                                                      | XML            |          1 |          0 |          0 |          1 |
+| c:\project\stepin-template-main\src\packages\icon\svg\plusBold.svg                                                  | XML            |          1 |          0 |          0 |          1 |
+| c:\project\stepin-template-main\src\packages\icon\svg\preview.svg                                                   | XML            |          1 |          0 |          0 |          1 |
+| c:\project\stepin-template-main\src\packages\icon\svg\radio.svg                                                     | XML            |          1 |          0 |          0 |          1 |
+| c:\project\stepin-template-main\src\packages\icon\svg\radius.svg                                                    | XML            |          1 |          0 |          0 |          1 |
+| c:\project\stepin-template-main\src\packages\icon\svg\rating.svg                                                    | XML            |          1 |          0 |          0 |          1 |
+| c:\project\stepin-template-main\src\packages\icon\svg\redo.svg                                                      | XML            |          1 |          0 |          0 |          1 |
+| c:\project\stepin-template-main\src\packages\icon\svg\right.svg                                                     | XML            |          1 |          0 |          0 |          1 |
+| c:\project\stepin-template-main\src\packages\icon\svg\save.svg                                                      | XML            |          1 |          0 |          0 |          1 |
+| c:\project\stepin-template-main\src\packages\icon\svg\search.svg                                                    | XML            |          1 |          0 |          0 |          1 |
+| c:\project\stepin-template-main\src\packages\icon\svg\signature.svg                                                 | XML            |          1 |          0 |          0 |          1 |
+| c:\project\stepin-template-main\src\packages\icon\svg\slider.svg                                                    | XML            |          1 |          0 |          0 |          1 |
+| c:\project\stepin-template-main\src\packages\icon\svg\sort.svg                                                      | XML            |          1 |          0 |          0 |          1 |
+| c:\project\stepin-template-main\src\packages\icon\svg\spaceBottom.svg                                               | XML            |          1 |          0 |          0 |          1 |
+| c:\project\stepin-template-main\src\packages\icon\svg\spaceLeft.svg                                                 | XML            |          1 |          0 |          0 |          1 |
+| c:\project\stepin-template-main\src\packages\icon\svg\spaceRight.svg                                                | XML            |          1 |          0 |          0 |          1 |
+| c:\project\stepin-template-main\src\packages\icon\svg\spaceTop.svg                                                  | XML            |          1 |          0 |          0 |          1 |
+| c:\project\stepin-template-main\src\packages\icon\svg\subform.svg                                                   | XML            |          1 |          0 |          1 |          2 |
+| c:\project\stepin-template-main\src\packages\icon\svg\switch.svg                                                    | XML            |          1 |          0 |          0 |          1 |
+| c:\project\stepin-template-main\src\packages\icon\svg\tabStyleP1.svg                                                | XML            |          1 |          0 |          0 |          1 |
+| c:\project\stepin-template-main\src\packages\icon\svg\tabStyleP2.svg                                                | XML            |          1 |          0 |          0 |          1 |
+| c:\project\stepin-template-main\src\packages\icon\svg\tabStyleP3.svg                                                | XML            |          1 |          0 |          0 |          1 |
+| c:\project\stepin-template-main\src\packages\icon\svg\table.svg                                                     | XML            |          1 |          0 |          0 |          1 |
+| c:\project\stepin-template-main\src\packages\icon\svg\tableInsertCol.svg                                            | XML            |          1 |          0 |          0 |          1 |
+| c:\project\stepin-template-main\src\packages\icon\svg\tableInsertRow.svg                                            | XML            |          1 |          0 |          0 |          1 |
+| c:\project\stepin-template-main\src\packages\icon\svg\tableOperation.svg                                            | XML            |          1 |          0 |          0 |          1 |
+| c:\project\stepin-template-main\src\packages\icon\svg\tableStokeP1.svg                                              | XML            |          1 |          0 |          0 |          1 |
+| c:\project\stepin-template-main\src\packages\icon\svg\tableStokeP2.svg                                              | XML            |          1 |          0 |          0 |          1 |
+| c:\project\stepin-template-main\src\packages\icon\svg\tableStokeP3.svg                                              | XML            |          1 |          0 |          0 |          1 |
+| c:\project\stepin-template-main\src\packages\icon\svg\tableStokeP4.svg                                              | XML            |          1 |          0 |          0 |          1 |
+| c:\project\stepin-template-main\src\packages\icon\svg\tableStokeP5.svg                                              | XML            |          1 |          0 |          0 |          1 |
+| c:\project\stepin-template-main\src\packages\icon\svg\tableStokeP6.svg                                              | XML            |          1 |          0 |          0 |          1 |
+| c:\project\stepin-template-main\src\packages\icon\svg\tableStokeP7.svg                                              | XML            |          1 |          0 |          0 |          1 |
+| c:\project\stepin-template-main\src\packages\icon\svg\tableStokeP8.svg                                              | XML            |          1 |          0 |          0 |          1 |
+| c:\project\stepin-template-main\src\packages\icon\svg\tabsLocationP1.svg                                            | XML            |          1 |          0 |          0 |          1 |
+| c:\project\stepin-template-main\src\packages\icon\svg\tabsLocationP2.svg                                            | XML            |          1 |          0 |          0 |          1 |
+| c:\project\stepin-template-main\src\packages\icon\svg\tabsLocationP3.svg                                            | XML            |          1 |          0 |          0 |          1 |
+| c:\project\stepin-template-main\src\packages\icon\svg\tabsLocationP4.svg                                            | XML            |          1 |          0 |          0 |          1 |
+| c:\project\stepin-template-main\src\packages\icon\svg\textarea.svg                                                  | XML            |          1 |          0 |          0 |          1 |
+| c:\project\stepin-template-main\src\packages\icon\svg\time.svg                                                      | XML            |          1 |          0 |          0 |          1 |
+| c:\project\stepin-template-main\src\packages\icon\svg\title.svg                                                     | XML            |          1 |          0 |          0 |          1 |
+| c:\project\stepin-template-main\src\packages\icon\svg\top.svg                                                       | XML            |          1 |          0 |          0 |          1 |
+| c:\project\stepin-template-main\src\packages\icon\svg\topLeft.svg                                                   | XML            |          1 |          0 |          0 |          1 |
+| c:\project\stepin-template-main\src\packages\icon\svg\topRight.svg                                                  | XML            |          1 |          0 |          0 |          1 |
+| c:\project\stepin-template-main\src\packages\icon\svg\undo.svg                                                      | XML            |          1 |          0 |          0 |          1 |
+| c:\project\stepin-template-main\src\packages\icon\svg\upload.svg                                                    | XML            |          1 |          0 |          0 |          1 |
+| c:\project\stepin-template-main\src\packages\icon\svg\url.svg                                                       | XML            |          1 |          0 |          0 |          1 |
+| c:\project\stepin-template-main\src\packages\icon\svg\widthRatioP1.svg                                              | XML            |          1 |          0 |          0 |          1 |
+| c:\project\stepin-template-main\src\packages\icon\svg\widthRatioP2.svg                                              | XML            |          1 |          0 |          0 |          1 |
+| c:\project\stepin-template-main\src\packages\icon\svg\widthRatioP3.svg                                              | XML            |          1 |          0 |          0 |          1 |
+| c:\project\stepin-template-main\src\packages\icon\svg\widthRatioP4.svg                                              | XML            |          1 |          0 |          0 |          1 |
+| c:\project\stepin-template-main\src\packages\icon\svg\widthRatioP5.svg                                              | XML            |          1 |          0 |          0 |          1 |
+| c:\project\stepin-template-main\src\packages\icon\svg\widthRatioP6.svg                                              | XML            |          1 |          0 |          0 |          1 |
+| c:\project\stepin-template-main\src\packages\icon\svg\zoomIn.svg                                                    | XML            |          1 |          0 |          0 |          1 |
+| c:\project\stepin-template-main\src\packages\icon\svg\zoomOut.svg                                                   | XML            |          1 |          0 |          0 |          1 |
+| c:\project\stepin-template-main\src\packages\layoutType.ts                                                          | TypeScript     |        130 |          0 |         16 |        146 |
+| c:\project\stepin-template-main\src\packages\region\Region.js                                                       | JavaScript     |         72 |          0 |          5 |         77 |
+| c:\project\stepin-template-main\src\packages\region\index.js                                                        | JavaScript     |          5 |          0 |          1 |          6 |
+| c:\project\stepin-template-main\src\packages\region\index.vue                                                       | Vue            |        424 |          5 |         10 |        439 |
+| c:\project\stepin-template-main\src\packages\region\node.js                                                         | JavaScript     |         51 |          0 |          7 |         58 |
+| c:\project\stepin-template-main\src\packages\region\store.js                                                        | JavaScript     |        131 |          8 |         19 |        158 |
+| c:\project\stepin-template-main\src\packages\region\style\index.js                                                  | JavaScript     |          2 |          1 |          1 |          4 |
+| c:\project\stepin-template-main\src\packages\theme\base.scss                                                        | SCSS           |         45 |          0 |          1 |         46 |
+| c:\project\stepin-template-main\src\packages\theme\ckeditor\index.scss                                              | SCSS           |         48 |          1 |          1 |         50 |
+| c:\project\stepin-template-main\src\packages\theme\formEditor\Canves.scss                                           | SCSS           |         69 |          7 |          1 |         77 |
+| c:\project\stepin-template-main\src\packages\theme\formEditor\CollapseLayout.scss                                   | SCSS           |          6 |          0 |          1 |          7 |
+| c:\project\stepin-template-main\src\packages\theme\formEditor\Config.scss                                           | SCSS           |         85 |         22 |          1 |        108 |
+| c:\project\stepin-template-main\src\packages\theme\formEditor\ConfigAllsides.scss                                   | SCSS           |         18 |          0 |          1 |         19 |
+| c:\project\stepin-template-main\src\packages\theme\formEditor\ConfigBackground.scss                                 | SCSS           |         87 |          4 |          1 |         92 |
+| c:\project\stepin-template-main\src\packages\theme\formEditor\ConfigBorder.scss                                     | SCSS           |         23 |          0 |          1 |         24 |
+| c:\project\stepin-template-main\src\packages\theme\formEditor\ConfigCheckboxComponent.scss                          | SCSS           |         17 |          7 |          1 |         25 |
+| c:\project\stepin-template-main\src\packages\theme\formEditor\ConfigCollapseComponent.scss                          | SCSS           |         23 |         28 |          1 |         52 |
+| c:\project\stepin-template-main\src\packages\theme\formEditor\ConfigData1.scss                                      | SCSS           |         54 |          0 |          2 |         56 |
+| c:\project\stepin-template-main\src\packages\theme\formEditor\ConfigData2.scss                                      | SCSS           |         71 |         11 |          1 |         83 |
+| c:\project\stepin-template-main\src\packages\theme\formEditor\ConfigData3.scss                                      | SCSS           |         33 |          3 |          1 |         37 |
+| c:\project\stepin-template-main\src\packages\theme\formEditor\ConfigGridLayoutComponent.scss                        | SCSS           |          3 |          0 |          1 |          4 |
+| c:\project\stepin-template-main\src\packages\theme\formEditor\ConfigLogicComponent.scss                             | SCSS           |         65 |          0 |          1 |         66 |
+| c:\project\stepin-template-main\src\packages\theme\formEditor\ConfigSubformDefaultValueComponent.scss               | SCSS           |         15 |          0 |          1 |         16 |
+| c:\project\stepin-template-main\src\packages\theme\formEditor\ConfigTypeComponent.scss                              | SCSS           |         64 |          7 |          1 |         72 |
+| c:\project\stepin-template-main\src\packages\theme\formEditor\DeviceSwitch.scss                                     | SCSS           |         26 |         29 |          1 |         56 |
+| c:\project\stepin-template-main\src\packages\theme\formEditor\DragGableLayout.scss                                  | SCSS           |         17 |          3 |          1 |         21 |
+| c:\project\stepin-template-main\src\packages\theme\formEditor\Fields.scss                                           | SCSS           |         67 |          0 |          1 |         68 |
+| c:\project\stepin-template-main\src\packages\theme\formEditor\FormTypes\Cascader.scss                               | SCSS           |         22 |          0 |          1 |         23 |
+| c:\project\stepin-template-main\src\packages\theme\formEditor\FormTypes\Checkbox.scss                               | SCSS           |         13 |          0 |          1 |         14 |
+| c:\project\stepin-template-main\src\packages\theme\formEditor\FormTypes\Date.scss                                   | SCSS           |          6 |          0 |          2 |          8 |
+| c:\project\stepin-template-main\src\packages\theme\formEditor\FormTypes\Divider.scss                                | SCSS           |          7 |          2 |          1 |         10 |
+| c:\project\stepin-template-main\src\packages\theme\formEditor\FormTypes\Html.scss                                   | SCSS           |          7 |          1 |          1 |          9 |
+| c:\project\stepin-template-main\src\packages\theme\formEditor\FormTypes\Number.scss                                 | SCSS           |          6 |          0 |          1 |          7 |
+| c:\project\stepin-template-main\src\packages\theme\formEditor\FormTypes\Other.scss                                  | SCSS           |         14 |          0 |          1 |         15 |
+| c:\project\stepin-template-main\src\packages\theme\formEditor\FormTypes\Radio.scss                                  | SCSS           |         12 |          0 |          1 |         13 |
+| c:\project\stepin-template-main\src\packages\theme\formEditor\FormTypes\Region.scss                                 | SCSS           |          6 |          0 |          1 |          7 |
+| c:\project\stepin-template-main\src\packages\theme\formEditor\FormTypes\Select.scss                                 | SCSS           |         21 |          0 |          1 |         22 |
+| c:\project\stepin-template-main\src\packages\theme\formEditor\FormTypes\Signature.scss                              | SCSS           |         52 |          0 |          1 |         53 |
+| c:\project\stepin-template-main\src\packages\theme\formEditor\FormTypes\Slider.scss                                 | SCSS           |         16 |          0 |          1 |         17 |
+| c:\project\stepin-template-main\src\packages\theme\formEditor\FormTypes\Time.scss                                   | SCSS           |          6 |          0 |          1 |          7 |
+| c:\project\stepin-template-main\src\packages\theme\formEditor\GlobalConfigPanel.scss                                | SCSS           |         90 |         12 |          1 |        103 |
+| c:\project\stepin-template-main\src\packages\theme\formEditor\GridLayout.scss                                       | SCSS           |          5 |          1 |          1 |          7 |
+| c:\project\stepin-template-main\src\packages\theme\formEditor\Icon.scss                                             | SCSS           |          7 |          0 |          1 |          8 |
+| c:\project\stepin-template-main\src\packages\theme\formEditor\IconFont.scss                                         | SCSS           |        143 |          0 |         41 |        184 |
+| c:\project\stepin-template-main\src\packages\theme\formEditor\InlineLayout.scss                                     | SCSS           |          7 |          1 |          1 |          9 |
+| c:\project\stepin-template-main\src\packages\theme\formEditor\Main.scss                                             | SCSS           |        144 |          4 |          1 |        149 |
+| c:\project\stepin-template-main\src\packages\theme\formEditor\PropsPanel.scss                                       | SCSS           |         31 |          0 |          1 |         32 |
+| c:\project\stepin-template-main\src\packages\theme\formEditor\SelectElement.scss                                    | SCSS           |         79 |         12 |          1 |         92 |
+| c:\project\stepin-template-main\src\packages\theme\formEditor\SubformLayout.scss                                    | SCSS           |         53 |          6 |          1 |         60 |
+| c:\project\stepin-template-main\src\packages\theme\formEditor\TableLayout.scss                                      | SCSS           |         12 |          0 |          1 |         13 |
+| c:\project\stepin-template-main\src\packages\theme\formEditor\TabsLayout.scss                                       | SCSS           |          9 |          3 |          1 |         13 |
+| c:\project\stepin-template-main\src\packages\theme\formEditor\index.scss                                            | SCSS           |         41 |          0 |          2 |         43 |
+| c:\project\stepin-template-main\src\packages\theme\icon.scss                                                        | SCSS           |         18 |          0 |          1 |         19 |
+| c:\project\stepin-template-main\src\packages\theme\region\Main.scss                                                 | SCSS           |        104 |          2 |          1 |        107 |
+| c:\project\stepin-template-main\src\packages\theme\region\index.scss                                                | SCSS           |          2 |          1 |          1 |          4 |
+| c:\project\stepin-template-main\src\packages\type.ts                                                                | TypeScript     |         88 |          1 |          6 |         95 |
+| c:\project\stepin-template-main\src\packages\utils\Context.ts                                                       | TypeScript     |        942 |         19 |          2 |        963 |
+| c:\project\stepin-template-main\src\packages\utils\addContext.ts                                                    | TypeScript     |         15 |          2 |          0 |         17 |
+| c:\project\stepin-template-main\src\packages\utils\device.js                                                        | JavaScript     |          4 |          0 |          1 |          5 |
+| c:\project\stepin-template-main\src\packages\utils\field copy.js                                                    | JavaScript     |        264 |          2 |          1 |        267 |
+| c:\project\stepin-template-main\src\packages\utils\field.ts                                                         | TypeScript     |        271 |          5 |          2 |        278 |
+| c:\project\stepin-template-main\src\packages\utils\fileData.ts                                                      | TypeScript     |         31 |          0 |          1 |         32 |
+| c:\project\stepin-template-main\src\packages\utils\generateOptions.js                                               | JavaScript     |         26 |          0 |          1 |         27 |
+| c:\project\stepin-template-main\src\packages\utils\index.js                                                         | JavaScript     |         27 |         16 |          1 |         44 |
+| c:\project\stepin-template-main\src\packages\utils\logic.js                                                         | JavaScript     |         47 |          0 |          2 |         49 |
+| c:\project\stepin-template-main\src\packages\utils\nanoid.js                                                        | JavaScript     |          5 |          0 |          1 |          6 |
+| c:\project\stepin-template-main\src\packages\utils\test.js                                                          | JavaScript     |         23 |          0 |          1 |         24 |
+| c:\project\stepin-template-main\src\packages\utils\utils.ts                                                         | TypeScript     |         27 |          0 |          1 |         28 |
+| c:\project\stepin-template-main\src\packages\vueDraggable\core\componentBuilderHelper.js                            | JavaScript     |         42 |          0 |          6 |         48 |
+| c:\project\stepin-template-main\src\packages\vueDraggable\core\componentStructure.js                                | JavaScript     |         60 |          0 |         10 |         70 |
+| c:\project\stepin-template-main\src\packages\vueDraggable\core\renderHelper.js                                      | JavaScript     |         51 |          0 |          6 |         57 |
+| c:\project\stepin-template-main\src\packages\vueDraggable\core\sortableEvents.js                                    | JavaScript     |         15 |          0 |          4 |         19 |
+| c:\project\stepin-template-main\src\packages\vueDraggable\util\console.js                                           | JavaScript     |          8 |          0 |          2 |         10 |
+| c:\project\stepin-template-main\src\packages\vueDraggable\util\htmlHelper.js                                        | JavaScript     |         13 |          0 |          3 |         16 |
+| c:\project\stepin-template-main\src\packages\vueDraggable\util\string.js                                            | JavaScript     |         10 |          0 |          3 |         13 |
+| c:\project\stepin-template-main\src\packages\vueDraggable\util\tags.js                                              | JavaScript     |        134 |          0 |          5 |        139 |
+| c:\project\stepin-template-main\src\packages\vueDraggable\vuedraggable.d.ts                                         | TypeScript     |         74 |          0 |          1 |         75 |
+| c:\project\stepin-template-main\src\packages\vueDraggable\vuedraggable.ts                                           | TypeScript     |        287 |         11 |         38 |        336 |
+| Total                                                                                                               |                |     18,955 |      2,030 |        679 |     21,664 |
++---------------------------------------------------------------------------------------------------------------------+----------------+------------+------------+------------+------------+

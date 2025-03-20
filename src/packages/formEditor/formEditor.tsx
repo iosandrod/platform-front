@@ -54,11 +54,11 @@ export default defineComponent({
     },
     delHandle: {
       type: Function,
-      default: () => { },
+      default: () => {},
     },
     copyHandle: {
       type: Function,
-      default: () => { },
+      default: () => {},
     },
     inlineMax: {
       type: Number,
@@ -79,7 +79,7 @@ export default defineComponent({
     },
     checkFieldsForNewBadge: {
       type: Function,
-      default: () => { },
+      default: () => {},
     },
     formIns: {
       type: Object,
@@ -261,7 +261,7 @@ export default defineComponent({
     };
     setTimeout(() => {
       // setData2(testData1); //
-      setData2(JSON.parse(JSON.stringify(testData1)));//
+      setData2(JSON.parse(JSON.stringify(testData1))); //
     }, 100);
     const syncLayout = (platform, fn) => {
       const isPc = platform === 'pc';
@@ -400,7 +400,7 @@ export default defineComponent({
     const setData2 = (data) => {
       if (_.isEmpty(data)) return false;
       const newData = _.cloneDeep(data);
-      let fields = newData.fields;//
+      let fields = newData.fields; //
       formIns.setFields(fields); //
       layout.pc = newData.layout.pc;
       layout.mobile = newData.layout.mobile;
@@ -515,13 +515,12 @@ export default defineComponent({
         immediate: true,
       }
     );
-    const onClickOutside = () => { };
+    const onClickOutside = () => {};
     watch(
       () => {
         return state.store;
       },
-      (newValue) => {
-      },
+      (newValue) => {},
       {
         deep: true,
       }
@@ -633,7 +632,7 @@ export default defineComponent({
       if (nextForm != null) {
         com = <Everright-form-editor formIns={nextForm}></Everright-form-editor>;
       } //
-      return com;
+      return com; //
     };
-  }, 
+  },
 });

@@ -1,7 +1,7 @@
 import { defineComponent, inject, ref, resolveComponent, unref } from 'vue';
 import LayoutDragGable from '@ER/formEditor/components/Layout/DragGable';
 import LayoutInlineLayout from '@ER/formEditor/components/Layout/InlineLayout';
-import CompleteButton from '@ER/formEditor/components/CompleteButton.vue';
+import CompleteButton from '@ER/formEditor/components/CompleteButton';
 import hooks from '@ER/hooks/index';
 import _ from 'lodash';
 import { ElMain } from 'element-plus';
