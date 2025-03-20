@@ -1,10 +1,19 @@
 import { Base } from "@ER/base";
-
+export class Column {
+    constructor() { }//
+}
 export class Table extends Base {
-    constructor() {
+    columns: any[]
+    constructor(config) {
         super()
     }
     getTableName() {
-        console.log(this.id)//
+
+    }
+    setColumns() {
+
+    }
+    addColumn() {
+
     }
 }

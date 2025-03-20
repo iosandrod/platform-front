@@ -29,6 +29,9 @@ export class Base {
         delete this._refPool[key]//
         delete this.refPool[id]//
     }
+    onMounted(){
+        
+    }
     onUnmounted() {
         let allKeys = Object.keys(this._refPool)
         for (const key of allKeys) {
