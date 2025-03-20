@@ -18,5 +18,5 @@ const checkFieldsForNewBadge = (field) => {
 };
 </script>
 <template>
-  <router-view></router-view>
+  <router-view></router-view> 
 </template>

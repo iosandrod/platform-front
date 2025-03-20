@@ -3,6 +3,7 @@
     "baseUrl": ".",
     "paths": {
       "@ER/*":["src/packages/*"],
+      "@DESIGN/*":["src/pageDesign/*"],
       "@/*": ["src/*"],
     },
     "target": "ESNext",

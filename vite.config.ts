@@ -3,7 +3,6 @@ import vue from '@vitejs/plugin-vue';
 import path from 'path';
 import Components from 'unplugin-vue-components/vite';
 import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers';
-import { AntdvLessPlugin, AntdvModifyVars } from 'stepin/lib/style/plugins';
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import svgLoader from 'vite-svg-loader'
 const resolve = path.resolve
@@ -49,14 +48,10 @@ export default ({ command, mode }) => {
       {
         find: '@ER',
         replacement: resolve(__dirname, 'src/packages')
-      },
+      }, 
       {
-        find: '@ER-examples',
-        replacement: resolve(__dirname, 'src/examples')
-      },
-      {
-        find: '@ER-test',
-        replacement: resolve(__dirname, 'src/test')
+        find: '@DESIGN',
+        replacement: resolve(__dirname, 'src/pageDesign')
       }],
     },
     esbuild: {
@@ -80,7 +75,7 @@ export default ({ command, mode }) => {
         },
       }),
       vueJsx(),
-      Components({ 
+      Components({
         resolvers: [AntDesignVueResolver({ importStyle: mode === 'development' ? false : 'less' })],
       }),
       svgLoader(),

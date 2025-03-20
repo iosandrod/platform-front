@@ -1,15 +1,18 @@
 import { Base } from "@ER/base";
-import { ListTable } from '@visactor/vtable'
-import { EventEmitter } from "stream";
+import { computed } from "vue";
 export class Column {
-    constructor() { }//
+    constructor(config: any) { }//
+    getFormitem() {
+        return computed(() => {
+            let obj = {}
+            return obj
+        })
+    }
 }
 export class Table extends Base {
-    event: EventEmitter
-    instance
     columns: any[]
     constructor(config) {
-        super()//
+        super()
     }
     getTableName() {
 
@@ -17,24 +20,11 @@ export class Table extends Base {
     setColumns() {
 
     }
-    addColumn() {
-
+    addColumn(config) {
+        let col = new Column(config)
+        this.columns.push(col)
     }
-    getColumns() {
+    getForm() {
 
-    }
-    onMounted(): void {
-
-    }
-    mount(div: HTMLDivElement) {
-
-    }
-    insertRows(insertConfig) {
-
-    }
-    async refreshData() {
-        return new Promise(async (resolve, reject) => {
-            resolve(null)
-        })
     }
 }
