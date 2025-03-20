@@ -137,13 +137,18 @@ const draggableComponent = defineComponent({
     const plugins = this.$attrs.plugins
     if (plugins) {
       if (Array.isArray(plugins)) {
-        // let hasMounted = plugins.map(plugin => {
-        //   return plugin.pluginName
-        // })
-        let _plugin = plugins.filter(plugin => !dName.includes(plugin.pluginName))
+        let _plugin = plugins.filter(plugin => !dName.includes(plugin.pluginName))//
         Sortable.mount(_plugin)//
+        // class Plugin {
+        //   dragOver(e) {
+        //     console.log('test1111')
+        //   }
+        // }
+        // //@ts-ignore 
+        // Plugin.pluginName = Math.random().toString().slice(1, 10)
+        // Sortable.mount(Plugin)// 
         let _names = _plugin.map(plugin => plugin.pluginName)
-        dName.push(..._names)//
+        dName.push(..._names)////
       }
     }
     this._sortable = new Sortable(targetDomElement, sortableOptions);

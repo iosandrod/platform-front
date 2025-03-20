@@ -56,13 +56,17 @@ export default {
     const handleMove = (evt, originalEvent) => {
       return true
     }
+    let formIns = inject('formIns')
+    let pluginName = formIns.getPluginName()
+    let id = formIns.id
     const dragOptions = {
-      ControlInsertion: true,
+      [pluginName]: true,
       dataSource: 'block',
       direction: 'horizontal',
       scroll: false,
       plugins: [ControlInsertionPlugin(ER)]
     }
+    // console.log(id,'rjskljslfjsdlkfjs')
     return () => {
       return (
         <ElAside class={[ns.b()]} width={ER.props.fieldsPanelWidth}>
@@ -88,7 +92,7 @@ export default {
                             move={handleMove}
                             {...dragOptions}
                             group={
-                              { name: 'er-Canves', pull: 'clone', put: false }
+                              { name: `er-Canves-${id}`, pull: 'clone', put: false }
                             }
                             item-key="null"
                             v-slots={slots}

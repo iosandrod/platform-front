@@ -344,10 +344,8 @@ function ControlInsertionPlugin(ER) {
         }
       }
 
-      // 处理行插入逻辑 
       if (inserRowIndex !== '') {
         let store = []
-
         // 判断是否是 'subform' 类型的父级元素，并获取正确的存储数组
         if (prevSortable.options.parent.type === 'subform') {
           store = prevSortable.options.parent.list[0]
@@ -358,7 +356,6 @@ function ControlInsertionPlugin(ER) {
         }
         // 在指定的索引位置插入新元素
         store.splice(inserRowIndex, 0, newElement)
-        // console.log(prevSortable, 'testParent')
         // 关联新元素的上下文信息
         utils.addContext({ node: store[inserRowIndex], parent: prevSortable.options.parent })
       }
@@ -385,6 +382,7 @@ function ControlInsertionPlugin(ER) {
 
       // 如果有行插入或列插入操作，则遍历新元素，并检查是否需要额外的字段处理
       if (inserColIndex !== '' || inserRowIndex !== '') {
+        // console.log(ER, 'testERRR')//
         utils.deepTraversal(newElement, (node) => {
           if (utils.checkIsField(node)) {
             ER.addField(node) // 添加字段到表单
@@ -493,8 +491,9 @@ function ControlInsertionPlugin(ER) {
       }
     }
   }
+  const name = ER.formIns.getPluginName()
   return Object.assign(ControlInsertionPlugin, {
-    pluginName: `ControlInsertion`,
+    pluginName: name, //
     initializeByDefault: true
   })
 }

@@ -13,7 +13,7 @@ export default defineComponent({
     data: Object,
     parent: Array
   },
-  setup (props) {
+  setup(props) {
     const ns = hooks.useNamespace('GridLayout')
     const {
       state,
@@ -31,6 +31,11 @@ export default defineComponent({
     }
     // const tag = resolveComponent(unref(isPc) ? 'el-row' : 'van-cell-group')
     const tag = resolveComponent('el-row')
+    let formIns: any = inject('formIns')
+    let pluginName = formIns.getPluginName()
+    let opt = {
+      [pluginName]: true
+    }
     return () => {
       const node = (
         <Selection {...useAttrs()} hasWidthScale hasCopy hasAddCol hasDel hasDrag data={props.data} parent={props.parent}>
@@ -63,7 +68,8 @@ export default defineComponent({
                       data={element.list}
                       data-layout-type={'grid-col'}
                       parent={element}
-                      ControlInsertion={true}
+                      // ControlInsertion={true}
+                      {...opt}
                     />
                   </Selection>
                 )

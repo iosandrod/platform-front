@@ -1,7 +1,7 @@
 <script>
 import hooks from '@ER/hooks'
 export default {
-  name: 'er-rate',
+  name: 'er-switch',
   inheritAttrs: false,
   customOptions: {}
 }
@@ -10,11 +10,19 @@ export default {
 const props = defineProps(['data', 'params'])
 </script>
 <template>
-  <van-field readonly v-bind="params">
+  <van-field
+    readonly
+    v-bind="params"
+  >
     <template #input>
-      <van-rate v-model="data.options.defaultValue" v-bind="params" />
+      <van-switch
+        v-model="data.options.defaultValue"
+        v-bind="params"
+      />
     </template>
   </van-field>
 </template>
- 
-<style scoped></style>
+
+<style scoped>
+
+</style>

@@ -86,14 +86,19 @@ export default defineComponent({
     const handleMove = (e) => {
       return true;
     };
+    const formIns: any = inject('formIns');
+    //@ts-ignore
+    const id = formIns.id
+    let pluginName = formIns.getPluginName()
     const dragOptions = {
       swapThreshold: 1,
       group: {
-        name: 'er-Canves',
+        name: `er-Canves-${id}`,
       },
       parent: props.parent,
       plugins: [ControlInsertionPlugin(ER)],
-      ControlInsertion: true,
+      // ControlInsertion: true,
+      [pluginName]: true
     };
     const loadComponent = () => {
       let componentMap = {};
@@ -165,8 +170,8 @@ export default defineComponent({
                 params['data-field-id'] = `${element.id}`;
               }
               if (unref(isPc)) {
-                const formitem = typeProps.value?.formitem;
-                const prop = formitem.getField();
+                const formitem = typeProps.value?.formitem; //
+                const prop = formitem?.getField();
                 node = (
                   //@ts-ignore
                   <Selection hasWidthScale hasCopy hasDel hasDrag hasMask {...params}>

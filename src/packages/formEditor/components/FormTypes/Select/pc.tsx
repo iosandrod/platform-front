@@ -1,9 +1,9 @@
 import { FormItem } from '@ER/formitem';
-import { ElInput } from 'element-plus';
+import { ElInput, ElSelect } from 'element-plus';
 import { defineComponent } from 'vue';
 
 export default defineComponent({
-  name: 'InputPc',
+  name: 'SelectPc',
   inheritAttrs: false,
   customOptions: {},
   props: {
@@ -16,7 +16,7 @@ export default defineComponent({
     const formitem: FormItem = params.formitem;
     const bindConfig = formitem?.getBindConfig();
     return () => {
-      return <ElInput {...bindConfig?.value}></ElInput>;
+      return <ElSelect {...bindConfig?.value}></ElSelect>;
     };
   },
 });

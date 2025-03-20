@@ -15,7 +15,7 @@ export default {
 const {
   t
 } = hooks.useI18n()
-const props = defineProps(['data', 'params'])
+const props = defineProps(['data', 'params'])//
 const showPicker = ref(false)
 const currentDate = ref('')
 const currentTime = ref('')
@@ -39,7 +39,7 @@ watch([() => props.params.type, () => props.data.options.defaultValue], (newVal)
   immediate: true
 })
 const currentValue = computed({
-  get () {
+  get() {
     let result = ''
     if (props.data.options.defaultValue) {
       if (props.params.type === 'date') {
@@ -55,7 +55,7 @@ const currentValue = computed({
     }
     return result
   },
-  set (value) {
+  set(value) {
     if (props.params.type === 'date') {
       props.data.options.defaultValue = String(dayjs(value).unix())
     } else if (props.params.type === 'dates') {
@@ -91,56 +91,33 @@ const onClear = () => {
 }
 </script>
 <template>
-  <van-field
-    ref="element"
-    readonly
-    v-model="currentValue"
-    v-bind="params"
-    @click="!params.disabled && (showPicker = true)"
-  >
+  <van-field ref="element" readonly v-model="currentValue" v-bind="params"
+    @click="!params.disabled && (showPicker = true)">
     <template v-if="!params.disabled && currentValue && params.clearable" #button>
       <van-icon @click.stop="onClear" name="clear" />
     </template>
     <template #input>
-      <input
-        v-if="!data.options.defaultValue"
-        :placeholder="params.placeholder"
-        class="van-field__control"
-        readonly
+      <input v-if="!data.options.defaultValue" :placeholder="params.placeholder" class="van-field__control" readonly
         type="text">
       <template v-else>
-        {{currentValue}}
+        {{ currentValue }}
       </template>
     </template>
   </van-field>
   <van-popup v-if="params.type === 'date'" v-model:show="showPicker" round position="bottom">
-    <van-date-picker
-      v-bind="params"
-      @confirm="onConfirm"
-      @cancel="onCancel"
-      v-model="currentDate"
-    />
+    <van-date-picker v-bind="params" @confirm="onConfirm" @cancel="onCancel" v-model="currentDate" />
   </van-popup>
   <van-popup v-if="params.type === 'datetime'" v-model:show="showPicker" round position="bottom">
-    <van-picker-group
-      v-if="params.type === 'datetime'"
-      :tabs="[t('er.form.selectDate'), t('er.form.selectTime')]"
-      @confirm="onConfirm"
-      @cancel="onCancel"
-    >
-      <van-date-picker
-        v-model="currentDate"
-        v-bind="params"
-      />
-      <van-time-picker
-        :columns-type="columnsType"
-        v-model="currentTime" />
+    <van-picker-group v-if="params.type === 'datetime'" :tabs="[t('er.form.selectDate'), t('er.form.selectTime')]"
+      @confirm="onConfirm" @cancel="onCancel">
+      <van-date-picker v-model="currentDate" v-bind="params" />
+      <van-time-picker :columns-type="columnsType" v-model="currentTime" />
     </van-picker-group>
   </van-popup>
-  <van-calendar ref="calendar" v-if="params.type === 'dates'" v-bind="params" v-model:show="showPicker" type="multiple" @confirm="onConfirm" />
-  <van-calendar ref="calendar" v-if="params.type === 'daterange'" v-bind="params" v-model:show="showPicker" type="range" @confirm="onConfirm" />
+  <van-calendar ref="calendar" v-if="params.type === 'dates'" v-bind="params" v-model:show="showPicker" type="multiple"
+    @confirm="onConfirm" />
+  <van-calendar ref="calendar" v-if="params.type === 'daterange'" v-bind="params" v-model:show="showPicker" type="range"
+    @confirm="onConfirm" />
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>

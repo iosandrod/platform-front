@@ -1,4 +1,4 @@
-import { defineComponent, reactive } from "vue";
+import { defineComponent, reactive, shallowRef } from "vue";
 import formEditor from '@ER/formEditor/formEditor'
 import { FormLayout } from "./type";
 import { staticData, formConfig } from "./formEditor/testData";
@@ -7,14 +7,15 @@ import { FormItem } from "./formitem";
 import { Field, Layout, Table, TableRow } from "./layoutType";
 import { Base } from "./base";
 import { FormInstance, FormRules } from "element-plus";
+import hooks from '@ER/hooks'
 //转换数据
-
+//
 
 export class Form extends Base {
     config: any = {}
     //子表单
     curFormItem: FormItem
-    parent?: Form
+    parent?: Form//
     data: any
     formData: any
     nextForm?: Form
@@ -71,16 +72,16 @@ export class Form extends Base {
         this.setFields(items)//
     }
     setFields(items) {
-        this.items.splice(0)
+        this.items.splice(0)//
         for (const item of items) {
             this.addFormItem(item)//
         }
     }
     setPcLayout(layout) {
-
+        this._pcLayout = layout
     }
-    setMobileLayout() {
-
+    setMobileLayout(layout) {
+        this._mobileLayout = layout//
     }
     async clearValidate() {
         const form: FormInstance = this.getRef('form')
@@ -99,13 +100,18 @@ export class Form extends Base {
     }
     async validate() {
         return new Promise(async (resolve, reject) => {
-            let form = this.getRef('form')
-            form.validate().catch(err => {
-                reject(err)
-            })
+            // let form = this.getRef('form')
+            // form.validate().catch(err => {
+            //     reject(err)
+            // })
         }).catch(err => {
             console.log(err, '报错了')//
         })
+    }
+    getPluginName() {
+        let id = this.id
+        let plugin = `ControlInsertion_${id}`
+        return plugin
     }
     getValidateRules() {
         let items = this.items

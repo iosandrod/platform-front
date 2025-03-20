@@ -248,15 +248,16 @@ export const useProps = (state: StateType, data, isPc = true, isRoot = false, sp
   }
   //这个form不是这个form//
   const formIns: Form = inject('formIns', {}) as any
-  const item = formIns.items.find(item => item.id === data.id)//
+  // console.log(formIns,'testFormIns')
   // console.log(state,data, 'testState')
   return computed(() => {
     let node = isRoot ? data.config : data
     let result = new FormProps({})
+    const item = formIns.items.find(item => item.id === data.id)//
     result.formitem = item
     const platform = isPc ? 'pc' : 'mobile'
     if (isRoot) {
-      if (isPc) {
+      if (isPc) { 
         result.model = data.store// is Array
         result.size = node.pc.size
         result.labelPosition = node[platform].labelPosition
@@ -297,7 +298,6 @@ export const useProps = (state: StateType, data, isPc = true, isRoot = false, sp
     }
     // console.log(ExtraParams, 'testParams')//
     const formitem: FormItem = ExtraParams.formitem
-    const field = formitem
     //@ts-ignore
     result.prop = 'email'
     // addValidate(result, node, isPc, t, state, ExtraParams)

@@ -27,7 +27,6 @@ import {
 import FieldsPanel from '@ER/formEditor/components/Panels/Fields';
 import CanvesPanel from '@ER/formEditor/components/Panels/Canves';
 import ConfigPanel from '@ER/formEditor/components/Panels/Config/configPanel';
-// import ConfigPanel from '@ER/formEditor/components/Panels/Config/index.vue';
 import DeviceSwitch from '@ER/formEditor/components/DeviceSwitch.vue';
 import ErFormPreview from './preview';
 import Icon from '@ER/icon';
@@ -38,7 +37,6 @@ import defaultProps from './defaultProps';
 import generatorData from './generatorData';
 import { staticData, testData1 } from './testData';
 import { validate } from 'uuid';
-import { globalConfig } from 'ant-design-vue/lib/config-provider';
 import { Form } from '@ER/form';
 export default defineComponent({
   directives: {
@@ -56,11 +54,11 @@ export default defineComponent({
     },
     delHandle: {
       type: Function,
-      default: () => {},
+      default: () => { },
     },
     copyHandle: {
       type: Function,
-      default: () => {},
+      default: () => { },
     },
     inlineMax: {
       type: Number,
@@ -81,7 +79,7 @@ export default defineComponent({
     },
     checkFieldsForNewBadge: {
       type: Function,
-      default: () => {},
+      default: () => { },
     },
     formIns: {
       type: Object,
@@ -97,6 +95,14 @@ export default defineComponent({
     const form = ref('');
     const previewPlatform = ref('pc');
     const previewLoading = ref(true);
+
+    let formIns = props.formIns;
+    // debugger//
+    if (formIns == null) {
+      formIns = new Form({});
+    } else {
+    }
+    provide('formIns', formIns);
     const state = reactive({
       validate: null as any,
       store: [],
@@ -115,11 +121,6 @@ export default defineComponent({
       logic: {},
       othersFiles: {},
     });
-    let formIns = props.formIns;
-    if (formIns == null) {
-      formIns = new Form({});
-    } //
-    provide('formIns', formIns);
     const isFoldFields = ref(true);
     const isFoldConfig = ref(true);
     //@ts-ignore
@@ -259,7 +260,8 @@ export default defineComponent({
       return node;
     };
     setTimeout(() => {
-      setData2(testData1); //
+      // setData2(testData1); //
+      setData2(JSON.parse(JSON.stringify(testData1)));//
     }, 100);
     const syncLayout = (platform, fn) => {
       const isPc = platform === 'pc';
@@ -398,7 +400,7 @@ export default defineComponent({
     const setData2 = (data) => {
       if (_.isEmpty(data)) return false;
       const newData = _.cloneDeep(data);
-      let fields = newData.fields;
+      let fields = newData.fields;//
       formIns.setFields(fields); //
       layout.pc = newData.layout.pc;
       layout.mobile = newData.layout.mobile;
@@ -493,6 +495,7 @@ export default defineComponent({
       (newV, old) => {
         const deleteFields = old.filter((item) => !newV.includes(item));
         const addFields = newV.filter((item) => !old.includes(item));
+        // console.log(formIns, 'testInsField',props.formIns,'testIns')////
         for (const delField of deleteFields) {
           formIns.delFormItem(delField);
         }
@@ -512,13 +515,12 @@ export default defineComponent({
         immediate: true,
       }
     );
-    const onClickOutside = () => {};
+    const onClickOutside = () => { };
     watch(
       () => {
         return state.store;
       },
       (newValue) => {
-        console.log(newValue, 'testNewValue'); //
       },
       {
         deep: true,
@@ -633,5 +635,5 @@ export default defineComponent({
       } //
       return com;
     };
-  },
+  }, 
 });

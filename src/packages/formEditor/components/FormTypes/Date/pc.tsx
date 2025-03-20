@@ -1,14 +1,5 @@
-// import { defineComponent } from "vue";
-
-// export default defineComponent({
-//   name: "InputMobile",
-//   setup() {
-//     return () => <div>mobile</div>;
-//   },
-// });
-import { } from 'vant'
 import { FormItem } from '@ER/formitem';
-import { ElInput } from 'element-plus';
+import { ElDatePicker, ElInput } from 'element-plus';
 import { defineComponent } from 'vue';
 
 export default defineComponent({
@@ -22,9 +13,10 @@ export default defineComponent({
   setup(props) {
     const params = props.params;
     const formitem: FormItem = params.formitem;
-    const bindConfig = formitem?.getBindConfig();//
+    const bindConfig = formitem?.getBindConfig();
+    const ns = formitem.hooks.useNamespace('FormTypesDate_pc');
     return () => {
-      return <van-field {...bindConfig?.value}></van-field>;
+      return <ElDatePicker class={ns.b()} {...bindConfig?.value}></ElDatePicker>;
     };
   },
 });

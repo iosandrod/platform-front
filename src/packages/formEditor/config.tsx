@@ -14,7 +14,7 @@ export default defineComponent({
       required: true 
     },
     fields: {
-      type: Array,
+      type: Array, 
       default: () => ([])
     },
     ...defaultProps

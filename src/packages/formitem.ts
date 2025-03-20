@@ -72,14 +72,19 @@ export class FormItem extends Base {
         if (type == 'Sform') {
             let formConfig = options?.formConfig || {}
             let _form = new Form(formConfig)
-            this.subForm = _form
-            let form = this.form
+            _form.parent = this.form//
+            this.subForm = _form//
             // let subForm = form.nextFormMap
             // let id = this.id//
             // subForm[id] = _form//
         }
     }//
     getSubForm(id: string) {
+    }
+    getData() {
+        let form = this.form
+        let data = form.data
+        return data//
     }
     getTdColumn(): TableCell[] {
         let span = this.getSpan()
@@ -164,6 +169,21 @@ export class FormItem extends Base {
             let options = config.options
             let placeholder = options.placeholder
             let value = this.getBindValue()
+            switch (type) {
+                case 'select':
+                case 'baseinfo':
+                case 'date':
+                case 'time':
+                case 'datetime':
+                case 'checkbox':
+                case 'radio':
+                case 'cascader':
+                case 'region'://
+                case 'uploadfile':
+                case "textarea"://
+                default:
+                    break
+            }
             let obj: Partial<InputProps> = {
                 placeholder: placeholder,//
                 modelValue: value,//

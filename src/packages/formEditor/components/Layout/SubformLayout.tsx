@@ -89,6 +89,11 @@ export default defineComponent({
     if (process.env.NODE_ENV === 'test') {
       params['data-field-id'] = `${props.data.id}`
     }
+    let formIns: any = inject('formIns')
+    let pluginName = formIns.getPluginName()
+    let opt = {
+      [pluginName]: true
+    }
     return () => {
       return (
         <Selection
@@ -134,7 +139,8 @@ export default defineComponent({
                       <LayoutDragGable
                         data-layout-type={'subform'}
                         data={node}
-                        ControlInsertion={true}
+                        {...opt}
+                        // ControlInsertion={true}
                         parent={props.data} />
                     </div>
                   ))

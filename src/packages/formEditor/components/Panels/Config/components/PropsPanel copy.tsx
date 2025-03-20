@@ -18,6 +18,6 @@ import Icon from '@ER/icon'
 export default defineComponent({
   name: "ConfigPropsPanel",//
   setup() {
-    return () => <div>PropsPanel</div>;
+    return () => <div></div>;
   },
 });

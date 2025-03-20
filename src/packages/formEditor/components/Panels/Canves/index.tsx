@@ -41,9 +41,9 @@ export default defineComponent({
           isRoot
         ></LayoutDragGable>
       );
-      const model = formIns.data;
-      const rules = formIns.getValidateRules();
-      console.log(model, rules, 'test123123'); ////
+      // const model = formIns.data;
+      // const rules = formIns.getValidateRules();
+      // console.log(model, rules, 'test123123'); ////
       return (
         <div>
           <TagComponent
@@ -51,7 +51,7 @@ export default defineComponent({
             onClick={unref(isEditModel) && handleClick}
             {...typeProps.value}
             model={formIns.data}
-            rules={formIns.getValidateRules()}
+            // rules={formIns.getValidateRules()}
           >
             {Layout}
           </TagComponent>

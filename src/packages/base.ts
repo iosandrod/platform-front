@@ -2,7 +2,9 @@ import { nanoid } from "nanoid"
 import { reactive, shallowRef, toRaw } from "vue"
 import { uniqueId } from 'xe-utils'
 import { FormInstance } from 'element-plus'
+import hooks from '@ER/hooks'
 export class Base {
+    hooks:typeof hooks = shallowRef(hooks) as any
     id: string
     refPool: any = shallowRef({}) as any
     _refPool: any = shallowRef({}) as any

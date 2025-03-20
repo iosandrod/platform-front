@@ -1,4 +1,4 @@
-import { defineComponent, resolveComponent, watch, useAttrs, defineAsyncComponent } from 'vue'
+import { defineComponent, resolveComponent, watch, useAttrs, defineAsyncComponent, inject } from 'vue'
 import Selection from '@ER/formEditor/components/Selection/selectElement'
 import LayoutDragGable from './DragGable'
 import hooks from '@ER/hooks'
@@ -10,11 +10,16 @@ export default defineComponent({
     data: Object,
     parent: Array
   },
-  setup (props) {
+  setup(props) {
     const ns = hooks.useNamespace('TabsLayout')
     if (!props.data.options.defaultValue) {
       // eslint-disable-next-line vue/no-setup-props-destructure
       props.data.options.defaultValue = props.data.columns[0].id
+    }
+    let formIns: any = inject('formIns')
+    let pluginName = formIns.getPluginName()
+    let opt = {
+      [pluginName]: true
     }
     return () => {
       return (
@@ -30,8 +35,8 @@ export default defineComponent({
                     <LayoutDragGable
                       data-layout-type={'tabs-col'}
                       data={element.list}
-                      ControlInsertion={true}
-                      parent={element}/>
+                      {...opt}
+                      parent={element} />
                   </Selection>
                 )
               })
