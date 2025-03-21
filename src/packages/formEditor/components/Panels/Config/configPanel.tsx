@@ -4,6 +4,8 @@ import { ref, computed, reactive, watch, onMounted, inject, h, defineComponent }
 import _ from 'lodash';
 import PanelsConfigComponentsPropsPanel from '@ER/formEditor/components/Panels/Config/components/PropsPanel.vue';
 import GlobalConfigPanel from './components/GlobalConfigPanel.vue'; //
+import formBarBread from '@/bread/formBarBread';
+import { ElAside, ElBreadcrumb, ElBreadcrumbItem, ElForm, ElScrollbar } from 'element-plus';
 export default defineComponent({
   name: 'Config',
   inheritAttrs: false,
@@ -16,6 +18,7 @@ export default defineComponent({
   components: {
     PanelsConfigComponentsPropsPanel,
     GlobalConfigPanel,
+    formBarBread
   },
   setup(props, { emit, expose, slots }) {
     const {
@@ -137,8 +140,8 @@ export default defineComponent({
     return () => {
       // return <div>12333</div>
       return (
-        <el-aside class={[ns.b()]} width={ER.props.configPanelWidth}>
-          <el-breadcrumb
+        <ElAside class={[ns.b()]} width={ER.props.configPanelWidth}>
+          <ElBreadcrumb
             class={[ns.e('breadcrumb')]}
             separator-icon={() => (
               <svg viewBox='0 0 1024 1024' xmlns='http://www.w3.org/2000/svg'>
@@ -151,7 +154,7 @@ export default defineComponent({
             {...utils.addTestId('configPanel:breadcrumb')}
           >
             {bars.value.map((item, index) => (
-              <el-breadcrumb-item
+              <ElBreadcrumbItem
                 key={index}
                 onClick={() => {
                   if (index !== bars.value.length - 1 && item.node.value !== 'placeholder') {
@@ -160,19 +163,18 @@ export default defineComponent({
                 }}
               >
                 {item.node.value === 'placeholder' ? '...' : item.label}
-              </el-breadcrumb-item>
+              </ElBreadcrumbItem>
             ))}
-          </el-breadcrumb>
-
-          <el-form ref='form' model={target} rules={rules} label-width='120px' label-position='top'>
-            <el-scrollbar>
+          </ElBreadcrumb>
+          <ElForm ref='form' model={target} rules={rules} label-width='120px' label-position='top'>
+            <ElScrollbar>
               <div class={[ns.e('wrap')]}>
                 {isSelectAnyElement.value && <PanelsConfigComponentsPropsPanel key={target.value.id} />}
                 {isSelectRoot.value && <GlobalConfigPanel />}
               </div>
-            </el-scrollbar>
-          </el-form>
-        </el-aside>
+            </ElScrollbar>
+          </ElForm>
+        </ElAside>
       );
     };
   },

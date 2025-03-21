@@ -1,5 +1,5 @@
 import { Arrayable } from "element-plus/es/utils/typescript"
-import { Base } from "./base"
+import { Base } from "@/base/base"
 import { Form, } from "./form"
 import { Field, TableCell, TableRow } from "./layoutType"
 import { FormItemRule, InputProps } from "element-plus"
@@ -53,6 +53,7 @@ export class FormItem extends Base {
         return span
     }
     init() {
+        super.init()//
         //处理列
         let tdRow = this.getTdColumn()
         //不影响form的属性
@@ -74,6 +75,7 @@ export class FormItem extends Base {
             let _form = new Form(formConfig)
             _form.parent = this.form//
             this.subForm = _form//
+            _form.curFormItem = this//
         }
     }//
     async getSelectOptions() {
@@ -203,6 +205,7 @@ export class FormItem extends Base {
         return value
     }
     getTitle() {
+        // console.log('fsklfsdjflkdsfjlksdfjdskl')//
         let config = this.config
         let label = config.label
         return label || '标题'//
@@ -211,7 +214,6 @@ export class FormItem extends Base {
         let field = this.getField()
         let r: FormItemRule = {
             //@ts-ignore
-            trigger: 'change',
             required: true,
             asyncValidator: async (rule, value, callback) => {
                 return Promise.reject('校验报错了')//

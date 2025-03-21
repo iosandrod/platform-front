@@ -24,7 +24,7 @@ import {
   watch,
   defineExpose,
 } from 'vue';
-import FieldsPanel from '@ER/formEditor/components/Panels/Fields';
+import fieldMenu from '@/menu/fieldCom'
 import CanvesPanel from '@ER/formEditor/components/Panels/Canves';
 import ConfigPanel from '@ER/formEditor/components/Panels/Config/configPanel';
 import DeviceSwitch from '@ER/formEditor/components/DeviceSwitch.vue';
@@ -38,9 +38,14 @@ import generatorData from './generatorData';
 import { staticData, testData1 } from './testData';
 import { validate } from 'uuid';
 import { Form } from '@ER/form';
+import fieldCom from '@/menu/fieldCom';
 export default defineComponent({
   directives: {
     vClickOutside,
+  },
+  components: {
+    fieldMenu,
+    fieldCom,
   },
   name: 'Everright-form-editor',
   props: {
@@ -54,11 +59,11 @@ export default defineComponent({
     },
     delHandle: {
       type: Function,
-      default: () => {},
+      default: () => { },
     },
     copyHandle: {
       type: Function,
-      default: () => {},
+      default: () => { },
     },
     inlineMax: {
       type: Number,
@@ -79,7 +84,7 @@ export default defineComponent({
     },
     checkFieldsForNewBadge: {
       type: Function,
-      default: () => {},
+      default: () => { },
     },
     formIns: {
       type: Object,
@@ -495,8 +500,7 @@ export default defineComponent({
       (newV, old) => {
         const deleteFields = old.filter((item) => !newV.includes(item));
         const addFields = newV.filter((item) => !old.includes(item));
-        // console.log(formIns, 'testInsField',props.formIns,'testIns')////
-        for (const delField of deleteFields) {
+        for (const delField of deleteFields) {//
           formIns.delFormItem(delField);
         }
         for (const addField of addFields) {
@@ -515,17 +519,17 @@ export default defineComponent({
         immediate: true,
       }
     );
-    const onClickOutside = () => {};
+    const onClickOutside = () => { };
     watch(
       () => {
         return state.store;
       },
-      (newValue) => {},
+      (newValue) => { },
       {
         deep: true,
       }
     );
-    provide('Everright', {
+    const eve = {
       formIns: formIns,
       state,
       setSelection,
@@ -539,7 +543,8 @@ export default defineComponent({
       fireEvent,
       getData,
       form,
-    });
+    }//
+    provide('Everright', eve);
     return () => {
       let nextForm = formIns.nextForm; //
       let com = (
@@ -561,7 +566,7 @@ export default defineComponent({
               default: () => (
                 <ElScrollbar>
                   <div class={{ previewDialogWrap: true, mobilePreview: previewPlatform.value === 'mobile' }}>
-                    <ErFormPreview {...props} ref={EReditorPreviewRef} />
+                    <ErFormPreview {...props} formIns={formIns} ref={EReditorPreviewRef} />
                   </div>
                 </ElScrollbar>
               ),
@@ -570,7 +575,8 @@ export default defineComponent({
 
           <ElContainer class='container' direction='vertical'>
             <ElContainer>
-              {isFoldFields.value && <FieldsPanel />}
+              {/* {isFoldFields.value && <FieldsPanel />} */}
+              {isFoldFields.value && <fieldCom></fieldCom>}
               <ElContainer class='container'>
                 <ElHeader class='operation' style='display: flex;flex-derection: row;justify-content: space-between;'>
                   <div>

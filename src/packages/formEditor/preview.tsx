@@ -1,4 +1,4 @@
-import { defineComponent } from 'vue';
+import { defineComponent, inject } from 'vue';
 import { defineProps, ref, reactive, computed, provide, getCurrentInstance, watch, nextTick, onMounted } from 'vue';
 import CanvesPanel from '@ER/formEditor/components/Panels/Canves/index';
 import hooks from '@ER/hooks';
@@ -35,7 +35,11 @@ export default defineComponent({
       fieldsLogicState: new Map(),
       remoteValues: new Map(),
       othersFiles: {},
-    });
+    });//
+    let formIns = props.formIns
+    if (formIns == null) {
+      formIns = inject('formIns')//
+    }
     const ns = hooks.useNamespace('Main', state.Namespace);
     hooks.useLogic(state);
     const getData = () => {
@@ -72,6 +76,7 @@ export default defineComponent({
       fireEvent,
       setValue,
       form,
+      formIns: formIns,//
     });
     // onMounted(() => {
     //   let formIns = props.formIns
@@ -125,7 +130,6 @@ export default defineComponent({
       state.store.forEach((e) => {
         utils.addContext({ node: e, parent: state.store });
       });
-      const subforms = _.cloneDeep(state.fields.filter((e) => e.type === 'subform'));
       if (!_.isEmpty(value)) {
         setOhters(value);
         for (const key in value) {
@@ -157,6 +161,7 @@ export default defineComponent({
     return () => {
       if (state.store.length === 0) return null
       return <CanvesPanel ></CanvesPanel>;
+      // return <div></div>
     };
   },
 });

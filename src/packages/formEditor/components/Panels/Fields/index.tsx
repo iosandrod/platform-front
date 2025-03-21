@@ -1,13 +1,19 @@
 import hooks from '@ER/hooks'
 import utils from '@ER/utils'
 import { dragGableWrap } from '@ER/formEditor/components/Layout/DragGable'
-import { inject, ref, reactive, nextTick } from 'vue'
+import { inject, ref, reactive, nextTick, defineComponent } from 'vue'
 import _ from 'lodash'
 import Icon from '@ER/icon'
 import ControlInsertionPlugin from '../../Layout/ControlInsertionPlugin'
 import { nanoid } from 'nanoid'
-export default {
+import { ElAside } from 'element-plus'
+import {menuProps} from 'element-plus'
+
+export default defineComponent({
   name: 'Fields',
+  components: {
+    dragGableWrap,
+  },
   inheritAttrs: false,
   customOptions: {},
   props: {
@@ -18,7 +24,7 @@ export default {
     visible: {}
   },
   setup(props) {
-    const ER = inject('Everright')
+    const ER: any = inject('Everright')
     const ns = hooks.useNamespace('Fields')
     const {
       t
@@ -33,10 +39,7 @@ export default {
       state.store.push(newElement)
       utils.addContext({ node: newElement, parent: state.store })
       nextTick(() => {
-        // setSelection(newElement)
-        // setTimeout(() => {
-        //   ER.canvesScrollRef.value.setScrollTop(ER.canvesScrollRef.value.wrapRef.scrollHeight)
-        // }, 100)
+        
       })
     }
     const slots = {
@@ -56,7 +59,7 @@ export default {
     const handleMove = (evt, originalEvent) => {
       return true
     }
-    let formIns = inject('formIns')
+    let formIns: any = inject('formIns')
     let pluginName = formIns.getPluginName()
     let id = formIns.id
     const dragOptions = {
@@ -66,7 +69,6 @@ export default {
       scroll: false,
       plugins: [ControlInsertionPlugin(ER)]
     }
-    // console.log(id,'rjskljslfjsdlkfjs')
     return () => {
       return (
         <ElAside class={[ns.b()]} width={ER.props.fieldsPanelWidth}>
@@ -107,9 +109,9 @@ export default {
               })}
             </el-menu>
           </el-scrollbar>
-          {/* <DeviceSwitch justifyContent={'flex-end'}></DeviceSwitch> */}
         </ElAside>
       )
     }
   }
 }
+)

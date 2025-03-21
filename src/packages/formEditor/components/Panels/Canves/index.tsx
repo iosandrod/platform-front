@@ -6,10 +6,14 @@ import hooks from '@ER/hooks/index';
 import _ from 'lodash';
 import { ElMain } from 'element-plus';
 import { Form } from '@ER/form';
+import formBarBread from '@/bread/formBarBread';
 export default defineComponent({
   name: 'Canves',
   inheritAttrs: false,
   customOptions: {},
+  components: {
+    formBarBread,
+  },
   setup() {
     const ER: any = inject('Everright');
     const ns = hooks.useNamespace('Canves');
@@ -41,17 +45,16 @@ export default defineComponent({
           isRoot
         ></LayoutDragGable>
       );
-      // const model = formIns.data;
-      // const rules = formIns.getValidateRules();
-      // console.log(model, rules, 'test123123'); ////
       return (
         <div>
+          <div> <formBarBread></formBarBread>
+          </div>
           <TagComponent
             ref={setFormRef}
             onClick={unref(isEditModel) && handleClick}
             {...typeProps.value}
             model={formIns.data}
-            // rules={formIns.getValidateRules()}
+            rules={formIns.getValidateRules()}
           >
             {Layout}
           </TagComponent>

@@ -5,7 +5,7 @@ import { staticData, formConfig } from "./formEditor/testData";
 import { nanoid } from 'nanoid'
 import { FormItem } from "./formitem";
 import { Field, Layout, Table, TableRow } from "./layoutType";
-import { Base } from "./base";
+import { Base } from "@/base/base";
 import { FormInstance, FormRules } from "element-plus";
 import hooks from '@DESIGN/hooks'
 //转换数据

@@ -4,12 +4,17 @@ import erFormEditor from '@ER/formEditor/formEditor';
 import tableEditor from '@/table/tableEditor';
 import { formConfig } from '@ER/formEditor/testData';
 import pageDesign from '@DESIGN/formEditor/pageDesign';//
+import menuCom from '@/menu/menuCom';
+import fieldCom from '@/menu/fieldCom';
+import { fieldsConfig } from '@ER/formEditor/componentsConfig';
 export default defineComponent({
   components: {
     erForm,
     erFormEditor,
     tableEditor,
-    pageDesign
+    pageDesign,
+    menuCom,
+    fieldCom
   },
   setup() {
     // let _config = JSON.parse(JSON.stringify(formConfig))
@@ -18,8 +23,12 @@ export default defineComponent({
       // let com = <erFormEditor></erFormEditor>;
       // return com;
       // return <tableEditor></tableEditor>;
-      return <erFormEditor></erFormEditor>;
+
+      // return <erFormEditor></erFormEditor>;
+      // return <menuCom></menuCom>
       // return <erForm formConfig={formConfig}></erForm>;
+      // return <fieldCom></fieldCom>
+      return <erFormEditor></erFormEditor>;
     };
-  }, 
+  },
 });

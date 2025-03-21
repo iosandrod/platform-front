@@ -1,5 +1,5 @@
 import { Arrayable } from "element-plus/es/utils/typescript"
-import { Base } from "./base"
+import { Base } from "@/base/base"
 import { Form, } from "./form"
 import { Field, TableCell, TableRow } from "./layoutType"
 import { FormItemRule, InputProps } from "element-plus"

@@ -5,7 +5,7 @@ import { staticData, formConfig } from "./formEditor/testData";
 import { nanoid } from 'nanoid'
 import { FormItem } from "./formitem";
 import { Field, Layout, Table, TableRow } from "./layoutType";
-import { Base } from "./base";
+import { Base } from "@/base/base";
 import { FormInstance, FormRules } from "element-plus";
 import hooks from '@ER/hooks'
 //转换数据
@@ -13,8 +13,7 @@ import hooks from '@ER/hooks'
 
 export class Form extends Base {
     config: any = {}
-    //子表单
-    curFormItem: FormItem
+    curFormItem?: FormItem
     parent?: Form//
     data: any
     formData: any
@@ -127,6 +126,7 @@ export class Form extends Base {
         return itemsRules//
     }
     init() {
+        super.init()
         this.initPcLayout()
         this.initMobileLayout()
     }
@@ -142,14 +142,49 @@ export class Form extends Base {
     }
     getBarsValue() {
         let parent = this.parent
-        let title = this.getTitle()
-        let arr = [title]
+        let title = this.getCurrentTabName()
+        let arr = [{ title: title, formId: this.id }]
         if (parent != null) {
             let _arr = parent.getBarsValue()
-            arr.push(..._arr)
+            arr.unshift(..._arr)
         }
         return arr
     }//
+    getFormArr() {
+        let parentArr = this.getParentFormArr()
+        let nextForm = this.getNextFormArr()
+        return [...parentArr, ...nextForm]//
+    }
+    getNextFormArr() {
+        let arr = []
+        let nextForm = this.nextForm
+        if (nextForm) {
+            arr.push(nextForm)
+            arr.push(...nextForm.getNextFormArr())
+        }
+        return arr
+    }
+    getParentFormArr() {
+        let arr = []
+        let parent = this.parent
+        if (parent) {
+            arr.push(parent)
+            arr.push(...parent.getParentFormArr())
+        }
+        return arr
+    }//
+    formTabClick(id: string) {
+        let allForm = this.getFormArr()
+        let _f = allForm.find((form) => {//
+            return form.id == id
+        })
+        let nextForms = _f.getNextFormArr()
+        nextForms.forEach((form) => {
+            form.nextForm = null
+        })//
+        _f.nextForm = null//
+    }
+    closeCurSubForm() { }
     getCurrentTabName() {
         let curFormItem = this.curFormItem
         if (curFormItem == null) {
@@ -158,7 +193,14 @@ export class Form extends Base {
         return curFormItem.getTitle()
     }
     getTitle() {
-        return '数据表单'//
+        //这是子表单
+        let formItem = this.curFormItem
+        let title = ''
+        if (formItem != null) {
+            title = formItem.getTitle()
+        }
+        title = title || '数据表单'
+        return title////
     }
     getRootForm() {
         let parent = this.parent
