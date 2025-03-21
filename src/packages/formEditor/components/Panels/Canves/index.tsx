@@ -47,7 +47,9 @@ export default defineComponent({
       );
       return (
         <div>
-          <div> <formBarBread></formBarBread>
+          <div>
+            {' '}
+            <formBarBread></formBarBread>
           </div>
           <TagComponent
             ref={setFormRef}

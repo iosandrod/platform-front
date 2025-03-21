@@ -10,8 +10,16 @@ const routes: RouteRecordRaw[] = [
       renderMenu: false,
       icon: 'CreditCardOutlined',
     },
-  }, 
-  { 
+  },
+  {
+    path: '/login',
+    name: '登录',
+    meta: {
+      view: 'blank',
+    },
+    component: () => import('@/pages/login/Login.vue'),
+  },
+  {
     path: '/home',
     name: '首页',
     meta: {
@@ -21,7 +29,7 @@ const routes: RouteRecordRaw[] = [
   },
   {
     path: "/config",
-    name: "配置", 
+    name: "配置",
     meta: {
       view: 'blank',
     },

@@ -88,8 +88,8 @@ export default defineComponent({
     };
     const formIns: any = inject('formIns');
     //@ts-ignore
-    const id = formIns.id
-    let pluginName = formIns.getPluginName()
+    const id = formIns.id;
+    let pluginName = formIns.getPluginName();
     const dragOptions = {
       swapThreshold: 1,
       group: {
@@ -98,7 +98,7 @@ export default defineComponent({
       parent: props.parent,
       plugins: [ControlInsertionPlugin(ER)],
       // ControlInsertion: true,
-      [pluginName]: true
+      [pluginName]: true,
     };
     const loadComponent = () => {
       let componentMap = {};
@@ -148,11 +148,6 @@ export default defineComponent({
             break;
           case 'inline':
             node = <LayoutInlineLayout key={element.id} data={element} parent={props.data}></LayoutInlineLayout>;
-            break;
-          case 'subform':
-            if (unref(isEditModel) || _.get(state.fieldsLogicState.get(element), 'visible', undefined) !== 0) {
-              node = <LayoutSubformLayout key={element.id} data={element} parent={props.data}></LayoutSubformLayout>;
-            }
             break;
           default:
             const typeProps = hooks.useProps(state, element, unref(isPc));

@@ -11,12 +11,11 @@ export default defineComponent({
     params: Object,
   },
   setup(props) {
-    const data = props.data;
     const params = props.params;
     const formitem: FormItem = params.formitem;
-    const bindConfig = formitem.getBindConfig();
     return () => {
-      return <ElInput {...bindConfig.value}></ElInput>;
+      const bindConfig = formitem?.getBindConfig();
+      return <ElInput {...bindConfig}></ElInput>;
     };
   },
 });

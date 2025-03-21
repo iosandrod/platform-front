@@ -80,7 +80,6 @@ export default defineComponent({
   },
   setup(props) {
     const ER = inject('Everright');
-    const isInline = props.type === 'inline';
     const ns = hooks.useNamespace('DragGableLayout');
     const { state, isEditModel, isPc, setSelection } = hooks.useTarget();
     const handleMove = (e) => {
@@ -88,8 +87,8 @@ export default defineComponent({
     };
     const formIns: any = inject('formIns');
     //@ts-ignore
-    const id = formIns.id
-    let pluginName = formIns.getPluginName()
+    const id = formIns.id;
+    let pluginName = formIns.getPluginName();
     const dragOptions = {
       swapThreshold: 1,
       group: {
@@ -98,7 +97,7 @@ export default defineComponent({
       parent: props.parent,
       plugins: [ControlInsertionPlugin(ER)],
       // ControlInsertion: true,
-      [pluginName]: true
+      [pluginName]: true,
     };
     const loadComponent = () => {
       let componentMap = {};
@@ -159,6 +158,7 @@ export default defineComponent({
             const formitem = typeProps.value?.formitem;
             const rules = formitem?.getValidateRoles() || []; //
             let TypeComponent = '';
+            // debugger; //
             if (unref(isEditModel) || _.get(state.fieldsLogicState.get(element), 'visible', undefined) !== 0) {
               TypeComponent = load.findComponent('FormTypes', element.type);
               const params = {

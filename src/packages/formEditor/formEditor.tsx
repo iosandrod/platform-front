@@ -24,7 +24,7 @@ import {
   watch,
   defineExpose,
 } from 'vue';
-import fieldMenu from '@/menu/fieldCom'
+import fieldMenu from '@/menu/fieldCom';
 import CanvesPanel from '@ER/formEditor/components/Panels/Canves';
 import ConfigPanel from '@ER/formEditor/components/Panels/Config/configPanel';
 import DeviceSwitch from '@ER/formEditor/components/DeviceSwitch.vue';
@@ -59,11 +59,11 @@ export default defineComponent({
     },
     delHandle: {
       type: Function,
-      default: () => { },
+      default: () => {},
     },
     copyHandle: {
       type: Function,
-      default: () => { },
+      default: () => {},
     },
     inlineMax: {
       type: Number,
@@ -84,7 +84,7 @@ export default defineComponent({
     },
     checkFieldsForNewBadge: {
       type: Function,
-      default: () => { },
+      default: () => {},
     },
     formIns: {
       type: Object,
@@ -104,7 +104,7 @@ export default defineComponent({
     let formIns = props.formIns;
     // debugger//
     if (formIns == null) {
-      formIns = new Form({});
+      formIns = new Form(props);
     } else {
     }
     provide('formIns', formIns);
@@ -125,9 +125,25 @@ export default defineComponent({
       Namespace: 'formEditor',
       logic: {},
       othersFiles: {},
+      fieldsLogicState: new Map(),
     });
-    const isFoldFields = ref(true);
-    const isFoldConfig = ref(true);
+    formIns.setState(state);
+    const isFoldFields = computed({
+      get: () => {
+        return formIns.isDesign;
+      },
+      set: (val) => {
+        formIns.setFormDesign(val);
+      },
+    });
+    const isFoldConfig = computed({
+      get: () => {
+        return formIns.isDesign;
+      },
+      set: (val) => {
+        formIns.setFormDesign(val);
+      },
+    });
     //@ts-ignore
     state.validator = (target, fn) => {
       if (target) {
@@ -475,12 +491,6 @@ export default defineComponent({
         case 4:
           fireEvent('save', getData());
           break;
-        case 5:
-          isFoldFields.value = !isFoldFields.value;
-          break;
-        case 6:
-          isFoldConfig.value = !isFoldConfig.value;
-          break;
         case 7:
           previewLoading.value = true;
           previewPlatform.value = val;
@@ -500,7 +510,8 @@ export default defineComponent({
       (newV, old) => {
         const deleteFields = old.filter((item) => !newV.includes(item));
         const addFields = newV.filter((item) => !old.includes(item));
-        for (const delField of deleteFields) {//
+        for (const delField of deleteFields) {
+          //
           formIns.delFormItem(delField);
         }
         for (const addField of addFields) {
@@ -519,12 +530,12 @@ export default defineComponent({
         immediate: true,
       }
     );
-    const onClickOutside = () => { };
+    const onClickOutside = () => {};
     watch(
       () => {
         return state.store;
       },
-      (newValue) => { },
+      (newValue) => {},
       {
         deep: true,
       }
@@ -543,7 +554,7 @@ export default defineComponent({
       fireEvent,
       getData,
       form,
-    }//
+    }; //
     provide('Everright', eve);
     return () => {
       let nextForm = formIns.nextForm; //
@@ -575,7 +586,6 @@ export default defineComponent({
 
           <ElContainer class='container' direction='vertical'>
             <ElContainer>
-              {/* {isFoldFields.value && <FieldsPanel />} */}
               {isFoldFields.value && <fieldCom></fieldCom>}
               <ElContainer class='container'>
                 <ElHeader class='operation' style='display: flex;flex-derection: row;justify-content: space-between;'>
@@ -629,7 +639,7 @@ export default defineComponent({
                   onClick={() => handleOperation(6)}
                 />
               </ElContainer>
-              {<ConfigPanel />}
+              {isFoldConfig.value && <ConfigPanel />}
             </ElContainer>
           </ElContainer>
           {/* <Everright-form-editor></Everright-form-editor> */}

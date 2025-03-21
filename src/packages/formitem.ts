@@ -35,8 +35,21 @@ export class FormItem extends Base {
         }
         return field
     }
-    updateBindData(updateConfig) {
-
+    updateBindData(updateConfig: { value: any, [key: string]: any }) {
+        try {
+            let value = updateConfig.value
+            let field = this.getField()
+            let updateBefore = this.config.updateBefore
+            if (typeof updateBefore == 'function') {
+                updateBefore(value)
+            }
+            let data = this.getData()
+            data[field] = value//
+        } catch (error) {
+            console.log('更新数据报错了')//
+        }
+    }
+    getItemChange() {
     }
     async onValueChange() {
 
@@ -165,34 +178,39 @@ export class FormItem extends Base {
 
     }
     getBindConfig() {
+        console.log('bindConfig is create')
         let type = this.getType()//
-        let form = this.form
-        return computed(() => {
-            let config = this.config
-            let options = config.options
-            let placeholder = options.placeholder
-            let value = this.getBindValue()
-            switch (type) {
-                case 'select':
-                case 'baseinfo':
-                case 'date':
-                case 'time':
-                case 'datetime':
-                case 'checkbox':
-                case 'radio':
-                case 'cascader':
-                case 'region'://
-                case 'uploadfile':
-                case "textarea"://
-                default:
-                    break
-            }
-            let obj: Partial<InputProps> = {
-                placeholder: placeholder,//
-                modelValue: value,//
-            }
-            return obj
-        })
+        let config = this.config
+        let options = config.options
+        let placeholder = options.placeholder
+        let value = this.getBindValue()
+        switch (type) {
+            case 'select':
+            case 'baseinfo':
+            case 'date':
+            case 'time':
+            case 'datetime':
+            case 'checkbox':
+            case 'radio':
+            case 'cascader':
+            case 'region'://
+            case 'uploadfile':
+            case "textarea"://
+            default:
+                break
+        }
+        let obj: Partial<InputProps> = {
+            placeholder: placeholder,//
+            modelValue: value,
+            //@ts-ignore
+            onChange: (val) => {
+                // console.log(val, 'value is change')//
+            },
+            onInput: (val) => {
+                this.updateBindData({ value: val })//
+            },
+        }
+        return obj
     }
     getBindValue(getConfig?: any) {
         let form = this.form
@@ -214,9 +232,9 @@ export class FormItem extends Base {
         let field = this.getField()
         let r: FormItemRule = {
             //@ts-ignore
+            trigger: "blur",
             required: true,
-            asyncValidator: async (rule, value, callback) => {
-                return Promise.reject('校验报错了')//
+            asyncValidator: async (rule, value, callback) => {//
             }//
         }
         let rules = { field: field, rules: [r] }//

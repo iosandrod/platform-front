@@ -8,14 +8,17 @@ import { Field, Layout, Table, TableRow } from "./layoutType";
 import { Base } from "@/base/base";
 import { FormInstance, FormRules } from "element-plus";
 import hooks from '@ER/hooks'
+import { fieldsConfig } from "./formEditor/componentsConfig";
 //转换数据
 //
 
 export class Form extends Base {
+    state: any = {}
+    isDesign = false
+    data: any = {}//
     config: any = {}
     curFormItem?: FormItem
     parent?: Form//
-    data: any
     formData: any
     nextForm?: Form
     nextFormMap: any = {}
@@ -67,7 +70,10 @@ export class Form extends Base {
         this.config = config
         this.init()
         let items = config.items || config.fields || []
-        this.data = config.data || {}//
+        let _data = config.data
+        if (_data) {
+            this.setData(_data)//
+        }
         this.setFields(items)//
     }
     setFields(items) {
@@ -125,10 +131,20 @@ export class Form extends Base {
         }, {})//
         return itemsRules//
     }
+    setCurrentDesign(status: boolean = true) {
+        this.isDesign = false
+    }
     init() {
         super.init()
         this.initPcLayout()
         this.initMobileLayout()
+        this.setData({
+            email: 'sfsd',
+            name: "sdfdsf"
+        })
+    }
+    setState(state) {
+        this.state = state
     }
     getFields() {
         let items = this.items
@@ -153,7 +169,11 @@ export class Form extends Base {
     getFormArr() {
         let parentArr = this.getParentFormArr()
         let nextForm = this.getNextFormArr()
-        return [...parentArr, ...nextForm]//
+        return [...parentArr, this, ...nextForm]//
+    }
+    getFieldsDesignConfig() {
+        let _fieldConfig = JSON.parse(JSON.stringify(fieldsConfig))
+        return _fieldConfig
     }
     getNextFormArr() {
         let arr = []
@@ -311,12 +331,13 @@ export class Form extends Base {
         super.onUnmounted()//
     }
     setData(data) {
-        let form = this.getRef('form')
-        if (!form) {
-            return //
-        }
-        let formData = data || this.getFormConfig()//
-        form.setData(formData)//
+        // let form = this.getRef('form')
+        // if (!form) {
+        //     return //
+        // }
+        // let formData = data || this.getFormConfig()//
+        // form.setData(formData)//
+        this.data = data
     }
 }
 //使用默认布局

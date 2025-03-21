@@ -1,16 +1,19 @@
 import { nanoid } from "nanoid"
 import { reactive, shallowRef, toRaw } from "vue"
 import hooks from '@ER/hooks'
+import { system, System } from "@/system"
 export class Base {
     hooks: typeof hooks = shallowRef(hooks) as any
     id: string
     refPool: any = shallowRef({}) as any
     _refPool: any = shallowRef({}) as any
+    system: System
     uuid() {
         return nanoid()
     }
     constructor() {
         this.id = this.uuid()
+        this.system = system
         return reactive(this)// 
     }
     init() {

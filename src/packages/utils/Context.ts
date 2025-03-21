@@ -24,7 +24,7 @@ export class Context {
         if (Array.isArray(this.parent)) {
             this.arr = this.parent
         } else {
-            //这是为什么呢
+            //当前的容器
             this.arr = parent.columns || parent.list || parent.rows
         }
         this.state = config.node
@@ -336,7 +336,7 @@ export class Context {
         }
         let nextNode = this.getFlattenNodes()
         let _arr = [this.node, ...nextNode]
-    } 
+    }
     appendCol() {
         const parent = this.parent
         const arr = this.arr
