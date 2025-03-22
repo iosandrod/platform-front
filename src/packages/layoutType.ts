@@ -80,10 +80,12 @@ export type FieldOptions = {
 };
 
 export type Field = {
+    password?: boolean
     updateBefore?: any
     span?: number
     type: string;
     label: string;
+    labelWidth?: number;
     icon?: string;
     key?: string;
     id?: string;

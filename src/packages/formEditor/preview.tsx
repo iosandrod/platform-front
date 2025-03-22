@@ -78,13 +78,6 @@ export default defineComponent({
       form,
       formIns: formIns,//
     });
-    // onMounted(() => {
-    //   let formIns = props.formIns
-    //   if (formIns != null) {
-    //     let config = formIns.getFormConfig()
-    //     setData2(config)//
-    //   }
-    // })
     const setOhters = (value) => {
       _.toPairs(value)
         .filter(([key]) => key.indexOf('_other') !== -1)

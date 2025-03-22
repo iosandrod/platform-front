@@ -153,35 +153,35 @@ export default defineComponent({
               node = <LayoutSubformLayout key={element.id} data={element} parent={props.data}></LayoutSubformLayout>;
             }
             break;
-          default:
-            const typeProps = hooks.useProps(state, element, unref(isPc));
-            const formitem = typeProps.value?.formitem;
+          default: 
+            let formitem = formIns.items.find(item => item.id === element.id)
+            let typeProps = formitem.getFormItemProps(element)//
             const rules = formitem?.getValidateRoles() || []; //
             let TypeComponent = '';
-            // debugger; //
             if (unref(isEditModel) || _.get(state.fieldsLogicState.get(element), 'visible', undefined) !== 0) {
               TypeComponent = load.findComponent('FormTypes', element.type);
               const params = {
                 data: element,
-                parent: props.data,
+                parent: props.data, 
                 key: element.id,
               };
               if (process.env.NODE_ENV === 'test') {
                 params['data-field-id'] = `${element.id}`;
               }
               if (unref(isPc)) {
-                const formitem = typeProps.value?.formitem; //
+                const formitem = typeProps?.formitem; //
                 const prop = formitem?.getField();
+                // console.log(typeProps.value,'testProps') 
                 node = (
                   //@ts-ignore
                   <Selection hasWidthScale hasCopy hasDel hasDrag hasMask {...params}>
                     {element.type !== 'divider' ? (
                       //@ts-ignore
-                      <el-form-item {...typeProps.value} prop={prop}>
-                        <TypeComponent data={element} params={typeProps.value}></TypeComponent>
+                      <el-form-item {...typeProps} prop={prop}>
+                        <TypeComponent data={element} params={typeProps}></TypeComponent>
                       </el-form-item>
                     ) : (
-                      <TypeComponent data={element} params={typeProps.value}></TypeComponent>
+                      <TypeComponent data={element} params={typeProps}></TypeComponent>
                     )}
                   </Selection>
                 );
@@ -189,7 +189,7 @@ export default defineComponent({
                 node = (
                   //@ts-ignore
                   <Selection hasWidthScale hasCopy hasDel hasDrag hasMask {...params}>
-                    <TypeComponent data={element} params={typeProps.value}></TypeComponent>
+                    <TypeComponent data={element} params={typeProps}></TypeComponent>
                   </Selection>
                 );
               }
@@ -202,7 +202,7 @@ export default defineComponent({
         let node = '';
         if (_.isEmpty(props.data)) {
           if (!props.isRoot) {
-            node = <div class={ns.e('dropHere')}>Drop here</div>;
+            node = <div class={ns.e('dropHere')}></div>;
           }
         }
         return node;

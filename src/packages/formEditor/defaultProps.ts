@@ -1,5 +1,9 @@
 import { fieldsConfig, globalConfig } from './componentsConfig'
 export default {
+  items: {
+    type: Array,
+    default: () => []
+  },
   fieldsConfig: {
     type: Array,
     default: () => fieldsConfig
@@ -29,7 +33,7 @@ export default {
   },
   checkPropsBySelected: {
     type: Function,
-    default: () => {}
+    default: () => { }
   },
   quickImages: {
     type: Array,

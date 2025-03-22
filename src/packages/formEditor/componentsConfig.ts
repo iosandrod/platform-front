@@ -138,26 +138,26 @@ export const fieldsConfig = [
           max: null
         }
       },
-      {
-        type: 'textarea',
-        label: '多行文本',
-        icon: 'textarea',
-        key: '',
-        id: '',
-        options: {
-          clearable: true,
-          isShowWordLimit: false,
-          rows: 6,
-          defaultValue: '',
-          placeholder: '',
-          disabled: false,
-          labelWidth: 100,
-          isShowLabel: true,
-          required: false,
-          min: null,
-          max: null
-        }
-      },
+      // {
+      //   type: 'textarea',
+      //   label: '多行文本',
+      //   icon: 'textarea',
+      //   key: '',
+      //   id: '',
+      //   options: {
+      //     clearable: true,
+      //     isShowWordLimit: false,
+      //     rows: 6,
+      //     defaultValue: '',
+      //     placeholder: '',
+      //     disabled: false,
+      //     labelWidth: 100,
+      //     isShowLabel: true,
+      //     required: false,
+      //     min: null,
+      //     max: null
+      //   }
+      // },
       {
         type: 'number',
         label: '数字',

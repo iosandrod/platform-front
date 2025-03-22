@@ -45,12 +45,15 @@ export default defineComponent({
           isRoot
         ></LayoutDragGable>
       );
+      let bar = null
+      if (formIns.getShowFormBar()) {
+        bar = <div>
+          <formBarBread></formBarBread>
+        </div>
+      }
       return (
         <div>
-          <div>
-            {' '}
-            <formBarBread></formBarBread>
-          </div>
+          {bar}
           <TagComponent
             ref={setFormRef}
             onClick={unref(isEditModel) && handleClick}

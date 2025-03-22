@@ -9,7 +9,7 @@ import utils from '@ER/utils'
 import { Form } from '@ER/form'
 import { FormItem } from '@ER/formitem'
 import { StateType } from '@ER/formEditor/formType'
-class FormProps {
+export class FormProps {
   label?: string;
   disabled?: boolean;
   placeholder?: string;
@@ -73,161 +73,7 @@ const findPosition = (node, parent) => {
 
   return { x: -1, y: -1 }
 }
-// const addValidate = (result, node, isPc, t, state, ExtraParams) => {
-//   const {
-//     options
-//   } = node
-//   if (isPc) {
-//     result.prop = node.context && node.context.parents.map((e, index) => {
-//       let result = ''
-//       if (!index) {
-//         result = e.context.parent.indexOf(e)
-//       } else {
-//         const parent = e.context.parent
-//         let nodes = []
-//         if (parent.type === 'subform') {
-//           const {
-//             x,
-//             y
-//           } = findPosition(e, parent)
-//           result += `list.${y}.${x}`
-//         } else {
-//           if (parent.columns) {
-//             nodes = parent.columns
-//             result += 'columns.'
-//           } else if (parent.list) {
-//             nodes = parent.list
-//             result += 'list.'
-//           } else if (parent.rows) {
-//             nodes = parent.rows
-//             result += 'rows.'
-//           }
-//           result += nodes.indexOf(e)
-//         }
-//       }
-//       return result
-//     }).join('.') + '.options.defaultValue'
-//   }
 
-//   const obj: any = {
-//   }
-//   const validator = (...arg0) => new Promise((...arg1: any) => {
-//     const resolve = () => {
-//       arg1[0]()
-//     }
-//     const reject = isPc
-//       ? arg1[1]
-//       : (message) => {
-//         obj.message = message
-//         arg1[0](false)
-//       }
-//     let value = isPc ? arg0[1] : arg0[0]
-//     if (/^(signature|radio|checkbox|select|html)$/.test(node.type)) {
-//       value = options.defaultValue
-//     }
-//     const newValue = options.isShowTrim ? value.trim() : value
-//     if (node.type === 'subform') {
-//       const allFields = utils.findSubFormAllFields(node)
-//       if (result.required) {
-//         if (allFields.length) {
-//           if (allFields.some(e => utils.isEmpty(e.options.isShowTrim ? e.options.defaultValue.trim() : e.options.defaultValue))) {
-//             reject(t('er.validateMsg.required'))
-//           }
-//         } else {
-//           reject(t('er.validateMsg.required'))
-//         }
-//       } else {
-//         resolve()
-//       }
-//     } else {
-//       let isRequired = result.required
-//       if (state.mode === 'preview' && utils.checkIsInSubform(node)) {
-//         const parent = node?.context?.parent?.context?.parent
-//         if (parent) {
-//           const {
-//             readOnly,
-//             required
-//           } = getLogicStateByField(parent, state.fieldsLogicState)
-//           const parentProps: any = useProps(state, parent, isPc, false, false, t, ExtraParams).value
-//           if (required !== undefined) {
-//             isRequired = parentProps.required
-//           }
-//         }
-//       }
-//       if (isRequired && node.type !== 'subform' && utils.isEmpty(newValue)) {
-//         reject(t('er.validateMsg.required'))
-//         return
-//       }
-//       if (/^(select|checkbox|radio)$/.test(node.type)) {
-//         if ((_.isArray(node.options.defaultValue) ? node.options.defaultValue : [node.options.defaultValue]).includes('other')) {
-//           const key = node.key + '_other'
-//           if (!state.othersFiles[key]) {
-//             reject(t('er.validateMsg.placeholder3'))
-//             return false
-//           }
-//         }
-//       }
-//     }
-//     switch (node.type) {
-//       case 'input':
-//         switch (options.renderType) {
-//           case 1:
-//             if (!!newValue && options.isShowWordLimit && newValue.length < options.min) {
-//               reject(t('er.validateMsg.limitWord', { min: options.min }))
-//             } else {
-//               resolve()
-//             }
-//             break
-//           case 2:
-//             if (!!newValue && !/\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/.test(newValue)) {
-//               reject(t('er.validateMsg.email'))//
-//             } else {
-//               resolve()
-//             }
-//             break
-//           case 3:
-//             if (!!newValue && !/^(^[1-9]\d{7}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}$)|(^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])((\d{4})|\d{3}[Xx])$)$/.test(newValue)) {
-//               reject(t('er.validateMsg.IdNumber'))
-//             } else {
-//               resolve()
-//             }
-//             break
-//           case 4:
-//             if (!!newValue && !/^(13[0-9]|15[012356789]|166|17[3678]|18[0-9]|14[57])[0-9]{8}$/.test(newValue)) {
-//               reject(t('er.validateMsg.phone'))
-//             } else {
-//               resolve()
-//             }
-//             break
-//           case 5:
-//             if (!!newValue && !/^https?:\/\/(([a-zA-Z0-9_-])+(\.)?)*(:\d+)?(\/((\.)?(\?)?=?&?[a-zA-Z0-9_-](\?)?)*)*$/i.test(newValue)) {
-//               reject(t('er.validateMsg.http'))
-//             } else {
-//               resolve()
-//             }
-//             break
-//         }
-//         break
-//       case 'textarea':
-//         if (!!newValue && options.isShowWordLimit && newValue.length < options.min) {
-//           reject(t('er.validateMsg.limitWord', { min: options.min }))
-//         } else {
-//           resolve()
-//         }
-//         break
-//       default:
-//         resolve()
-//         break
-//     }
-//   })
-//   if (isPc) {
-//     obj.required = options.required
-//     obj.asyncValidator = validator
-//   } else {
-//     obj.validator = validator
-//   }
-//   result.rules = [obj]
-// }
 const getLogicStateByField = (field, fieldsLogicState) => {
   // console.log(field, 'testField is Object')//
   let fieldState = fieldsLogicState.get(field)
@@ -248,8 +94,6 @@ export const useProps = (state: StateType, data, isPc = true, isRoot = false, sp
   }
   //这个form不是这个form//
   const formIns: Form = inject('formIns', {}) as any
-  // console.log(formIns,'testFormIns')
-  // console.log(state,data, 'testState')
   return computed(() => {
     let node = isRoot ? data.config : data
     let result = new FormProps({})
@@ -296,8 +140,6 @@ export const useProps = (state: StateType, data, isPc = true, isRoot = false, sp
         result.required = result.disabled ? false : required === 1
       }
     }
-    // console.log(ExtraParams, 'testParams')//
-    const formitem: FormItem = ExtraParams.formitem
     //@ts-ignore
     result.prop = 'email'
     // addValidate(result, node, isPc, t, state, ExtraParams)

@@ -17,7 +17,7 @@ const routes: RouteRecordRaw[] = [
     meta: {
       view: 'blank',
     },
-    component: () => import('@/pages/login/Login.vue'),
+    component: () => import('@/pages/login/Login'),
   },
   {
     path: '/home',
