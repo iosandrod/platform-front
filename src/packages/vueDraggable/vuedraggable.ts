@@ -168,6 +168,7 @@ const draggableComponent = defineComponent({
   computed: {
     realList() {
       const { list } = this;
+      console.log(list,'testList')
       return list ? list : this.modelValue;
     },
 

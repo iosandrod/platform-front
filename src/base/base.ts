@@ -20,6 +20,10 @@ export class Base {
 
     }
     registerRef(key: string, ref: any,) {
+        if (ref == null) {
+            this.unregisterRef(key)
+            return
+        }
         let refPool = this.refPool
         refPool[key] = ref
     }
@@ -38,13 +42,12 @@ export class Base {
         let keys = Object.keys(this.refPool)
         for (const key of keys) {
             this.unregisterRef(key)//
-        }//
+        }
     }
     getRef(key: any) {
         // return this.refPool[this._refPool[key]]//
         let refPool = this.refPool
         let arr = refPool[key]
-        let item = arr.slice(-1).pop()
-        return item//
+        return arr//
     }
 }

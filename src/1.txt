@@ -1355,3 +1355,84 @@ export default defineComponent({
 //   }
 //   result.rules = [obj]
 // }
+
+
+
+
+
+
+
+
+
+
+
+
+
+<template>
+    <div class="container">
+        <h2 class="title">拖拽排序示例</h2>
+        <draggable v-model="items" group="list" @start="onStart" @end="onEnd" @change="onChange" item-key="id"
+            class="list">
+            <template #item="{ element }">
+                <div class="list-item">{{ element.name }}</div>
+            </template>
+        </draggable> 
+    </div>
+</template>
+
+<script>
+import draggable from "@ER/vueDraggable/vuedraggable";
+
+export default {
+    components: { draggable },
+    data() {
+        return {
+            items: [
+                { id: 1, name: "苹果 🍎" },
+                { id: 2, name: "香蕉 🍌" },
+                { id: 3, name: "橙子 🍊" },
+                { id: 4, name: "葡萄 🍇" }
+            ]
+        };
+    },
+    methods: {
+        onStart(evt) {
+            console.log("开始拖拽:", evt);
+        },
+        onEnd(evt) {
+            console.log("拖拽结束:", evt);
+        },
+        onChange(evt) {
+            console.log("列表已更新:", this.items);
+        }
+    }
+};
+</script>
+
+<style>
+.container {
+    max-width: 400px;
+    margin: auto;
+    text-align: center;
+}
+
+.title {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.list {
+    border: 2px dashed #ccc;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.list-item {
+    padding: 10px;
+    margin: 5px 0;
+    background: #f8f8f8;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    cursor: grab;
+}
+</style>

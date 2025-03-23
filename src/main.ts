@@ -9,6 +9,7 @@ import enUS from 'vant/es/locale/lang/en-US'
 // import '@vant/touch-emulator'
 import 'element-plus/dist/index.css'
 import 'vant/lib/index.css'
+import './mainStyle.css'
 Locale.use('en-US', enUS) 
 app.use(Vant)
 app.use(router);

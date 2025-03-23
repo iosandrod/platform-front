@@ -131,6 +131,9 @@ export default defineComponent({
 
     const slots = {
       item: ({ element }) => {
+        // if(1==1){
+        //   return <div>1233</div>
+        // }
         let node = '';
         switch (element.type) {
           case 'grid':
@@ -219,8 +222,8 @@ export default defineComponent({
           move={handleMove}
           {...dragOptions}
           componentData={useAttrs()}
+          v-slots={slots}
         >
-          {slots}
         </dragGableWrap>
       );
     };

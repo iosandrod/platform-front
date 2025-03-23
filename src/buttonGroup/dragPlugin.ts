@@ -359,7 +359,6 @@ function ControlInsertionPlugin(ER) {
         // 关联新元素的上下文信息
         utils.addContext({ node: store[inserRowIndex], parent: prevSortable.options.parent })
       }
-
       // 处理列插入逻辑
       if (inserColIndex !== '') {
         const {
@@ -490,7 +489,7 @@ function ControlInsertionPlugin(ER) {
         setStates(newTarget, e, ER)
       }
     }
-  }//
+  }
   const name = ER.formIns.getPluginName()
   return Object.assign(ControlInsertionPlugin, {
     pluginName: name, //

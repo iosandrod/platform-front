@@ -33,7 +33,6 @@ export default defineComponent({
       fIns.onUnmounted(); //
     });
     return () => {
-      //   let com = <preview isShowCompleteButton={false} ref={registerForm} formIns={fIns}></preview>;
       let com = <editor></editor>;
       return com;
     };
